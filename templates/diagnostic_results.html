@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostic Results - LUNG VISION</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<<style>
+    /* Top Section 2-Column Grid (X-ray & Probabilities Equal Height) */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1.5rem;
+      align-items: stretch;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Chest Radiograph Viewer Card */
+    .visual-scan-card {
+      background: #090e17;
+      border: 1.5px solid #1e293b;
+      border-radius: 14px;
+      padding: 1.25rem;
+      color: #ffffff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .visual-preview-img {
+      max-width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      margin: auto 0;
+    }
+
+    .scan-meta-info {
+      margin-top: 0.85rem;
+      font-size: 0.82rem;
+      color: #94a3b8;
+      background: rgba(15, 23, 42, 0.7);
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Model Selection Pills */
+    .model-switcher {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .model-pill {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      text-align: center;
+      border: 2px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.25s ease-in-out;
+      user-select: none;
+    }
+    .model-pill:hover {
+      border-color: #008891;
+      background: #f0fdfa;
+      color: #008891;
+      box-shadow: 0 4px 12px rgba(0, 136, 145, 0.15);
+      transform: translateY(-1px);
+    }
+    .model-pill.active {
+      border-color: #4f46e5;
+      color: #4f46e5;
+      background: #eef2ff;
+      box-shadow: 0 0 16px rgba(79, 70, 229, 0.25);
+    }
+
+    /* Model Info Banner */
+    .active-model-banner {
+      background: #f0fdfa;
+      border: 1.5px solid #008891;
+      border-radius: 10px;
+      padding: 0.85rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Bottom Full Width Card (Sketch-il ullapadi extend aanadhu) */
+    .full-width-analysis-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    /* Risk Badges */
+    .risk-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      margin-top: 1.25rem;
+    }
+    .risk-high { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .risk-moderate { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .risk-low { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+
+    .prob-fill { transition: width 0.4s ease; }
+
+    @media (max-width: 960px) {
+      .results-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <!-- Navy Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        🫁 LUNG VISION
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="{{ url_for('doctor_dashboard') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="5" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('patient_selection') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Patients
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('patient_selection') }}" class="nav-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          Upload Radiograph
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('doctor_reports') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Reports Archive
+        </a>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <a href="{{ url_for('logout') }}" class="nav-link" style="color: #f87171;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Workspace -->
+  <main class="main-workspace">
+    <header class="topbar">
+      <div>
+        <div class="topbar-title">Diagnostic Results & Multi-Model Inference</div>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">Patient ID: {{ study.patient_id }} | Study: #{{ study.study_id }}</span>
+      </div>
+      <div class="user-profile-badge">
+        <span style="font-size: 0.9rem; font-weight: 600;">Dr. {{ session.get('name', 'Ramya') }}</span>
+        <div class="user-avatar">D</div>
+      </div>
+    </header>
+
+    <div class="content-body">
+      
+      <!-- Module 7: User-Selectable Multi-Model Switcher (Top Pills) -->
+      <div class="model-switcher">
+        <div class="model-pill active" id="pillDenseNet121" onclick="selectModel('DenseNet121')">
+          DenseNet121
+        </div>
+        <div class="model-pill" id="pillResNet50" onclick="selectModel('ResNet50')">
+          ResNet50
+        </div>
+        <div class="model-pill" id="pillEfficientNetB0" onclick="selectModel('EfficientNetB0')">
+          EfficientNetB0
+        </div>
+      </div>
+
+      <!-- ======================================================= -->
+      <!-- TOP SECTION: X-RAY & PROBABILITIES (SIDE BY SIDE)       -->
+      <!-- ======================================================= -->
+      <div class="results-grid">
+        
+        <!-- Left: Uploaded Chest Radiograph Card -->
+        <div class="visual-scan-card">
+          <img class="visual-preview-img" src="{{ url_for('static', filename='uploads/' + study.image_filename) }}" alt="Screened Chest Radiograph">
+          
+          <div>
+            <div class="scan-meta-info">
+              Digital Radiograph • ID: {{ study.image_filename }}
+            </div>
+            <!-- Quality Strip (Sketch Padi) -->
+            <div style="margin-top: 10px; padding: 8px 12px; background: rgba(15, 23, 42, 0.85); border-radius: 8px; font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255, 255, 255, 0.08); color: #94a3b8;">
+              <span style="color: #22c55e;">Gatekeeper: <b style="color: #4ade80;">Passed</b></span>
+              <span>Modality: <b style="color: #f1f5f9;">CXR (PA View)</b></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Diagnostic Details & 5-Class Probabilities -->
+        <div class="card" style="margin-bottom: 0;">
+          
+          <!-- Selected Model Status Banner -->
+          <div class="active-model-banner">
+            <span style="font-size: 0.9rem; font-weight: 700; color: #0f766e;" id="selectedModelLabel">
+              Selected Model: {{ study.champion_model or 'DenseNet121' }} (Champion)
+            </span>
+            <span style="font-size: 0.85rem; font-weight: 700; color: #0284c7;" id="selectedConfidenceLabel">
+              Confidence: {{ study.confidence_score }}%
+            </span>
+          </div>
+
+          <!-- Primary Diagnosis Verdict -->
+          <div style="margin-bottom: 1.5rem;">
+            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">
+              Primary Diagnosis
+            </span>
+            <h2 id="diagnosisTitle" style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem;">
+              {{ study.predicted_disease }}
+            </h2>
+          </div>
+
+          <!-- 5 Class Probability Breakdown (Module 8) -->
+          <h4 style="font-size: 0.9rem; font-weight: 700; color: #334155; margin-bottom: 1rem;">
+            5-Class Probability Distribution
+          </h4>
+
+          <div id="probBarsContainer">
+            <!-- COVID-19 -->
+            <div class="prob-item">
+              <div class="prob-labels">
+                <span style="font-weight: 600; color: #475569;">COVID-19</span>
+                <span style="font-weight: 700; color: #0f172a;" id="probValCovid">0%</span>
+              </div>
+              <div class="prob-track">
+                <div class="prob-fill" id="probBarCovid" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Lung Opacity -->
+            <div class="prob-item">
+              <div class="prob-labels">
+                <span style="font-weight: 600; color: #475569;">Lung Opacity</span>
+                <span style="font-weight: 700; color: #0f172a;" id="probValOpacity">0%</span>
+              </div>
+              <div class="prob-track">
+                <div class="prob-fill" id="probBarOpacity" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Normal -->
+            <div class="prob-item">
+              <div class="prob-labels">
+                <span style="font-weight: 600; color: #475569;">Normal</span>
+                <span style="font-weight: 700; color: #0f172a;" id="probValNormal">0%</span>
+              </div>
+              <div class="prob-track">
+                <div class="prob-fill" id="probBarNormal" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Tuberculosis -->
+            <div class="prob-item">
+              <div class="prob-labels">
+                <span style="font-weight: 600; color: #475569;">Tuberculosis</span>
+                <span style="font-weight: 700; color: #0f172a;" id="probValTb">0%</span>
+              </div>
+              <div class="prob-track">
+                <div class="prob-fill" id="probBarTb" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Pneumonia -->
+            <div class="prob-item">
+              <div class="prob-labels">
+                <span style="font-weight: 600; color: #475569;">Pneumonia</span>
+                <span style="font-weight: 700; color: #0f172a;" id="probValPneumonia">0%</span>
+              </div>
+              <div class="prob-track">
+                <div class="prob-fill" id="probBarPneumonia" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ======================================================= -->
+      <!-- BOTTOM SECTION: FULL WIDTH EXTENDED (UNGA SKETCH PADI)  -->
+      <!-- ======================================================= -->
+      <div class="full-width-analysis-card">
+        
+        <!-- 3 Models Results Comparison Table (Consensus Matrix) -->
+        <div>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+            <span>Multi-Model Consensus & Comparison</span>
+            <span style="font-size: 0.75rem; background: #e0e7ff; color: #4338ca; padding: 3px 10px; border-radius: 6px; font-weight: 700;">Ensemble Voting</span>
+          </h4>
+
+          <div style="border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; background: #ffffff;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left;">
+              <thead>
+                <tr style="background: #f8fafc; border-bottom: 1px solid #e2e8f0; color: #475569;">
+                  <th style="padding: 10px 14px; font-weight: 700;">Model Architecture</th>
+                  <th style="padding: 10px 14px; font-weight: 700;">Predicted Class</th>
+                  <th style="padding: 10px 14px; font-weight: 700;">Top Confidence</th>
+                  <th style="padding: 10px 14px; font-weight: 700; text-align: center;">Status</th>
+                </tr>
+              </thead>
+              <tbody id="comparisonTableBody">
+                <!-- Populated via existing JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Final Consensus Badge -->
+          <div id="ensembleConsensusBox" style="margin-top: 0.85rem; padding: 0.85rem 1.2rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between;">
+          </div>
+        </div>
+
+        <!-- Risk Score Gauge Box (Module 9) -->
+        <div id="riskBox" class="risk-box {% if 'High' in (study.risk_level or '') %}risk-high{% elif 'Mod' in (study.risk_level or '') %}risk-moderate{% else %}risk-low{% endif %}">
+          <div>
+            <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Calculated Risk Index</span>
+            <div id="riskScoreText" style="font-size: 1.35rem; font-weight: 800; margin-top: 3px;">
+              {{ study.risk_score }} / 100 ({{ study.risk_level }} Risk)
+            </div>
+          </div>
+          <span id="riskBadgeText" class="badge {% if 'High' in (study.risk_level or '') %}badge-danger{% elif 'Mod' in (study.risk_level or '') %}badge-warning{% else %}badge-success{% endif %}" style="padding: 6px 14px; font-size: 0.85rem;">
+            {% if 'High' in (study.risk_level or '') %}Clinical Priority{% elif 'Mod' in (study.risk_level or '') %}Moderate Monitoring{% else %}Normal Routine{% endif %}
+          </span>
+        </div>
+
+        <!-- Medical Disclaimer Box (Module 10) -->
+        <div class="medical-disclaimer-box" style="margin-top: 1.25rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div>
+            <strong>Medical Decision Support Notice:</strong>
+            LUNG VISION AI outputs are intended solely for triage and diagnostic decision support. Final clinical diagnosis and patient discharge authority remain with the qualified licensed radiologist.
+          </div>
+        </div>
+
+        <!-- Action Controls (Module 11) -->
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <a href="{{ url_for('download_report', study_id=(study.study_id or 1)) }}" target="_blank" class="btn btn-teal" style="flex: 1; padding: 0.85rem; font-weight: 700; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            Generate Clinical PDF Report
+          </a>
+          <a href="{{ url_for('doctor_dashboard') }}" class="btn btn-outline" style="padding: 0.85rem 1.5rem; font-weight: 700; text-decoration: none; display: flex; justify-content: center; align-items: center;">
+            Complete Study
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+</div>
+<script id="comparisonDataJson" type="application/json">
+  {{ comparison | tojson | safe if comparison else '{}' }}
+</script>
+
+<script>
+  const multiModelData = JSON.parse(document.getElementById('comparisonDataJson').textContent || '{}');
+  const championModel = "{{ study.champion_model or 'DenseNet121' }}";
+  const defaultDisease = "{{ study.predicted_disease or 'Normal' }}";
+  const defaultConfidence = parseFloat("{{ study.confidence_score or 90.0 }}");
+
+  function selectModel(modelName) {
+    document.querySelectorAll('.model-pill').forEach(pill => pill.classList.remove('active'));
+    const activePill = document.getElementById('pill' + modelName);
+    if(activePill) activePill.classList.add('active');
+
+    let data = multiModelData[modelName];
+    
+    // Fallback
+    if (!data) {
+      if (modelName === championModel) {
+        document.getElementById('selectedModelLabel').innerText = "Selected Model: " + modelName + " (Champion)";
+        document.getElementById('selectedConfidenceLabel').innerText = "Confidence: " + defaultConfidence + "%";
+        document.getElementById('diagnosisTitle').innerText = defaultDisease;
+      }
+      return;
+    }
+
+    let topDisease = 'Normal';
+    let maxConf = -1;
+    for (const [disease, conf] of Object.entries(data)) {
+      if (conf > maxConf) {
+        maxConf = conf;
+        topDisease = disease;
+      }
+    }
+
+    // UI Updates
+    document.getElementById('selectedModelLabel').innerText = "Selected Model: " + modelName + (modelName === championModel ? " (Champion)" : "");
+    document.getElementById('selectedConfidenceLabel').innerText = "Confidence: " + maxConf + "%";
+    document.getElementById('diagnosisTitle').innerText = topDisease;
+
+    updateBar('Covid', data['COVID-19'] || 0);
+    updateBar('Opacity', data['Lung Opacity'] || 0);
+    updateBar('Normal', data['Normal'] || 0);
+    updateBar('Tb', data['Tuberculosis'] || 0);
+    updateBar('Pneumonia', data['Pneumonia'] || 0);
+
+    // Dynamic Risk Score Logic
+    const riskBox = document.getElementById('riskBox');
+    const riskScoreText = document.getElementById('riskScoreText');
+    const riskBadgeText = document.getElementById('riskBadgeText');
+
+    let riskScore = 12;
+    let riskLevel = "Low Risk";
+    
+    if (topDisease !== 'Normal') {
+      riskScore = topDisease === 'Pneumonia' ? 76 : Math.floor(50 + (maxConf * 0.4));
+      riskLevel = riskScore >= 65 ? "High Risk" : "Moderate Risk";
+    }
+
+    riskBox.className = "risk-box";
+    if (riskLevel.includes('High')) {
+      riskBox.classList.add('risk-high');
+      riskBadgeText.className = "badge badge-danger";
+      riskBadgeText.innerText = "Clinical Priority";
+    } else if (riskLevel.includes('Moderate')) {
+      riskBox.classList.add('risk-moderate');
+      riskBadgeText.className = "badge badge-warning";
+      riskBadgeText.innerText = "Moderate Monitoring";
+    } else {
+      riskBox.classList.add('risk-low');
+      riskBadgeText.className = "badge badge-success";
+      riskBadgeText.innerText = "Normal Routine";
+    }
+
+    riskScoreText.innerText = riskScore + " / 100 (" + riskLevel + ")";
+  }
+
+  function buildComparisonTable() {
+    const tbody = document.getElementById('comparisonTableBody');
+    const consensusBox = document.getElementById('ensembleConsensusBox');
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+    const models = ['DenseNet121', 'ResNet50', 'EfficientNetB0'];
+    const voteCounts = {};
+    let championModelName = championModel || 'DenseNet121';
+    let championTopDisease = defaultDisease;
+    let championTopConf = defaultConfidence;
+
+    
+    if (Object.keys(multiModelData).length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td style="padding: 10px 12px; font-weight: 700; color: #1e293b;">${championModelName} <span style="color:#16a34a;">★</span></td>
+          <td style="padding: 10px 12px; font-weight: 600; color: ${defaultDisease === 'Normal' ? '#16a34a' : '#dc2626'};">${defaultDisease}</td>
+          <td style="padding: 10px 12px; font-weight: 700; color: #0f172a;">${defaultConfidence}%</td>
+          <td style="padding: 10px 12px; text-align: center;">
+            <span style="background: #dcfce7; color: #15803d; padding: 2px 7px; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">Champion</span>
+          </td>
+        </tr>
+      `;
+      if (consensusBox) {
+        consensusBox.style.background = '#f8fafc';
+        consensusBox.style.border = '1px solid #cbd5e1';
+        consensusBox.innerHTML = `
+          <div>
+            <span style="color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">Final Consensus Decision:</span>
+            <div style="font-size: 0.95rem; font-weight: 800; color: #0f172a; margin-top: 2px;">
+              ${defaultDisease} <span style="font-size: 0.8rem; font-weight: 600; color: #0284c7;">(${defaultConfidence}% via ${championModelName})</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Final Record Verified</span>
+          </div>
+        `;
+      }
+      return;
+    }
+
+    
+    models.forEach(mName => {
+      const data = multiModelData[mName];
+      if (!data) return;
+
+      let topDisease = 'Normal';
+      let maxConf = -1;
+      for (const [disease, conf] of Object.entries(data)) {
+        if (conf > maxConf) {
+          maxConf = conf;
+          topDisease = disease;
+        }
+      }
+
+      voteCounts[topDisease] = (voteCounts[topDisease] || 0) + 1;
+
+      if (mName === championModelName) {
+        championTopDisease = topDisease;
+        championTopConf = maxConf;
+      }
+
+      const isChampion = (mName === championModelName);
+      const row = document.createElement('tr');
+      row.style.borderBottom = '1px solid #f1f5f9';
+      row.style.backgroundColor = isChampion ? '#f0fdf4' : '#ffffff';
+
+      row.innerHTML = `
+        <td style="padding: 8px 12px; font-weight: 700; color: #1e293b;">
+          ${mName} ${isChampion ? '<span style="color:#16a34a; font-size: 0.75rem;">★</span>' : ''}
+        </td>
+        <td style="padding: 8px 12px; font-weight: 600; color: ${topDisease === 'Normal' ? '#16a34a' : '#dc2626'};">
+          ${topDisease}
+        </td>
+        <td style="padding: 8px 12px; font-weight: 700; color: #0f172a;">
+          ${maxConf}%
+        </td>
+        <td style="padding: 8px 12px; text-align: center;">
+          ${isChampion 
+            ? '<span style="background: #dcfce7; color: #15803d; padding: 2px 7px; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">Champion</span>' 
+            : '<span style="background: #f1f5f9; color: #64748b; padding: 2px 7px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;">Evaluated</span>'}
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    if (consensusBox) {
+      const majorityCount = voteCounts[championTopDisease] || 1;
+      consensusBox.style.background = '#f8fafc';
+      consensusBox.style.border = '1px solid #cbd5e1';
+      consensusBox.style.color = '#1e293b';
+      consensusBox.innerHTML = `
+        <div>
+          <span style="color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">Final Consensus Decision:</span>
+          <div style="font-size: 0.95rem; font-weight: 800; color: #0f172a; margin-top: 2px;">
+            ${championTopDisease} <span style="font-size: 0.8rem; font-weight: 600; color: #0284c7;">(${championTopConf}% via ${championModelName})</span>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">
+            ${majorityCount}/3 Models Agreement
+          </span>
+        </div>
+      `;
+    }
+  }
+
+  function updateBar(key, value) {
+    const textEl = document.getElementById('probVal' + key);
+    const barEl = document.getElementById('probBar' + key);
+    if(textEl) textEl.innerText = value + "%";
+    if(barEl) barEl.style.width = value + "%";
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    selectModel(championModel || 'DenseNet121');
+    buildComparisonTable();
+  });
+</script>
+
+</body>
+</html>

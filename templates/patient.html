@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard - LUNG VISION</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .patient-sidebar {
+      background-color: #3b1c54;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .patient-sidebar .nav-link.active {
+      background-color: #6b21a8;
+      box-shadow: 0 4px 12px rgba(107, 33, 168, 0.4);
+    }
+    .patient-sidebar .nav-link:hover {
+      background-color: #4c1d95;
+    }
+    .patient-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 1.5rem;
+    }
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+    .profile-row:last-child {
+      border-bottom: none;
+    }
+    .profile-label {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .profile-value {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* --- About Modal Overlay --- */
+.about-modal-backdrop {
+  display: none; /* Default hidden */
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Modal Content Card */
+.about-modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 580px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.about-modal-header {
+  padding: 1.15rem 1.4rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+}
+
+.about-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #94a3b8;
+  cursor: pointer;
+  line-height: 1;
+}
+.about-close-btn:hover { color: #0f172a; }
+
+.about-modal-body {
+  padding: 1.4rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.about-section-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 0.4rem 0;
+}
+
+/* Algorithm Pill Layout */
+.about-grid-badges {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.about-algo-pill {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.about-algo-pill strong { font-size: 0.8rem; color: #0f172a; }
+.about-algo-pill span { font-size: 0.68rem; color: #64748b; margin-top: 2px; }
+
+/* 5 Class Badges */
+.about-class-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.about-modal-footer {
+  padding: 0.9rem 1.4rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  background: #f8fafc;
+}
+
+.about-btn-action {
+  background: #008891;
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.about-btn-action:hover { background: #007077; }
+
+    @media (max-width: 992px) {
+      .patient-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <!-- Purple Theme Sidebar -->
+  <aside class="sidebar patient-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand" style="color: #d8b4fe;">🫁 LUNG VISION</div>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="#allSections" class="nav-link active" id="navDash" onclick="switchPatientTab('all')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="#profileSection" class="nav-link" id="navProfile" onclick="switchPatientTab('profile')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My Profile
+        </a>
+      </li>
+      <li>
+        <a href="#reportsSection" class="nav-link" id="navReports" onclick="switchPatientTab('reports')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          My Reports
+        </a>
+      </li>
+      <!-- About System Link (Below My Reports) -->
+<li>
+  <a href="javascript:void(0)" onclick="openAboutModal()" class="nav-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    </svg>
+    About System
+  </a>
+</li>
+    </ul>
+    <div class="sidebar-footer">
+      <a href="{{ url_for('logout') }}" class="nav-link" style="color: #fca5a5;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Workspace -->
+  <main class="main-workspace">
+    <header class="topbar">
+      <div>
+        <div class="topbar-title">Welcome, {{ session.get('name', 'Patient') }}</div>
+        <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Patient Self-Service Portal</span>
+      </div>
+      <div class="user-profile-badge">
+        <span style="font-size: 0.9rem; font-weight: 600;">{{ session.get('name', 'Patient') }}</span>
+        <div class="user-avatar" style="background: #ede9fe; color: #7c3aed;">
+          {{ session.get('name', 'P')[0]|upper }}
+        </div>
+      </div>
+    </header>
+
+    <div class="content-body">
+      <div class="patient-grid" id="patientMainGrid">
+        
+        <!-- Left: Profile Card -->
+        <div class="card" id="profileCard">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 1.25rem;">My Profile</h3>
+          
+          <div class="profile-row">
+            <span class="profile-label">Patient ID</span>
+            <span class="profile-value">{{ patient.patient_id if patient else 'PT-' ~ session.get('user_id', '01') }}</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Full Name</span>
+            <span class="profile-value">{{ patient.name if patient else session.get('name') }}</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Age</span>
+            <span class="profile-value">{{ patient.age if patient and patient.age else 'Not Updated' }}</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Gender</span>
+            <span class="profile-value">{{ patient.gender if patient and patient.gender else 'Not Updated' }}</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Email</span>
+            <span class="profile-value" style="font-size: 0.85rem;">{{ patient.email if patient else session.get('email') }}</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Phone</span>
+            <span class="profile-value">{{ patient.phone if patient and patient.phone else 'Not Updated' }}</span>
+          </div>
+        </div>
+
+       <!-- Right: Reports Table with Dynamic Clinical Guidance -->
+        <div class="card" id="reportsCard">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 1.25rem;">
+            My Examination Reports &amp; Clinical Workup
+          </h3>
+          
+          <div class="table-responsive">
+            <table class="custom-table" style="width: 100%; border-collapse: separate; border-spacing: 0;">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Prediction</th>
+                  <th>Risk Score</th>
+                  <th>Model Used</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in reports %}
+                <!-- Row 1: Report Basic Details -->
+                <tr>
+                  <td>{{ r.examination_date.strftime('%d %b %Y') if r.examination_date else '12 Sep 2026' }}</td>
+                  <td><strong>{{ r.predicted_disease }}</strong></td>
+                  <td>
+                    {% if 'High' in r.risk_level %}
+                      <span class="badge" style="background: #fee2e2; color: #b91c1c; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600;">{{ r.risk_score }} ({{ r.risk_level }})</span>
+                    {% elif 'Moderate' in r.risk_level %}
+                      <span class="badge" style="background: #fef3c7; color: #b45309; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600;">{{ r.risk_score }} ({{ r.risk_level }})</span>
+                    {% else %}
+                      <span class="badge" style="background: #dcfce7; color: #15803d; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600;">{{ r.risk_score }} ({{ r.risk_level }})</span>
+                    {% endif %}
+                  </td>
+                  <td>{{ r.champion_model }}</td>
+                  <td>
+                    <a href="{{ url_for('download_report', study_id=r.study_id) }}" class="btn btn-primary" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; background: #0284c7; text-decoration: none; border-radius: 4px;" target="_blank">
+                      Download PDF
+                    </a>
+                  </td>
+                </tr>
+
+                <!-- Row 2: Disease-Specific AI Clinical Guidance -->
+                <tr style="background-color: #f8fafc;">
+                  <td colspan="5" style="padding: 0.6rem 1rem 1rem 1rem; border-top: none; border-bottom: 2px solid #e2e8f0;">
+                    
+                    {% if r.predicted_disease == 'COVID-19' %}
+                    <div style="background: #ffffff; padding: 0.75rem 1rem; border-radius: 6px; border-left: 4px solid #ef4444; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <strong style="font-size: 0.82rem; color: #1e293b;">🩺 AI Clinical Workup &amp; Protocol:</strong>
+                        <span style="font-size: 0.75rem; font-weight: 600; color: #dc2626;">Urgency: Immediate Airborne Isolation</span>
+                      </div>
+                      <p style="margin: 0; font-size: 0.82rem; color: #475569; line-height: 1.45;">
+                        Immediate airborne isolation protocol advised. Confirm with RT-PCR laboratory testing and monitor continuous pulse oximetry (SpO2).
+                      </p>
+                    </div>
+
+                    {% elif r.predicted_disease == 'Tuberculosis' %}
+                    <div style="background: #ffffff; padding: 0.75rem 1rem; border-radius: 6px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <strong style="font-size: 0.82rem; color: #1e293b;">🩺 AI Clinical Workup &amp; Protocol:</strong>
+                        <span style="font-size: 0.75rem; font-weight: 600; color: #7c3aed;">Urgency: Priority GeneXpert MTB/RIF Testing</span>
+                      </div>
+                      <p style="margin: 0; font-size: 0.82rem; color: #475569; line-height: 1.45;">
+                        Priority Sputum Smear Microscopy and GeneXpert MTB/RIF assay recommended. Initiate DOTS clinical evaluation and household contact screening.
+                      </p>
+                    </div>
+
+                    {% elif r.predicted_disease == 'Pneumonia' %}
+                    <div style="background: #ffffff; padding: 0.75rem 1rem; border-radius: 6px; border-left: 4px solid #f59e0b; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <strong style="font-size: 0.82rem; color: #1e293b;">🩺 AI Clinical Workup &amp; Protocol:</strong>
+                        <span style="font-size: 0.75rem; font-weight: 600; color: #d97706;">Urgency: CURB-65 &amp; Antibiotic Evaluation</span>
+                      </div>
+                      <p style="margin: 0; font-size: 0.82rem; color: #475569; line-height: 1.45;">
+                        Lower respiratory tract protocol indicated. Conduct CURB-65 assessment and initiate targeted antimicrobial therapy with follow-up auscultation.
+                      </p>
+                    </div>
+
+                    {% elif r.predicted_disease == 'Lung Opacity' %}
+                    <div style="background: #ffffff; padding: 0.75rem 1rem; border-radius: 6px; border-left: 4px solid #0284c7; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <strong style="font-size: 0.82rem; color: #1e293b;">🩺 AI Clinical Workup &amp; Protocol:</strong>
+                        <span style="font-size: 0.75rem; font-weight: 600; color: #0284c7;">Urgency: High-Resolution Thoracic Review</span>
+                      </div>
+                      <p style="margin: 0; font-size: 0.82rem; color: #475569; line-height: 1.45;">
+                        High-Resolution Chest CT (HRCT) suggested to differentiate parenchymal consolidation from focal atelectasis or pleural thickening.
+                      </p>
+                    </div>
+
+                    {% else %}
+                    <div style="background: #ffffff; padding: 0.75rem 1rem; border-radius: 6px; border-left: 4px solid #10b981; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <strong style="font-size: 0.82rem; color: #1e293b;">🩺 AI Clinical Workup &amp; Protocol:</strong>
+                        <span style="font-size: 0.75rem; font-weight: 600; color: #16a34a;">Urgency: Routine Pulmonary Maintenance</span>
+                      </div>
+                      <p style="margin: 0; font-size: 0.82rem; color: #475569; line-height: 1.45;">
+                        Clear thoracic radiograph without focal consolidation or active lesions. Bilateral costophrenic angles unremarkable. Maintain routine annual check-ups.
+                      </p>
+                    </div>
+                    {% endif %}
+
+                  </td>
+                </tr>
+                {% else %}
+                <tr>
+                  <td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">
+                    No radiograph examination reports recorded yet.
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  function switchPatientTab(tab) {
+    document.querySelectorAll('.patient-sidebar .nav-link').forEach(l => l.classList.remove('active'));
+    const pCard = document.getElementById('profileCard');
+    const rCard = document.getElementById('reportsCard');
+    const grid = document.getElementById('patientMainGrid');
+
+    if (tab === 'profile') {
+      document.getElementById('navProfile').classList.add('active');
+      pCard.style.display = 'block';
+      rCard.style.display = 'none';
+      grid.style.gridTemplateColumns = '1fr';
+    } else if (tab === 'reports') {
+      document.getElementById('navReports').classList.add('active');
+      pCard.style.display = 'none';
+      rCard.style.display = 'block';
+      grid.style.gridTemplateColumns = '1fr';
+    } else {
+      document.getElementById('navDash').classList.add('active');
+      pCard.style.display = 'block';
+      rCard.style.display = 'block';
+      grid.style.gridTemplateColumns = '340px 1fr';
+    }
+  }
+  function openAboutModal() {
+  document.getElementById('aboutModal').style.display = 'flex';
+}
+
+function closeAboutModal(e) {
+  // Card-kku veliye click panninaalum close aagum
+  if (!e || e.target.id === 'aboutModal' || e.target.classList.contains('about-close-btn') || e.target.classList.contains('about-btn-action')) {
+    document.getElementById('aboutModal').style.display = 'none';
+  }
+}
+</script>
+
+<!-- ============================================== -->
+<!-- ABOUT LUNG VISION MODAL POPUP                  -->
+<!-- ============================================== -->
+<div id="aboutModal" class="about-modal-backdrop" onclick="closeAboutModal(event)">
+  <div class="about-modal-card">
+    
+    <!-- Modal Header -->
+    <div class="about-modal-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.8rem;">🫁</span>
+        <div>
+          <h3 style="margin: 0; font-size: 1.25rem; font-weight: 800; color: #0f172a;">LUNG VISION AI</h3>
+          <span style="font-size: 0.8rem; color: #64748b; font-weight: 600;">Clinical Pulmonary Screening Platform</span>
+        </div>
+      </div>
+      <button type="button" class="about-close-btn" onclick="closeAboutModal()">&times;</button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="about-modal-body">
+      
+      <!-- 1. Purpose of the Project -->
+      <div class="about-info-section">
+        <h4 class="about-section-title">
+          🎯 Objective & Clinical Purpose
+        </h4>
+        <p style="margin: 0; font-size: 0.88rem; color: #475569; line-height: 1.55;">
+          <strong>Lung Vision</strong> is an AI-powered thoracic triage platform designed to assist radiologists and healthcare providers in rapid, accurate detection of pulmonary pathologies from digital chest radiographs (CXR). It accelerates clinical workups and provides automated risk indexing for prioritized patient care.
+        </p>
+      </div>
+
+      <!-- 2. Deep Learning Algorithms Used -->
+      <div class="about-info-section" style="margin-top: 1rem;">
+        <h4 class="about-section-title">
+          🧠 Multi-Model AI Architecture
+        </h4>
+        <div class="about-grid-badges">
+          <div class="about-algo-pill">
+            <strong>DenseNet121</strong>
+            <span>Feature Reuse Architecture</span>
+          </div>
+          <div class="about-algo-pill">
+            <strong>ResNet50</strong>
+            <span>Deep Residual Learning</span>
+          </div>
+          <div class="about-algo-pill">
+            <strong>EfficientNetB0</strong>
+            <span>Scaled Compound Coefficients</span>
+          </div>
+        </div>
+        <p style="margin-top: 0.6rem; font-size: 0.82rem; color: #64748b;">
+          ⚡ <em>Ensemble Consensus Voting</em> is applied across models to determine champion inferences and minimize false positives.
+        </p>
+      </div>
+
+      <!-- 3. Target Pathologies (5-Class Coverage) -->
+      <div class="about-info-section" style="margin-top: 1rem;">
+        <h4 class="about-section-title">
+          🔬 Targeted Classes
+        </h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;">
+          <span class="about-class-tag" style="background: #fee2e2; color: #991b1b;">Tuberculosis</span>
+          <span class="about-class-tag" style="background: #fef3c7; color: #92400e;">Pneumonia</span>
+          <span class="about-class-tag" style="background: #ede9fe; color: #6b21a8;">COVID-19</span>
+          <span class="about-class-tag" style="background: #e0f2fe; color: #0369a1;">Lung Opacity</span>
+          <span class="about-class-tag" style="background: #dcfce7; color: #15803d;">Normal </span>
+        </div>
+      </div>
+
+      <!-- 4. Quality & Clinical Disclaimer -->
+      <div style="margin-top: 1.1rem; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.8rem; color: #64748b;">
+        🛡️ <strong>Quality Gatekeeper:</strong> Input scans undergo automated pre-validation ensuring correct thoracic PA projection before clinical inference.
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="about-modal-footer">
+      <button type="button" class="about-btn-action" onclick="closeAboutModal()">Close Overview</button>
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+</html>

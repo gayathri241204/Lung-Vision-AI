@@ -1,0 +1,494 @@
+/* ==========================================================================
+   LUNG VISION - ENTERPRISE HEALTHCARE UI FRAMEWORK
+   ========================================================================== */
+
+:root {
+  --sidebar-bg: #091725;
+  --sidebar-hover: #13273d;
+  --sidebar-active: #008891;
+  --sidebar-text: #94a3b8;
+  --sidebar-text-active: #ffffff;
+  
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --teal: #008891;
+  --teal-light: #e0f2f1;
+  
+  --bg-main: #f4f7fb;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  
+  --danger: #ef4444;
+  --danger-bg: #fee2e2;
+  --warning: #f59e0b;
+  --warning-bg: #fef3c7;
+  --success: #10b981;
+  --success-bg: #d1fae5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   MASTER LAYOUT STRUCTURE (Sidebar + Content Workspace)
+   -------------------------------------------------------------------------- */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex-grow: 1;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--sidebar-hover);
+  color: #ffffff;
+}
+
+.nav-link.active {
+  background-color: var(--teal);
+  color: var(--sidebar-text-active);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 136, 145, 0.3);
+}
+
+.nav-link svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.sidebar-footer {
+  padding: 1rem 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Main Workspace */
+.main-workspace {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.topbar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.content-body {
+  padding: 2rem;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   UI CARDS & METRICS
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+/* 4 Dashboard Metric Tiles */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpi-tile {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.kpi-title {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.kpi-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   DATA TABLES
+   -------------------------------------------------------------------------- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.custom-table th {
+  padding: 0.9rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--border-color);
+  background: #f8fafc;
+}
+
+.custom-table td {
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border-color);
+  color: #334155;
+  vertical-align: middle;
+}
+
+.custom-table tr:hover {
+  background-color: #f8fafc;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS & BADGES
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.btn-teal {
+  background: var(--teal);
+  color: #ffffff;
+}
+.btn-teal:hover { opacity: 0.9; }
+
+.btn-danger {
+  background: var(--danger);
+  color: #ffffff;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+.btn-outline:hover { background: #f1f5f9; }
+
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 20px;
+}
+.badge-danger { background: var(--danger-bg); color: #991b1b; }
+.badge-warning { background: var(--warning-bg); color: #92400e; }
+.badge-success { background: var(--success-bg); color: #065f46; }
+
+/* --------------------------------------------------------------------------
+   PIPELINE STEPPER / MODEL SWITCHER PILLS (Module 7)
+   -------------------------------------------------------------------------- */
+.model-switcher {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.model-pill {
+  flex: 1;
+  padding: 0.85rem;
+  text-align: center;
+  border: 2px solid var(--border-color);
+  background: #ffffff;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.model-pill.active {
+  border-color: #6366f1;
+  color: #4f46e5;
+  background: #eef2ff;
+  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.15);
+}
+
+/* Probability Bars */
+.prob-item {
+  margin-bottom: 0.75rem;
+}
+
+.prob-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.prob-track {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.prob-fill {
+  height: 100%;
+  background: #6366f1;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   MEDICAL DISCLAIMER NOTE (Reference Image 2 Integration)
+   -------------------------------------------------------------------------- */
+.medical-disclaimer-box {
+  background-color: #f0f9ff;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #0369a1;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.medical-disclaimer-box strong {
+  color: #0c4a6e;
+}
+
+/* --------------------------------------------------------------------------
+   LOGIN PAGE (3 CARDS SELECTION)
+   -------------------------------------------------------------------------- */
+.login-screen-wrapper {
+  max-width: 950px;
+  margin: 4rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.login-header-logo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.login-tagline {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+}
+
+.role-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.role-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.role-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+
+/* --- Select Architecture Dropdown Styling (Image 1) --- */
+.architecture-select, select[name="architecture"], .form-select {
+    background-color: #ffffff !important;
+    border: 2px solid #008891 !important;
+    border-radius: 10px !important;
+    padding: 7px 16px !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+    box-shadow: 0 0 12px rgba(0, 136, 145, 0.25) !important;
+    transition: all 0.3s ease-in-out !important;
+    outline: none !important;
+    cursor: pointer;
+}
+
+.architecture-select:hover, .architecture-select:focus {
+    border-color: #0ea5e9 !important;
+    box-shadow: 0 0 18px rgba(14, 165, 233, 0.45) !important;
+    transform: translateY(-1px);
+}
+
+/* --- Search Button Glowing & Modern Styling (Image 2) --- */
+.search-btn, button[type="submit"].btn-primary, .btn-search {
+    background: linear-gradient(135deg, #008891 0%, #0284c7 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 8px 22px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(0, 136, 145, 0.35) !important;
+    transition: all 0.3s ease-in-out !important;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background: linear-gradient(135deg, #0284c7 0%, #008891 100%) !important;
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.55) !important;
+    transform: translateY(-2px);
+}
+
+/* Search Input Box Matching Border */
+.search-input, input[name="search"] {
+    border: 2px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #008891 !important;
+    box-shadow: 0 0 10px rgba(0, 136, 145, 0.2) !important;
+}

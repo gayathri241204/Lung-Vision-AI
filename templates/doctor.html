@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Dashboard - LUNG VISION</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="app-container">
+  <!-- Navy Sidebar -->
+  <!-- Persistent Sidebar for All Doctor Pages -->
+  <!-- Unified Doctor Sidebar (Dashboard Active) -->
+  <aside class="sidebar" style="width: 250px; background: #0f172a; min-height: 100vh; padding: 1.5rem 1rem; color: #fff; display: flex; flex-direction: column; justify-content: space-between; flex-shrink: 0;">
+    <div>
+      <div style="font-size: 1.25rem; font-weight: 800; color: #38bdf8; margin-bottom: 2rem; padding-left: 0.5rem; display: flex; align-items: center; gap: 10px;">
+        🫁 LUNG VISION
+      </div>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+        <li>
+          <a href="/doctor" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #ffffff; background: #008891; text-decoration: none; font-weight: 600;">
+            📊 Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="/doctor/patients" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500;">
+            👥 Patients
+          </a>
+        </li>
+        <li>
+          <a href="/doctor/patients" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500;">
+            📤 Upload Radiograph
+          </a>
+        </li>
+        <li>
+          <a href="/doctor/analytics" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500;">
+            📈 Systematic Analytics
+          </a>
+        </li>
+        <li>
+          <a href="/doctor/reports" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500;">
+            📑 Reports Archive
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div style="border-top: 1px solid #1e293b; padding-top: 1rem;">
+      <a href="/logout" style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; color: #f87171; text-decoration: none; font-weight: 600;">
+        🚪 Logout
+      </a>
+    </div>
+  </aside>
+  <!-- Workspace -->
+  <main class="main-workspace">
+    <header class="topbar">
+      <div class="topbar-title">Doctor Dashboard</div>
+      <div class="user-profile-badge">
+        <span style="font-size: 0.9rem; font-weight: 600;">Welcome, {{ session.get('name', 'Dr. Radiologist') }}</span>
+        <div class="user-avatar">{{ session.get('name', 'D')[0] }}</div>
+      </div>
+    </header>
+
+    <div class="content-body">
+      <!-- 4 Doctor KPI Metric Tiles -->
+      
+<!-- ========================================================= -->
+      <!-- Doctor Metrics Cards (Exact Second Image Card Styling)    -->
+      <!-- ========================================================= -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; margin-bottom: 1.75rem;">
+        
+        <!-- Card 1: My Patients -->
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+          <span style="display: block; font-size: 0.88rem; font-weight: 600; color: #64748b; margin-bottom: 0.6rem;">
+            My Patients
+          </span>
+          <div style="font-size: 2.2rem; font-weight: 800; color: #0284c7; line-height: 1;">
+            {{ metrics.my_patients if metrics else 0 }}
+          </div>
+        </div>
+
+        <!-- Card 2: Reports Generated -->
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+          <span style="display: block; font-size: 0.88rem; font-weight: 600; color: #64748b; margin-bottom: 0.6rem;">
+            Reports Generated
+          </span>
+          <div style="font-size: 2.2rem; font-weight: 800; color: #0284c7; line-height: 1;">
+            {{ metrics.reports_generated if metrics else 0 }}
+          </div>
+        </div>
+
+        <!-- Card 3: Analyses Done -->
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+          <span style="display: block; font-size: 0.88rem; font-weight: 600; color: #64748b; margin-bottom: 0.6rem;">
+            Analyses Done
+          </span>
+          <div style="font-size: 2.2rem; font-weight: 800; color: #0284c7; line-height: 1;">
+            {{ metrics.analyses_done if metrics else 0 }}
+          </div>
+        </div>
+
+        <!-- Card 4: Pending Analyses -->
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+          <span style="display: block; font-size: 0.88rem; font-weight: 600; color: #64748b; margin-bottom: 0.6rem;">
+            Pending Analyses
+          </span>
+          <div style="font-size: 2.2rem; font-weight: 800; color: #f59e0b; line-height: 1;">
+            {{ metrics.pending_analyses if metrics else 0 }}
+          </div>
+        </div>
+
+      </div>
+
+       <!-- Recent Patients Section (Table) -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a;">Recent Patients</h3>
+          <a href="{{ url_for('patient_selection') }}" class="btn btn-teal">
+            + Add New Patient
+          </a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Patient ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Last Visit</th>
+                <th style="text-align: center;">Status</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in patients %}
+              <tr>
+                <td><strong>{{ p.patient_id }}</strong></td>
+                <td>{{ p.name }}</td>
+                <td>{{ p.age }}</td>
+                <td>{{ p.gender }}</td>
+                <td>{{ p.last_visit.strftime('%d %b %Y') if p.last_visit else '10 May 2026' }}</td>
+                
+                <!-- Status Badge (Dynamic Verification) -->
+                <td style="text-align: center;">
+                  {% if p.study_id %}
+                    <span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+                      ✔ Verified
+                    </span>
+                  {% else %}
+                    <span style="background: #fef3c7; color: #b45309; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px;">
+                      <span style="width: 6px; height: 6px; border-radius: 50%; background: #d97706; display: inline-block;"></span> Pending Analysis
+                    </span>
+                  {% endif %}
+                </td>
+
+                <!-- Contextual Action Button -->
+                <td style="text-align: right;">
+                  {% if p.study_id %}
+                    <a href="{{ url_for('download_report', study_id=p.study_id) }}" target="_blank" class="btn btn-outline" style="padding: 0.35rem 0.85rem; font-size: 0.8rem; color: #0f766e; border-color: #99f6e4;">
+                      View Report
+                    </a>
+                  {% else %}
+                    <a href="{{ url_for('upload_xray', patient_id=p.patient_id) }}" class="btn btn-teal" style="padding: 0.35rem 0.85rem; font-size: 0.8rem;">
+                      Start Scan
+                    </a>
+                  {% endif %}
+                </td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2rem;">No patient records available.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

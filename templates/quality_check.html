@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quality Check - LUNG VISION</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .quality-workflow-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.2fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* X-Ray Radiograph Viewer */
+    .xray-viewer-card {
+      background: #090e17;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .xray-viewer-card img {
+      max-width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    .image-tag {
+      margin-top: 0.85rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    /* Quality Checklist Box */
+    .qc-metric-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1rem;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+    }
+    .qc-metric-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .qc-check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #d1fae5;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    .qc-status-pill {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #059669;
+    }
+
+    /* Status Banners */
+    .status-banner {
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .status-banner.passed {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+    }
+    .status-banner.rejected {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+
+    @media (max-width: 900px) {
+      .quality-workflow-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <!-- Navy Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        🫁 LUNG VISION
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="{{ url_for('doctor_dashboard') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('patient_selection') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Patients
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('patient_selection') }}" class="nav-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          Upload Radiograph
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('doctor_reports') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Reports Archive
+        </a>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <a href="{{ url_for('logout') }}" class="nav-link" style="color: #f87171;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Workspace -->
+  <main class="main-workspace">
+    <header class="topbar">
+      <div class="topbar-title">Module 6: Radiograph Gatekeeper Assessment</div>
+      <div class="user-profile-badge">
+        <span style="font-size: 0.9rem; font-weight: 600;">Dr. {{ session.get('name', 'Radiologist') }}</span>
+        <div class="user-avatar">D</div>
+      </div>
+    </header>
+
+    <div class="content-body">
+      
+      <!-- Status Alert Banner -->
+      {% if q.is_valid %}
+        <div class="status-banner passed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          {{ q.message }}
+        </div>
+      {% else %}
+        <div class="status-banner rejected">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          {{ q.message }}
+        </div>
+      {% endif %}
+
+      <div class="quality-workflow-grid">
+        
+        <!-- Left: Uploaded Radiograph Display -->
+        <div class="xray-viewer-card">
+          <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Screened Chest Radiograph">
+          <div class="image-tag">
+            Analyzed File: <strong>{{ filename }}</strong>
+          </div>
+        </div>
+
+        <!-- Right: Quality Checklist & Validation Metrics (Reference Image 6) -->
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a;">Quality Check Parameters</h3>
+            <span class="badge badge-success" style="font-size: 0.8rem;">Checked in {{ q.duration }}</span>
+          </div>
+
+          <!-- Parameter 1: Contrast -->
+          <div class="qc-metric-row">
+            <div class="qc-metric-title">
+              <span class="qc-check-icon">✓</span>
+              Contrast Check
+            </div>
+            <span class="qc-status-pill">{{ q.contrast }}</span>
+          </div>
+
+          <!-- Parameter 2: Visibility -->
+          <div class="qc-metric-row">
+            <div class="qc-metric-title">
+              <span class="qc-check-icon">✓</span>
+              Lung Field Visibility
+            </div>
+            <span class="qc-status-pill">{{ q.visibility }}</span>
+          </div>
+
+          <!-- Parameter 3: Brightness -->
+          <div class="qc-metric-row">
+            <div class="qc-metric-title">
+              <span class="qc-check-icon">✓</span>
+              Exposure & Brightness
+            </div>
+            <span class="qc-status-pill">{{ q.brightness }}</span>
+          </div>
+
+          <!-- Parameter 4: Noise -->
+          <div class="qc-metric-row">
+            <div class="qc-metric-title">
+              <span class="qc-check-icon">✓</span>
+              Sharpness & Artifact Noise
+            </div>
+            <span class="qc-status-pill">{{ q.noise }}</span>
+          </div>
+
+          <!-- Gatekeeper Decision Actions -->
+          <div style="margin-top: 2rem;">
+            {% if q.is_valid %}
+              <a href="{{ url_for('diagnostic_results') }}" class="btn btn-primary" style="width: 100%; background: #4f46e5; padding: 0.85rem; font-size: 0.95rem;">
+                Proceed to Multi-Model Analysis →
+              </a>
+            {% else %}
+              <a href="{{ url_for('patient_selection') }}" class="btn btn-danger" style="width: 100%; padding: 0.85rem; font-size: 0.95rem;">
+                Image Rejected: Upload Clear Grayscale X-ray
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

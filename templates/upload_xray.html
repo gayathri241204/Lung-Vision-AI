@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Radiograph - LUNG VISION</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .upload-workflow-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1.2fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* Drag & Drop Zone */
+    .dropzone-container {
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .dropzone-container:hover, .dropzone-container.dragover {
+      border-color: var(--primary);
+      background: #f0f9ff;
+    }
+    .dropzone-icon {
+      color: #6366f1;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Patient Details Freeze Card */
+    .patient-freeze-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .freeze-row {
+      display: flex;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+    .freeze-row:last-child {
+      border-bottom: none;
+    }
+    .freeze-label {
+      width: 90px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .freeze-val {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    /* Image Preview Container */
+    .preview-box {
+      display: none;
+      margin-top: 1.25rem;
+      border-radius: 8px;
+      overflow: hidden;
+      max-height: 240px;
+      border: 1px solid var(--border-color);
+      background: #000;
+      text-align: center;
+    }
+    .preview-box img {
+      max-height: 240px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 900px) {
+      .upload-workflow-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <!-- Dark Navy Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        🫁 LUNG VISION
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="{{ url_for('doctor_dashboard') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('patient_selection') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Patients
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('patient_selection') }}" class="nav-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          Upload Radiograph
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('doctor_reports') }}" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Reports Archive
+        </a>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <a href="{{ url_for('logout') }}" class="nav-link" style="color: #f87171;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Workspace -->
+  <main class="main-workspace">
+    <header class="topbar">
+      <div class="topbar-title">Upload Chest X-ray</div>
+      <div class="user-profile-badge">
+        <span style="font-size: 0.9rem; font-weight: 600;">Dr. {{ session.get('name', 'Radiologist') }}</span>
+        <div class="user-avatar">D</div>
+      </div>
+    </header>
+
+    <div class="content-body">
+      <div class="upload-workflow-grid">
+        
+        <!-- Left: Upload Box -->
+        <div class="card">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 1.25rem;">
+            Select Chest Radiograph Image
+          </h3>
+
+          <form action="{{ url_for('upload_xray', patient_id=patient.patient_id) }}" method="POST" enctype="multipart/form-data">
+            
+            <div class="dropzone-container" id="dropArea" onclick="document.getElementById('xrayFileInput').click();">
+              <div class="dropzone-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
+                  <path d="M12 12v9"/>
+                  <path d="m16 16-4-4-4 4"/>
+                </svg>
+              </div>
+              <p style="font-size: 1rem; font-weight: 600; color: #334155; margin-bottom: 0.25rem;">
+                Drag & Drop X-ray Image Here
+              </p>
+              <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.2rem;">or</p>
+              
+              <button type="button" class="btn btn-primary" style="background: #6366f1; pointer-events: none;">
+                Browse File
+              </button>
+
+              <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 1rem;">
+                Supports: JPG, PNG, DICOM (Max 10MB)
+              </p>
+
+              <input type="file" id="xrayFileInput" name="xray_file" accept=".png, .jpg, .jpeg" style="display: none;" required onchange="handleImagePreview(event)">
+            </div>
+
+            <!-- Preview Box -->
+            <div class="preview-box" id="previewContainer">
+              <img id="imagePreview" src="" alt="Radiograph Preview">
+            </div>
+
+            <button type="submit" id="analyzeBtn" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; background: #4f46e5; display: none;">
+              Upload & Analyze
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Patient Details Freeze Card -->
+        <div class="patient-freeze-card">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 1.25rem;">
+            Patient Details
+          </h3>
+
+          <div class="freeze-row">
+            <span class="freeze-label">ID</span>
+            <span class="freeze-val">: {{ patient.patient_id }}</span>
+          </div>
+          <div class="freeze-row">
+            <span class="freeze-label">Name</span>
+            <span class="freeze-val">: {{ patient.name }}</span>
+          </div>
+          <div class="freeze-row">
+            <span class="freeze-label">Age</span>
+            <span class="freeze-val">: {{ patient.age }}</span>
+          </div>
+          <div class="freeze-row">
+            <span class="freeze-label">Gender</span>
+            <span class="freeze-val">: {{ patient.gender }}</span>
+          </div>
+
+          <div style="margin-top: 2rem; padding: 1rem; border-radius: 8px; background: #f0fdf4; border: 1px solid #bbf7d0;">
+            <span style="font-size: 0.85rem; font-weight: 600; color: #166534; display: flex; align-items: center; gap: 0.4rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Verified Patient Session
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  function handleImagePreview(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('imagePreview').src = e.target.result;
+        document.getElementById('previewContainer').style.display = 'block';
+        document.getElementById('analyzeBtn').style.display = 'inline-flex';
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  // Drag & drop support
+  const dropArea = document.getElementById('dropArea');
+  ['dragenter', 'dragover'].forEach(name => {
+    dropArea.addEventListener(name, (e) => {
+      e.preventDefault();
+      dropArea.classList.add('dragover');
+    }, false);
+  });
+  ['dragleave', 'drop'].forEach(name => {
+    dropArea.addEventListener(name, (e) => {
+      e.preventDefault();
+      dropArea.classList.remove('dragover');
+    }, false);
+  });
+  dropArea.addEventListener('drop', (e) => {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    document.getElementById('xrayFileInput').files = files;
+    handleImagePreview({ target: { files: files } });
+  });
+</script>
+
+</body>
+</html>

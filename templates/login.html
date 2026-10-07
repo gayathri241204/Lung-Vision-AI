@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - LUNG VISION AI Portal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    /* Modal Pop-up Styling for Role Sign In */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-box {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 440px;
+      padding: 2.2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #94a3b8;
+      cursor: pointer;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 0.4rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    .tab-container {
+      display: flex;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.5rem;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 0.75rem;
+      background: none;
+      border: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #64748b;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .alert-box {
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: left;
+    }
+    .alert-box.success {
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+    .alert-box.danger {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+    body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #f8fafc !important;
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+/* மென்மையான மருத்துவ ஒளிவட்டம் (Ambient Glow - No Dots) */
+body::before {
+  content: "";
+  position: fixed;
+  top: -100px;
+  left: 20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, rgba(20, 184, 166, 0.06) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: -150px;
+  right: 15%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.10) 0%, rgba(14, 165, 233, 0.05) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ungalathu Original Grid Container (3 Cards Side-by-Side Nirkka) */
+.role-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 320px) !important;
+  justify-content: center !important;
+  gap: 28px !important;
+  margin: 2rem auto !important;
+  max-width: 1100px !important;
+}
+/* Container - 3 Cards Side-by-Side Nirkka */
+.role-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 320px) !important;
+  justify-content: center !important;
+  gap: 28px !important;
+  margin: 2.5rem auto !important;
+  max-width: 1100px !important;
+}
+
+/* Card Base Structure */
+.role-card {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 35px 24px 30px 24px !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  transition: all 0.3s ease !important;
+}
+
+/* 1. Admin Glow Outline */
+.role-card.card-admin {
+  border: 2px solid #008891 !important;
+  box-shadow: 0 4px 18px rgba(0, 136, 145, 0.16), 0 0 22px rgba(0, 136, 145, 0.20) !important;
+}
+.role-card.card-admin:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 136, 145, 0.26), 0 0 32px rgba(0, 136, 145, 0.32) !important;
+}
+
+/* 2. Doctor Glow Outline */
+.role-card.card-doctor {
+  border: 2px solid #4F46E5 !important;
+  box-shadow: 0 4px 18px rgba(79, 70, 229, 0.16), 0 0 22px rgba(79, 70, 229, 0.20) !important;
+}
+.role-card.card-doctor:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.26), 0 0 32px rgba(79, 70, 229, 0.32) !important;
+}
+
+/* 3. Patient Glow Outline */
+.role-card.card-patient {
+  border: 2px solid #0284C7 !important;
+  box-shadow: 0 4px 18px rgba(2, 132, 199, 0.16), 0 0 22px rgba(2, 132, 199, 0.20) !important;
+}
+.role-card.card-patient:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(2, 132, 199, 0.26), 0 0 32px rgba(2, 132, 199, 0.32) !important;
+}
+
+/* Second Image-la Iruntha Maadhiri Button Styling */
+.btn-login {
+  width: 88% !important;
+  padding: 12px 0 !important;
+  border-radius: 8px !important;
+  border: none !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  margin-top: 22px !important;
+  display: block !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+  transition: opacity 0.2s ease, transform 0.1s ease !important;
+}
+
+.btn-login:hover {
+  opacity: 0.92 !important;
+}
+.btn-login:active {
+  transform: scale(0.98);
+}
+
+/* Button Colors */
+.btn-admin { background: #008891 !important; }
+.btn-doctor { background: #4F46E5 !important; }
+.btn-patient { background: #0284C7 !important; }
+
+/* role-card-க்குள் இருக்கும் எந்த பட்டனாக இருந்தாலும் அகலமாகவும் நிறத்துடனும் வர */
+.role-card button {
+  width: 85% !important;
+  padding: 12px 0 !important;
+  border-radius: 8px !important;
+  border: none !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  margin-top: 20px !important;
+  display: block !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.role-card button:hover {
+  opacity: 0.9 !important;
+}
+
+.role-card.card-admin button { background: #008891 !important; }
+.role-card.card-doctor button { background: #4F46E5 !important; }
+.role-card.card-patient button { background: #0284C7 !important; }
+
+.portal-container, .login-modal, .auth-card {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* --- Brand Header Container (Gap kootti icon-ne edathottu aakkunnu) --- */
+.brand-title-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px !important; /* Gap koottiyathukondu icon left-lekku neengum */
+    margin-bottom: 6px;
+}
+
+/* --- Lung Icon Position (One Step Left & Up) --- */
+.brand-logo-icon {
+    font-size: 3.2rem !important;
+    display: inline-block;
+    position: relative;
+    top: -6px !important;        /* Oru step mukalilekku (up) neekkunnu */
+    margin-right: 0px !important; /* Text-il ninnu akannu edathottu nilkaan */
+    filter: drop-shadow(0 4px 10px rgba(0, 136, 145, 0.25));
+    transition: transform 0.3s ease;
+}
+
+.brand-title-wrap:hover .brand-logo-icon {
+    transform: scale(1.08);
+}
+
+/* --- LUNG VISION Text Size & Bold Gradient Look --- */
+.brand-title-text {
+    font-size: 2.65rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 1.5px !important;
+    color: #0284c7 !important;
+    /* Attractive Modern Gradient Text */
+    background: linear-gradient(135deg, #008891 0%, #0284c7 100%);
+    background-clip: text;               /* <-- Intha standard line serkka vendum */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(2, 132, 199, 0.15);
+    margin: 0;
+    line-height: 1.2;
+}
+/* Subtitle neat spacing */
+.brand-subtitle {
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    color: #64748b !important;
+    margin-top: 4px !important;
+    margin-bottom: 2rem !important;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="login-screen-wrapper">
+    <!-- Branding Header -->
+<div class="brand-title-wrap">
+  <span class="brand-logo-icon">🫁</span>
+  <h1 class="brand-title-text">LUNG VISION</h1>
+</div>
+<p class="brand-subtitle">AI-Powered Lung Screening and Risk Assessment</p>
+
+    <!-- ================= Toast Notification (Fixed Syntax) ================= -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div id="toast-container" style="position: fixed; top: 25px; right: 25px; z-index: 999999; display: flex; flex-direction: column; gap: 12px;">
+          {% for category, message in messages %}
+            {% if category in ['danger', 'error'] %}
+              <div class="toast-card" style="background: #ffffff; border-left: 5px solid #ef4444; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); padding: 14px 18px; display: flex; align-items: center; gap: 12px; min-width: 300px;">
+                <span style="font-size: 1.4rem;">⚠️</span>
+                <div style="flex: 1;">
+                  <strong style="display: block; font-size: 0.88rem; color: #0f172a;">Notice</strong>
+                  <span style="font-size: 0.82rem; color: #475569;">{{ message }}</span>
+                </div>
+                <span onclick="this.parentElement.remove()" style="cursor: pointer; font-size: 1.2rem; color: #94a3b8; font-weight: bold;">&times;</span>
+              </div>
+            {% else %}
+              <div class="toast-card" style="background: #ffffff; border-left: 5px solid #10b981; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); padding: 14px 18px; display: flex; align-items: center; gap: 12px; min-width: 300px;">
+                <span style="font-size: 1.4rem;">✅</span>
+                <div style="flex: 1;">
+                  <strong style="display: block; font-size: 0.88rem; color: #0f172a;">Success</strong>
+                  <span style="font-size: 0.82rem; color: #475569;">{{ message }}</span>
+                </div>
+                <span onclick="this.parentElement.remove()" style="cursor: pointer; font-size: 1.2rem; color: #94a3b8; font-weight: bold;">&times;</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <script>
+          setTimeout(() => {
+            const container = document.getElementById('toast-container');
+            if (container) container.remove();
+          }, 4000);
+        </script>
+      {% endif %}
+    {% endwith %}
+
+    <h3 style="font-size: 1.1rem; color: #334155; margin-bottom: 2rem; font-weight: 600;">
+      Choose your account type to continue
+    </h3>
+
+    <!-- 3 Role Cards Grid -->
+    <div class="role-cards-grid">
+      
+      <!-- 1. Admin Login Card -->
+      <div class="role-card card-admin">
+        <div class="role-icon-circle" style="background: #e0f2fe;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.2rem; color: #0f172a; margin-bottom: 0.3rem;">Admin Login</h3>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">System Administration</p>
+        <button type="button" onclick="openAuthModal('admin')" style="width: 85%; padding: 12px 0; background: #008891; color: #ffffff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 20px; display: block; box-shadow: 0 4px 10px rgba(0,136,145,0.25);">Login</button>
+      </div>
+   
+      
+
+      <!-- 2. Doctor Login Card -->
+      <div class="role-card card-doctor">
+        <div class="role-icon-circle" style="background: #ede9fe;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
+            <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
+            <circle cx="20" cy="10" r="2"/>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.2rem; color: #0f172a; margin-bottom: 0.3rem;">Doctor Login</h3>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Doctor Dashboard</p>
+       <button type="button" onclick="openAuthModal('doctor')" style="width: 85%; padding: 12px 0; background: #4F46E5; color: #ffffff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 20px; display: block; box-shadow: 0 4px 10px rgba(79,70,229,0.25);">Login</button>
+      </div>
+
+      <!-- 3. Patient Login Card -->
+      <div class="role-card card-patient">
+        <div class="role-icon-circle" style="background: #e0f2fe;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.2rem; color: #0f172a; margin-bottom: 0.3rem;">Patient Login</h3>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Patient Dashboard</p>
+        <button type="button" onclick="openAuthModal('patient')" style="width: 85%; padding: 12px 0; background: #0284C7; color: #ffffff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 20px; display: block; box-shadow: 0 4px 10px rgba(2,132,199,0.25);">Login</button>
+      </div>
+
+    </div>
+
+    <!-- Security Footnote -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.85rem; color: #64748b; margin-top: 1rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      Your data is secure and protected with end-to-end encryption.
+    </div>
+    <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem;">
+      © 2026 LUNG VISION. All rights reserved.
+    </div>
+  </div>
+
+  <!-- Role-Based Sign In / Sign Up Modal -->
+  <div id="authModal" class="modal-backdrop">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+      
+      <div class="tab-container">
+        <button id="loginTabBtn" class="tab-btn active" onclick="switchAuthTab('login')">Sign In</button>
+        <button id="registerTabBtn" class="tab-btn" onclick="switchAuthTab('register')">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" action="{{ url_for('login') }}" method="POST" autocomplete="off">
+        <input type="hidden" name="role" id="loginRole" value="doctor">
+
+        <!-- Fake inputs to absorb eager Chrome autofill -->
+        <input type="text" name="fake_email_prevent_autofill" style="display: none;" tabindex="-1">
+        <input type="password" name="fake_password_prevent_autofill" style="display: none;" tabindex="-1">
+
+       <!-- Email Address Field with Dynamic Suggestions -->
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: #334155;">Email Address</label>
+          <input 
+            type="email" 
+            id="loginEmail" 
+            name="email" 
+            list="roleEmailSuggestions"
+            placeholder="abc@gmail.com" 
+            autocomplete="off"
+            required 
+            style="width: 100%; padding: 0.75rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; outline: none;"
+          >
+          <!-- Suggestions Dropdown Container -->
+          <datalist id="roleEmailSuggestions"></datalist>
+        </div>
+
+    
+        <!-- 6-Digit PIN Field with Professional SVG Eye Toggle -->
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: #334155;">Password</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input 
+              type="password" 
+              id="loginPassword" 
+              name="password" 
+              placeholder="••••••" 
+              maxlength="6" 
+              inputmode="numeric" 
+              pattern="[0-9]{6}" 
+              autocomplete="new-password" 
+              readonly 
+              onfocus="this.removeAttribute('readonly');" 
+              oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6);" 
+              title="Must be exactly 6 digits" 
+              required 
+              style="width: 100%; padding: 0.75rem 2.75rem 0.75rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1.1rem; letter-spacing: 3px; outline: none;"
+            >
+            
+            <button 
+              type="button" 
+              onclick="togglePasswordVisibility('loginPassword', 'eyeIconLogin', 'eyeOffIconLogin')" 
+              style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; color: #64748b;" 
+              title="Show/Hide Password"
+            >
+              <!-- Eye Icon (Default - Hidden) -->
+              <svg id="eyeIconLogin" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+
+              <!-- Eye-Off Icon (When Visible) -->
+              <svg id="eyeOffIconLogin" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                <line x1="2" x2="22" y1="2" y2="22"/>
+              </svg>
+            </button>
+          </div>
+          <!-- Password Hint and Forgot Password Link -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+          <small style="color: #64748b; font-size: 0.75rem;">Enter 6 numerical digits only</small>
+          <a href="javascript:void(0)" onclick="document.getElementById('forgotModal').style.display='flex'" style="font-size: 0.78rem; color: #008891; font-weight: 600; text-decoration: none;">Forgot Password?</a>
+        </div>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem; padding: 0.75rem; border-radius: 8px; font-weight: 600;">
+          Continue to Portal
+        </button>
+      </form>
+<!-- Register Form (Fixed Layout & Perfect Alignment) -->
+      <form id="registerForm" action="{{ url_for('register') }}" method="POST" autocomplete="off" style="display: none;">
+        
+        <!-- 1. Full Name -->
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; color: #334155;">Full Name</label>
+          <input type="text" name="name" class="form-control" placeholder="Enter full name" required style="width: 100%; padding: 0.7rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; box-sizing: border-box; outline: none;">
+        </div>
+
+        <!-- 2. Email Address -->
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; color: #334155;">Email Address</label>
+          <input type="email" name="email" class="form-control" placeholder="abc@gmail.com" autocomplete="off" required style="width: 100%; padding: 0.7rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; box-sizing: border-box; outline: none;">
+        </div>
+
+        <!-- 3. Create Password (6 Digits with Eye Toggle) -->
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; color: #334155;">Create Password</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input 
+              type="password" 
+              id="regPassword" 
+              name="password" 
+              placeholder="••••••" 
+              maxlength="6" 
+              inputmode="numeric" 
+              pattern="[0-9]{6}" 
+              oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6);" 
+              title="Must be exactly 6 digits" 
+              required 
+              style="width: 100%; padding: 0.75rem 2.75rem 0.75rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1.1rem; letter-spacing: 3px; outline: none; box-sizing: border-box;" 
+              autocomplete="new-password"
+            >
+            <button 
+              type="button" 
+              onclick="togglePasswordVisibility('regPassword', 'eyeIconReg', 'eyeOffIconReg')" 
+              style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; color: #64748b;" 
+              title="Show/Hide Password"
+            >
+              <svg id="eyeIconReg" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg id="eyeOffIconReg" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                <line x1="2" y1="22" x2="22" y2="22"/>
+              </svg>
+            </button>
+          </div>
+          <small style="display: block; color: #64748b; font-size: 0.75rem; margin-top: 4px;">Enter 6 numerical digits only</small>
+        </div>
+
+        <!-- 4. Patient Clinical Demographics (Clean Grid) -->
+        <div id="patientExtraFields" style="margin-bottom: 1rem;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 0.85rem;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.35rem;">Age</label>
+              <input type="number" name="age" id="regAge" min="1" max="120" placeholder="e.g. 34" style="width: 100%; padding: 0.7rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; box-sizing: border-box; outline: none; background: #fff;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.35rem;">Gender</label>
+              <select name="gender" id="regGender" style="width: 100%; padding: 0.7rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; box-sizing: border-box; outline: none; background: #fff; cursor: pointer; color: #334155;">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.35rem;">Phone Number</label>
+            <input type="tel" name="phone" id="regPhone" placeholder="+91 98765 43210" style="width: 100%; padding: 0.7rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; box-sizing: border-box; outline: none; background: #fff;">
+          </div>
+        </div>
+
+        <!-- 5. Account Role Selection -->
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 0.4rem;">
+            Account Role
+          </label>
+          <input type="hidden" name="role" id="registerRoleHidden" value="doctor">
+          <input type="text" id="registerRoleDisplay" readonly style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; background-color: #f8fafc; font-weight: 600; cursor: not-allowed; box-sizing: border-box;" value="👨‍⚕️ Medical Specialist / Doctor">
+        </div>
+
+        <!-- 6. Submit Button -->
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; background: #008891; color: white; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; margin-top: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 136, 145, 0.2);">
+          Create Account
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+<script>
+
+  function openModal(role) {
+    openAuthModal(role);
+  }
+
+  function openAuthModal(role) {
+    document.getElementById('authModal').style.display = 'flex';
+    document.getElementById('loginRole').value = role;
+
+    const registerTabBtn = document.getElementById('registerTabBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const roleHidden = document.getElementById('registerRoleHidden');
+    const roleDisplay = document.getElementById('registerRoleDisplay');
+
+    
+    if (role === 'admin') {
+      if (registerTabBtn) registerTabBtn.style.display = 'none';
+      switchAuthTab('login');
+      submitBtn.style.background = '#008891';
+      submitBtn.innerText = 'Login to System Admin';
+    } else if (role === 'doctor') {
+      if (registerTabBtn) registerTabBtn.style.display = 'inline-block';
+      submitBtn.style.background = '#4f46e5';
+      submitBtn.innerText = 'Login to Doctor Portal';
+      
+      // Doctor Registration Lock
+      if (roleHidden) roleHidden.value = 'doctor';
+      if (roleDisplay) {
+        roleDisplay.value = '👨‍⚕️ Medical Specialist / Doctor';
+        roleDisplay.style.color = '#4f46e5';
+      }
+    } else {
+      if (registerTabBtn) registerTabBtn.style.display = 'inline-block';
+      submitBtn.style.background = '#0284c7';
+      submitBtn.innerText = 'Login to Patient Portal';
+      
+      // Patient Registration Lock
+      if (roleHidden) roleHidden.value = 'patient';
+      if (roleDisplay) {
+        roleDisplay.value = '👤 Registered Patient';
+        roleDisplay.style.color = '#0284c7';
+      }
+    }
+
+    
+    const emailInput = document.getElementById('loginEmail');
+    const passInput = document.getElementById('loginPassword');
+    if (emailInput) emailInput.value = '';
+    if (passInput) passInput.value = '';
+
+    
+    const datalist = document.getElementById('roleEmailSuggestions');
+    if (datalist) {
+      datalist.innerHTML = '';
+      if (role !== 'admin') {
+        fetch('/api/get-emails/' + role)
+          .then(res => res.json())
+          .then(emails => {
+            datalist.innerHTML = '';
+            emails.forEach(email => {
+              const opt = document.createElement('option');
+              opt.value = email;
+              datalist.appendChild(opt);
+            });
+          })
+          .catch(err => console.error('Fetch error:', err));
+      }
+    }
+  }
+
+  function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+  }
+
+  function switchAuthTab(tab) {
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginTabBtn = document.getElementById('loginTabBtn');
+    const registerTabBtn = document.getElementById('registerTabBtn');
+
+    if (tab === 'login') {
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+      loginTabBtn.classList.add('active');
+      registerTabBtn.classList.remove('active');
+    } else {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+      registerTabBtn.classList.add('active');
+      loginTabBtn.classList.remove('active');
+      
+      if (registerForm) registerForm.reset();
+
+      
+      const currentRole = document.getElementById('loginRole').value;
+      const roleHidden = document.getElementById('registerRoleHidden');
+      const roleDisplay = document.getElementById('registerRoleDisplay');
+      if (roleHidden) roleHidden.value = currentRole;
+      if (roleDisplay) {
+        roleDisplay.value = currentRole === 'doctor' ? '👨‍⚕️ Medical Specialist / Doctor' : '👤 Registered Patient';
+        roleDisplay.style.color = currentRole === 'doctor' ? '#4f46e5' : '#0284c7';
+      }
+    }
+  }
+
+  function togglePasswordVisibility(inputId, eyeId, eyeOffId) {
+    const input = document.getElementById(inputId);
+    const eye = document.getElementById(eyeId);
+    const eyeOff = document.getElementById(eyeOffId);
+
+    if (input.type === 'password') {
+      input.type = 'text';
+      eye.style.display = 'none';
+      eyeOff.style.display = 'block';
+    } else {
+      input.type = 'password';
+      eye.style.display = 'block';
+      eyeOff.style.display = 'none';
+    }
+  }
+
+  function toggleResetPinVisibility() {
+  const pinInput = document.getElementById('resetNewPin');
+  const eyeIcon = document.getElementById('eyeIconReset');
+  const eyeOffIcon = document.getElementById('eyeOffIconReset');
+
+  if (pinInput.type === 'password') {
+    pinInput.type = 'text';
+    eyeIcon.style.display = 'none';
+    eyeOffIcon.style.display = 'block';
+  } else {
+    pinInput.type = 'password';
+    eyeIcon.style.display = 'block';
+    eyeOffIcon.style.display = 'none';
+  }
+}
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('authModal');
+    if (event.target === modal) {
+      closeAuthModal();
+    }
+  };
+</script>
+
+<!-- ================= FORGOT PASSWORD RESET MODAL (Professional English) ================= -->
+<div id="forgotModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+  <div style="background: #ffffff; width: 100%; max-width: 420px; border-radius: 14px; padding: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25); position: relative; margin: 15px;">
+    
+    <!-- Close Button -->
+    <button type="button" onclick="document.getElementById('forgotModal').style.display='none'" style="position: absolute; right: 16px; top: 16px; background: none; border: none; font-size: 1.3rem; cursor: pointer; color: #64748b; line-height: 1;">✕</button>
+    
+    <!-- Modal Header (Clean Formal English) -->
+    <div style="margin-bottom: 18px;">
+      <h3 style="margin: 0 0 6px 0; color: #0f172a; font-size: 1.2rem; font-weight: 700;">Reset Password PIN</h3>
+      <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.4;">
+        Enter your registered clinical email address to configure a new 6-digit security PIN.
+      </p>
+    </div>
+
+    <!-- Form with Autocomplete Disabled -->
+    <form action="{{ url_for('forgot_password') }}" method="POST" autocomplete="off" style="display: flex; flex-direction: column; gap: 14px;">
+      
+      <!-- Registered Email (Autofill Blocked) -->
+      <div>
+        <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 5px;">Registered Email</label>
+        <input 
+          type="email" 
+          name="email" 
+          id="resetEmailInput"
+          required 
+          autocomplete="new-password"
+          placeholder="doctor@gmail.com" 
+          value=""
+          style="width: 100%; padding: 0.75rem 0.85rem; border: 1.5px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 0.9rem; outline: none; background: #ffffff;"
+        >
+      </div>
+
+      <!-- New 6-Digit PIN with Eye Toggle -->
+      <div>
+        <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 5px;">New 6-Digit PIN</label>
+        <div style="position: relative; display: flex; align-items: center;">
+          <input 
+            type="password" 
+            id="resetNewPin" 
+            name="new_password" 
+            maxlength="6" 
+            pattern="[0-9]{6}" 
+            inputmode="numeric" 
+            required 
+            autocomplete="new-password"
+            placeholder="••••••" 
+            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6);" 
+            style="width: 100%; padding: 0.75rem 2.8rem 0.75rem 0.85rem; border: 1.5px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 1.1rem; letter-spacing: 3px; outline: none; background: #ffffff;"
+          >
+          
+          <!-- Eye Show/Hide Toggle Button -->
+          <button 
+            type="button" 
+            onclick="toggleResetPinVisibility()" 
+            style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; color: #64748b;" 
+            title="Toggle PIN Visibility"
+          >
+            <!-- Eye Open Icon -->
+            <svg id="eyeIconReset" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <!-- Eye Closed Icon -->
+            <svg id="eyeOffIconReset" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+              <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+              <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+              <line x1="2" x2="22" y1="2" y2="22"/>
+            </svg>
+          </button>
+        </div>
+        <small style="color: #64748b; font-size: 0.75rem; display: block; margin-top: 4px;">Must be exactly 6 numerical digits</small>
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        style="width: 100%; padding: 0.8rem; background: #008891; color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 6px; box-shadow: 0 4px 6px -1px rgba(0, 136, 145, 0.2);"
+      >
+        Update Security PIN
+      </button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

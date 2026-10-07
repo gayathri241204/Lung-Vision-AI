@@ -1,0 +1,15 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+
+# Uploaded Patient Images
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Exclude Model Weights (Option 2 - Storage save panna)
+models/*.pth

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Systematic AI Analytics - LUNG VISION</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .analytics-card { 
+      background: white; 
+      border-radius: 12px; 
+      border: 1px solid #e2e8f0; 
+      padding: 1.25rem 1.5rem; 
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04); 
+      display: flex;
+      flex-direction: column;
+    }
+    .matrix-img-container { 
+      text-align: center; 
+      padding: 0.75rem; 
+      background: #ffffff; 
+      border-radius: 8px; 
+      border: 1px solid #e2e8f0; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+    .matrix-img { 
+      max-width: 100%; 
+      max-height: 410px; 
+      border-radius: 6px; 
+      object-fit: contain;
+    }
+    .metric-badge { 
+      display: inline-block; 
+      padding: 4px 10px; 
+      border-radius: 20px; 
+      font-weight: 600; 
+      font-size: 0.8rem; 
+    }
+    
+    /* Clean Minimalist Metrics Box inside Card */
+    .clean-metrics-box { 
+      background: #ffffff; 
+      padding: 1rem 1.25rem; 
+      border-radius: 8px; 
+      border: 1.5px solid #cbd5e1; 
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    /* Structured Clinical Table (Clutter-Free) */
+    .minimal-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      color: #334155;
+      font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    .minimal-table th {
+      text-align: right;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1.5px solid #cbd5e1;
+    }
+
+    .minimal-table th:first-child {
+      text-align: left;
+    }
+
+    .minimal-table td {
+      padding: 8px 10px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .minimal-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    /* Summary Rows */
+    .minimal-table tr.summary-row {
+      background: #f8fafc;
+      font-weight: 600;
+    }
+
+    .minimal-table tr.summary-row td {
+      border-bottom: none;
+      border-top: 1px solid #e2e8f0;
+      color: #0f172a;
+    }
+
+    .minimal-table tr.highlight-acc td {
+      color: #0d9488;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body style="background: #f8fafc; font-family: 'Inter', sans-serif; margin: 0;">
+  <div style="display: flex; min-height: 100vh;">
+    
+    <!-- Unified Doctor Sidebar Navigation -->
+    <aside class="sidebar" style="width: 250px; background: #0f172a; min-height: 100vh; padding: 1.5rem 1rem; color: #fff; display: flex; flex-direction: column; justify-content: space-between; flex-shrink: 0;">
+      <div>
+        <div style="font-size: 1.25rem; font-weight: 800; color: #38bdf8; margin-bottom: 2rem; padding-left: 0.5rem; display: flex; align-items: center; gap: 10px;">
+          🫁 LUNG VISION
+        </div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+          <li>
+            <a href="/doctor" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500;">
+              📊 Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="/doctor/patients" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500;">
+              👥 Patients
+            </a>
+          </li>
+          <li>
+            <a href="/doctor/patients" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500;">
+              📤 Upload Radiograph
+            </a>
+          </li>
+          <li>
+            <a href="/doctor/analytics" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #ffffff; background: #008891; text-decoration: none; font-weight: 600;">
+              📈 Systematic Analytics
+            </a>
+          </li>
+          <li>
+            <a href="/doctor/reports" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500;">
+              📑 Reports Archive
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div style="border-top: 1px solid #1e293b; padding-top: 1rem;">
+        <a href="/logout" style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; color: #f87171; text-decoration: none; font-weight: 600;">
+          🚪 Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main style="flex: 1; padding: 2rem 2.5rem; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div>
+          <h2 style="color: #0f172a; margin: 0; font-size: 1.5rem;">Multi-Model Systematic Benchmarking</h2>
+          <p style="color: #64748b; margin: 0.3rem 0 0 0; font-size: 0.95rem;">Empirical validation metrics across 5 clinical pulmonary classes</p>
+        </div>
+        
+        <!-- Clean Dropdown Selector without brackets -->
+        <div style="background: white; padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid #cbd5e1; box-shadow: 0 1px 2px rgba(0,0,0,0.04);">
+          <label style="font-weight: 600; color: #334155; margin-right: 8px; font-size: 0.9rem;">Select Architecture:</label>
+          <select id="modelSelector" onchange="changeModelAnalysis()" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #94a3b8; font-weight: 600; cursor: pointer; outline: none; background: #fff; color: #0f172a;">
+            <option value="resnet50">ResNet50</option>
+            <option value="densenet121">DenseNet121</option>
+            <option value="efficientnetb0">EfficientNetB0</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ================= SIDE-BY-SIDE 2-COLUMN GRID ================= -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+        
+        <!-- Column 1: Confusion Matrix Heatmap -->
+        <div class="analytics-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+            <h3 id="matrixHeading" style="margin: 0; color: #1e293b; font-size: 1.05rem; font-weight: 700;">ResNet50 - Test Confusion Matrix</h3>
+            <span class="metric-badge" style="background: #e0f2fe; color: #0369a1;">Evaluation Heatmap</span>
+          </div>
+          <div class="matrix-img-container">
+            <img id="matrixDisplay" src="{{ url_for('static', filename='resnet50_confusion_matrix.png') }}" alt="Confusion Matrix" class="matrix-img">
+          </div>
+        </div>
+
+        <!-- Column 2: Minimal Structured Table inside Container (No Clutter) -->
+        <div class="analytics-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+            <h3 id="reportHeading" style="margin: 0; color: #1e293b; font-size: 1.05rem; font-weight: 700;">ResNet50 - Classification Metrics Report</h3>
+            <span class="metric-badge" style="background: #dcfce7; color: #15803d;">Empirical Test Log</span>
+          </div>
+          <div id="reportDisplay" class="clean-metrics-box">
+            <!-- Table dynamically injected here -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section 3: Updated Comparative Performance Table (Recalculated Metrics) -->
+      <div class="analytics-card" style="margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin: 0;">
+            Ensemble Architecture Comparison (Final Empirical Benchmarks)
+          </h3>
+          <span class="metric-badge" style="background: #ecfdf5; color: #047857;">Verified Run</span>
+        </div>
+        
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid #cbd5e1; background: #f8fafc; color: #334155;">
+                <th style="padding: 12px 10px;">Model Architecture</th>
+                <th style="padding: 12px 10px;">Parameters</th>
+                <th style="padding: 12px 10px;">Latency</th>
+                <th style="padding: 12px 10px;">Throughput</th>
+                <th style="padding: 12px 10px;">Test Accuracy</th>
+                <th style="padding: 12px 10px;">Macro F1</th>
+                <th style="padding: 12px 10px;">F1 / Million Params</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Champion Model: EfficientNet-B0 -->
+              <tr style="border-bottom: 1px solid #e2e8f0; background: #f0fdf4;">
+                <td style="padding: 12px 10px; font-weight: 700; color: #15803d;">🏆 EfficientNet-B0 (Champion)</td>
+                <td style="padding: 12px 10px; font-weight: 600;">4.0140 M</td>
+                <td style="padding: 12px 10px; font-weight: 600; color: #15803d;">75.68 ms</td>
+                <td style="padding: 12px 10px;">13.21 img/sec</td>
+                <td style="padding: 12px 10px; font-weight: 700; color: #15803d;">94.26%</td>
+                <td style="padding: 12px 10px; font-weight: 700; color: #15803d;">94.88%</td>
+                <td style="padding: 12px 10px; font-weight: 700; color: #15803d;">23.64</td>
+              </tr>
+              <!-- ResNet50 -->
+              <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 12px 10px; font-weight: 600; color: #1e293b;">ResNet50</td>
+                <td style="padding: 12px 10px;">23.5183 M</td>
+                <td style="padding: 12px 10px;">251.98 ms</td>
+                <td style="padding: 12px 10px;">3.97 img/sec</td>
+                <td style="padding: 12px 10px; font-weight: 600; color: #334155;">93.94%</td>
+                <td style="padding: 12px 10px; font-weight: 600; color: #334155;">94.47%</td>
+                <td style="padding: 12px 10px; font-weight: 600; color: #64748b;">4.02</td>
+              </tr>
+              <!-- DenseNet121 -->
+              <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 12px 10px; font-weight: 600; color: #1e293b;">DenseNet121</td>
+                <td style="padding: 12px 10px;">6.9590 M</td>
+                <td style="padding: 12px 10px;">216.19 ms</td>
+                <td style="padding: 12px 10px;">4.63 img/sec</td>
+                <td style="padding: 12px 10px; font-weight: 600; color: #334155;">92.41%</td>
+                <td style="padding: 12px 10px; font-weight: 600; color: #334155;">93.37%</td>
+                <td style="padding: 12px 10px; font-weight: 600; color: #64748b;">13.42</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 4: Graphical Representation Card -->
+      <div class="analytics-card" style="text-align: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin: 0; text-align: left;">
+            Empirical Evaluation & Performance Trade-off
+          </h3>
+          <span class="metric-badge" style="background: #fef3c7; color: #b45309;">Comparative Analytical Charts</span>
+        </div>
+        <img src="{{ url_for('static', filename='images/model_benchmark_graph.png') }}" alt="Model Benchmark Graph" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0;">
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    const staticBase = "{{ url_for('static', filename='') }}";
+
+    // Standard Clean Metrics Data across 3 models
+    const modelMetrics = {
+      resnet50: {
+        rows: [
+          { name: "COVID", p: "0.9437", r: "0.9738", f1: "0.9585", s: "534" },
+          { name: "Lung Opacity", p: "0.9183", r: "0.8847", f1: "0.9012", s: "902" },
+          { name: "Normal", p: "0.9491", r: "0.9528", f1: "0.9509", s: "2,054" },
+          { name: "Tuberculosis", p: "1.0000", r: "0.9524", f1: "0.9756", s: "105" },
+          { name: "Viral Pneumonia", p: "0.9159", r: "0.9751", f1: "0.9446", s: "201" }
+        ],
+        accuracy: "0.9407",
+        macroAvg: { p: "0.9454", r: "0.9478", f1: "0.9462" },
+        weightedAvg: { p: "0.9407", r: "0.9407", f1: "0.9405" },
+        totalSupport: "3,796"
+      },
+      densenet121: {
+        rows: [
+          { name: "COVID", p: "0.9416", r: "0.9363", f1: "0.9390", s: "534" },
+          { name: "Lung Opacity", p: "0.8585", r: "0.9013", f1: "0.8794", s: "902" },
+          { name: "Normal", p: "0.9491", r: "0.9265", f1: "0.9377", s: "2,054" },
+          { name: "Tuberculosis", p: "0.9806", r: "0.9619", f1: "0.9712", s: "105" },
+          { name: "Viral Pneumonia", p: "0.9238", r: "0.9652", f1: "0.9440", s: "201" }
+        ],
+        accuracy: "0.9249",
+        macroAvg: { p: "0.9307", r: "0.9382", f1: "0.9342" },
+        weightedAvg: { p: "0.9261", r: "0.9249", f1: "0.9253" },
+        totalSupport: "3,796"
+      },
+      efficientnetb0: {
+        rows: [
+          { name: "COVID", p: "0.9485", r: "0.9663", f1: "0.9573", s: "534" },
+          { name: "Lung Opacity", p: "0.9092", r: "0.8991", f1: "0.9041", s: "902" },
+          { name: "Normal", p: "0.9545", r: "0.9503", f1: "0.9524", s: "2,054" },
+          { name: "Tuberculosis", p: "0.9901", r: "0.9524", f1: "0.9709", s: "105" },
+          { name: "Viral Pneumonia", p: "0.9299", r: "0.9900", f1: "0.9590", s: "201" }
+        ],
+        accuracy: "0.9426",
+        macroAvg: { p: "0.9465", r: "0.9516", f1: "0.9488" },
+        weightedAvg: { p: "0.9426", r: "0.9426", f1: "0.9425" },
+        totalSupport: "3,796"
+      }
+    };
+
+    function renderTable(data) {
+      let html = `
+        <table class="minimal-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Precision</th>
+              <th>Recall</th>
+              <th>F1-Score</th>
+              <th>Support</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      data.rows.forEach(r => {
+        html += `
+          <tr>
+            <td>${r.name}</td>
+            <td>${r.p}</td>
+            <td>${r.r}</td>
+            <td>${r.f1}</td>
+            <td>${r.s}</td>
+          </tr>
+        `;
+      });
+
+      html += `
+          <tr class="summary-row highlight-acc">
+            <td>Accuracy</td>
+            <td colspan="2"></td>
+            <td>${data.accuracy}</td>
+            <td>${data.totalSupport}</td>
+          </tr>
+          <tr class="summary-row">
+            <td>Macro Avg</td>
+            <td>${data.macroAvg.p}</td>
+            <td>${data.macroAvg.r}</td>
+            <td>${data.macroAvg.f1}</td>
+            <td>${data.totalSupport}</td>
+          </tr>
+          <tr class="summary-row">
+            <td>Weighted Avg</td>
+            <td>${data.weightedAvg.p}</td>
+            <td>${data.weightedAvg.r}</td>
+            <td>${data.weightedAvg.f1}</td>
+            <td>${data.totalSupport}</td>
+          </tr>
+        </tbody>
+      </table>
+      `;
+
+      document.getElementById('reportDisplay').innerHTML = html;
+    }
+
+    function changeModelAnalysis() {
+      const selected = document.getElementById('modelSelector').value;
+      const imgElem = document.getElementById('matrixDisplay');
+      const matrixHeading = document.getElementById('matrixHeading');
+      const reportHeading = document.getElementById('reportHeading');
+
+      if (selected === 'resnet50') {
+        imgElem.src = staticBase + 'resnet50_confusion_matrix.png';
+        matrixHeading.innerText = 'ResNet50 - Test Confusion Matrix';
+        reportHeading.innerText = 'ResNet50 - Classification Metrics Report';
+        renderTable(modelMetrics.resnet50);
+      } else if (selected === 'densenet121') {
+        imgElem.src = staticBase + 'densenet121_confusion_matrix.png';
+        matrixHeading.innerText = 'DenseNet121 - Test Confusion Matrix';
+        reportHeading.innerText = 'DenseNet121 - Classification Metrics Report';
+        renderTable(modelMetrics.densenet121);
+      } else if (selected === 'efficientnetb0') {
+        imgElem.src = staticBase + 'efficientnetb0_final_confusion_matrix.png';
+        matrixHeading.innerText = 'EfficientNetB0 - Test Confusion Matrix';
+        reportHeading.innerText = 'EfficientNetB0 - Classification Metrics Report';
+        renderTable(modelMetrics.efficientnetb0);
+      }
+    }
+
+    // Initialize first view
+    changeModelAnalysis();
+  </script>
+</body>
+</html>
