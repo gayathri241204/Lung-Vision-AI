@@ -2,13 +2,15 @@ import mysql.connector
 from mysql.connector import Error
 
 def get_db_connection():
-    """MySQL lungvision_db database connection setup"""
+    """TiDB Cloud lungvision_db database connection setup"""
     try:
         connection = mysql.connector.connect(
-            host='localhost',
+            host='gateway01.ap-northeast-1.prod.aws.tidbcloud.com',
+            port=4000,
+            user='2B13KN8vRi2Xikn.root',
+            password='Xj0LWOQ2MuO7pzjc',
             database='lungvision_db',
-            user='root',
-            password='pulmo@2026'
+            ssl_verify_cert=False
         )
         if connection.is_connected():
             return connection

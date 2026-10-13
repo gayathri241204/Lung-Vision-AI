@@ -8,7 +8,7 @@ import torch.nn as nn
 from torchvision import transforms
 from torchvision.models import densenet121, resnet50
 import timm
-
+from huggingface_hub import hf_hub_download
 # ------------------------------------------------------------------
 # 1. (Device & Classes)
 # ------------------------------------------------------------------
@@ -35,21 +35,22 @@ DISPLAY_CONFIDENCE_LIMIT = 94.99
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_DIR = os.path.join(BASE_DIR, "models")
 
-DENSENET_PATH = os.path.join(MODEL_DIR, "densenet121_pulmoverse_final.pth")
-RESNET_PATH = os.path.join(MODEL_DIR, "resnet50_pulmoverse_final.pth")
+# ------------------------------------------------------------------
+# Hugging Face Model Integration
+# ------------------------------------------------------------------
+REPO_ID = "Gayu-241204/lung-vision-models"
 
+def get_model_file(filename):
+    os.makedirs(MODEL_DIR, exist_ok=True)
+    local_path = os.path.join(MODEL_DIR, filename)
+    if not os.path.exists(local_path):
+        print(f"Downloading {filename} from Hugging Face...")
+        local_path = hf_hub_download(repo_id=REPO_ID, filename=filename, local_dir=MODEL_DIR)
+    return local_path
 
-eff_candidates = [
-    "efficientnetb0_pulmoverse_final_best.pth",
-    "efficientnetb0_pulmoverse_final_model.pth",
-    "efficientnetb0_pulmoverse_final.pth"
-]
-EFFICIENTNET_PATH = None
-for c in eff_candidates:
-    p = os.path.join(MODEL_DIR, c)
-    if os.path.exists(p):
-        EFFICIENTNET_PATH = p
-        break
+DENSENET_PATH = get_model_file("densenet121_pulmoverse_final.pth")
+RESNET_PATH = get_model_file("resnet50_pulmoverse_final.pth")
+EFFICIENTNET_PATH = get_model_file("efficientnetb0_pulmoverse_final_best.pth")
 
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
