@@ -48,9 +48,6 @@ def get_model_file(filename):
         local_path = hf_hub_download(repo_id=REPO_ID, filename=filename, local_dir=MODEL_DIR)
     return local_path
 
-DENSENET_PATH = get_model_file("densenet121_pulmoverse_final.pth")
-RESNET_PATH = get_model_file("resnet50_pulmoverse_final.pth")
-EFFICIENTNET_PATH = get_model_file("efficientnetb0_pulmoverse_final_best.pth")
 
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
