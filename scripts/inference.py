@@ -80,10 +80,18 @@ def extract_state_dict(checkpoint):
 # ------------------------------------------------------------------
 # 2.  (Memory Cache Pattern)
 # ------------------------------------------------------------------
+# ------------------------------------------------------------------
+# 2. Memory-Optimized Model Loading for Cloud (Under 512MB RAM)
+# ------------------------------------------------------------------
+import gc
+
+# PyTorch extra threads uruvaakki memory pidikkaamal thadukka:
+torch.set_num_threads(1)
+
 _loaded_models = {}
 
 def load_real_models():
-    """மெமரியை வீணாக்காமல் 3 மாடல்களையும் ஒரு முறை மட்டும் லோட் செய்கிறது"""
+    """512MB RAM-kku ullaye 3 models-aiyum safe-aaga load seigiradhu"""
     global _loaded_models
     if len(_loaded_models) == 3:
         return _loaded_models
@@ -93,9 +101,14 @@ def load_real_models():
         try:
             dn = densenet121(weights=None)
             dn.classifier = nn.Linear(dn.classifier.in_features, NUM_CLASSES)
-            dn.load_state_dict(extract_state_dict(torch.load(DENSENET_PATH, map_location=DEVICE)))
+            ckpt = torch.load(DENSENET_PATH, map_location=DEVICE)
+            s_dict = extract_state_dict(ckpt)
+            del ckpt  # Memory-ai udanae release seigirom
+            dn.load_state_dict(s_dict)
+            del s_dict
             dn.to(DEVICE).eval()
             _loaded_models["DenseNet121"] = dn
+            gc.collect()  # RAM-ai clean seigirom
         except Exception as e:
             print("Error loading DenseNet121:", e)
 
@@ -104,9 +117,14 @@ def load_real_models():
         try:
             rn = resnet50(weights=None)
             rn.fc = nn.Linear(rn.fc.in_features, NUM_CLASSES)
-            rn.load_state_dict(extract_state_dict(torch.load(RESNET_PATH, map_location=DEVICE)))
+            ckpt = torch.load(RESNET_PATH, map_location=DEVICE)
+            s_dict = extract_state_dict(ckpt)
+            del ckpt
+            rn.load_state_dict(s_dict)
+            del s_dict
             rn.to(DEVICE).eval()
             _loaded_models["ResNet50"] = rn
+            gc.collect()
         except Exception as e:
             print("Error loading ResNet50:", e)
 
@@ -118,9 +136,14 @@ def load_real_models():
                 nn.Dropout(p=0.3),
                 nn.Linear(en.classifier.in_features, NUM_CLASSES)
             )
-            en.load_state_dict(extract_state_dict(torch.load(EFFICIENTNET_PATH, map_location=DEVICE)))
+            ckpt = torch.load(EFFICIENTNET_PATH, map_location=DEVICE)
+            s_dict = extract_state_dict(ckpt)
+            del ckpt
+            en.load_state_dict(s_dict)
+            del s_dict
             en.to(DEVICE).eval()
             _loaded_models["EfficientNetB0"] = en
+            gc.collect()
         except Exception as e:
             print("Error loading EfficientNet-B0:", e)
 
