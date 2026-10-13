@@ -97,21 +97,20 @@ EFFICIENTNET_PATH = None
 def get_densenet_path():
     global DENSENET_PATH
     if not DENSENET_PATH or not os.path.exists(DENSENET_PATH):
-        DENSENET_PATH = get_model_file("densenet121_best.pth")
+        DENSENET_PATH = get_model_file("densenet121_pulmoverse_final.pth")
     return DENSENET_PATH
 
 def get_resnet_path():
     global RESNET_PATH
     if not RESNET_PATH or not os.path.exists(RESNET_PATH):
-        RESNET_PATH = get_model_file("resnet50_best.pth")
+        RESNET_PATH = get_model_file("resnet50_pulmoverse_final.pth")
     return RESNET_PATH
 
 def get_efficientnet_path():
     global EFFICIENTNET_PATH
     if not EFFICIENTNET_PATH or not os.path.exists(EFFICIENTNET_PATH):
-        EFFICIENTNET_PATH = get_model_file("efficientnetb0_best.pth")
+        EFFICIENTNET_PATH = get_model_file("efficientnetb0_pulmoverse_final_best.pth")
     return EFFICIENTNET_PATH
-
 class LazyModelWrapper:
     """RAM-ai adakkaamal ovvoru model-aiyum thevaippadum podhu mattum run seiyum wrapper"""
     def __init__(self, model_name):
