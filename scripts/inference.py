@@ -84,8 +84,33 @@ def extract_state_dict(checkpoint):
 # 2. Sequential On-Demand Loading (Strictly Under 512MB RAM)
 # ------------------------------------------------------------------
 import gc
+import os
+import torch
 
 torch.set_num_threads(1)
+
+# Startup-il download aagi memory crash aaguvadhai thadukka path-galai None-aaga vaikirom:
+DENSENET_PATH = None
+RESNET_PATH = None
+EFFICIENTNET_PATH = None
+
+def get_densenet_path():
+    global DENSENET_PATH
+    if not DENSENET_PATH or not os.path.exists(DENSENET_PATH):
+        DENSENET_PATH = get_model_file("densenet121_best.pth")
+    return DENSENET_PATH
+
+def get_resnet_path():
+    global RESNET_PATH
+    if not RESNET_PATH or not os.path.exists(RESNET_PATH):
+        RESNET_PATH = get_model_file("resnet50_best.pth")
+    return RESNET_PATH
+
+def get_efficientnet_path():
+    global EFFICIENTNET_PATH
+    if not EFFICIENTNET_PATH or not os.path.exists(EFFICIENTNET_PATH):
+        EFFICIENTNET_PATH = get_model_file("efficientnetb0_best.pth")
+    return EFFICIENTNET_PATH
 
 class LazyModelWrapper:
     """RAM-ai adakkaamal ovvoru model-aiyum thevaippadum podhu mattum run seiyum wrapper"""
@@ -103,53 +128,59 @@ class LazyModelWrapper:
         gc.collect()
         out = None
 
-        if self.model_name == "DenseNet121" and os.path.exists(DENSENET_PATH):
-            try:
-                m = densenet121(weights=None)
-                m.classifier = nn.Linear(m.classifier.in_features, NUM_CLASSES)
-                ckpt = torch.load(DENSENET_PATH, map_location=DEVICE)
-                m.load_state_dict(extract_state_dict(ckpt))
-                del ckpt
-                m.to(DEVICE).eval()
-                with torch.no_grad():
-                    out = m(x)
-                del m
-                gc.collect()
-            except Exception as e:
-                print("DenseNet121 inference error:", e)
+        if self.model_name == "DenseNet121":
+            path = get_densenet_path()
+            if path and os.path.exists(path):
+                try:
+                    m = densenet121(weights=None)
+                    m.classifier = nn.Linear(m.classifier.in_features, NUM_CLASSES)
+                    ckpt = torch.load(path, map_location=DEVICE)
+                    m.load_state_dict(extract_state_dict(ckpt))
+                    del ckpt
+                    m.to(DEVICE).eval()
+                    with torch.no_grad():
+                        out = m(x)
+                    del m
+                    gc.collect()
+                except Exception as e:
+                    print("DenseNet121 inference error:", e)
 
-        elif self.model_name == "ResNet50" and os.path.exists(RESNET_PATH):
-            try:
-                m = resnet50(weights=None)
-                m.fc = nn.Linear(m.fc.in_features, NUM_CLASSES)
-                ckpt = torch.load(RESNET_PATH, map_location=DEVICE)
-                m.load_state_dict(extract_state_dict(ckpt))
-                del ckpt
-                m.to(DEVICE).eval()
-                with torch.no_grad():
-                    out = m(x)
-                del m
-                gc.collect()
-            except Exception as e:
-                print("ResNet50 inference error:", e)
+        elif self.model_name == "ResNet50":
+            path = get_resnet_path()
+            if path and os.path.exists(path):
+                try:
+                    m = resnet50(weights=None)
+                    m.fc = nn.Linear(m.fc.in_features, NUM_CLASSES)
+                    ckpt = torch.load(path, map_location=DEVICE)
+                    m.load_state_dict(extract_state_dict(ckpt))
+                    del ckpt
+                    m.to(DEVICE).eval()
+                    with torch.no_grad():
+                        out = m(x)
+                    del m
+                    gc.collect()
+                except Exception as e:
+                    print("ResNet50 inference error:", e)
 
-        elif self.model_name == "EfficientNetB0" and EFFICIENTNET_PATH and os.path.exists(EFFICIENTNET_PATH):
-            try:
-                m = timm.create_model("efficientnet_b0", pretrained=False, num_classes=NUM_CLASSES)
-                m.classifier = nn.Sequential(
-                    nn.Dropout(p=0.3),
-                    nn.Linear(m.classifier.in_features, NUM_CLASSES)
-                )
-                ckpt = torch.load(EFFICIENTNET_PATH, map_location=DEVICE)
-                m.load_state_dict(extract_state_dict(ckpt))
-                del ckpt
-                m.to(DEVICE).eval()
-                with torch.no_grad():
-                    out = m(x)
-                del m
-                gc.collect()
-            except Exception as e:
-                print("EfficientNet-B0 inference error:", e)
+        elif self.model_name == "EfficientNetB0":
+            path = get_efficientnet_path()
+            if path and os.path.exists(path):
+                try:
+                    m = timm.create_model("efficientnet_b0", pretrained=False, num_classes=NUM_CLASSES)
+                    m.classifier = nn.Sequential(
+                        nn.Dropout(p=0.3),
+                        nn.Linear(m.classifier.in_features, NUM_CLASSES)
+                    )
+                    ckpt = torch.load(path, map_location=DEVICE)
+                    m.load_state_dict(extract_state_dict(ckpt))
+                    del ckpt
+                    m.to(DEVICE).eval()
+                    with torch.no_grad():
+                        out = m(x)
+                    del m
+                    gc.collect()
+                except Exception as e:
+                    print("EfficientNet-B0 inference error:", e)
 
         return out
 
@@ -160,7 +191,6 @@ def load_real_models():
         "ResNet50": LazyModelWrapper("ResNet50"),
         "EfficientNetB0": LazyModelWrapper("EfficientNetB0")
     }
-
 # ------------------------------------------------------------------
 # 3. (Quality Gatekeeper Assessment)
 # ------------------------------------------------------------------
