@@ -27,6 +27,39 @@ UPLOAD_FOLDER = os.path.join('static', 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+def get_next_doctor_patient_id(cur):
+    """Doctor Portal-kku: P007, P008, P009... generate seiyyum"""
+    cur.execute("SELECT patient_id FROM patient_records WHERE patient_id LIKE 'P%'")
+    rows = cur.fetchall()
+    nums = []
+    for r in rows:
+        pid = r[0] if isinstance(r, (tuple, list)) else r.get('patient_id', '')
+        if pid and pid.startswith('P') and not pid.startswith('PT-'):
+            try:
+                nums.append(int(pid[1:]))
+            except ValueError:
+                pass
+    next_num = (max(nums) + 1) if nums else 1
+    return f"P{next_num:03d}"
+
+def get_next_self_patient_id(cur):
+    """Patient Self-Portal-kku: PT-001, PT-002, PT-003... generate seiyyum"""
+    cur.execute("SELECT patient_id FROM patient_records WHERE patient_id LIKE 'PT-%'")
+    rows = cur.fetchall()
+    nums = []
+    for r in rows:
+        pid = r[0] if isinstance(r, (tuple, list)) else r.get('patient_id', '')
+        if pid and pid.startswith('PT-'):
+            try:
+                val = int(pid.replace('PT-', ''))
+                # Pazhaiya 60001, 90001 numbers-ai thavirtthu, 3-digit series (PT-001, PT-002)-ai track pannum:
+                if val < 10000:
+                    nums.append(val)
+            except ValueError:
+                pass
+    next_num = (max(nums) + 1) if nums else 1
+    return f"PT-{next_num:03d}"
+
 # ---------------------------------------------------------
 # Default Home Route (Directs root URL to Login)
 # ---------------------------------------------------------
@@ -126,8 +159,12 @@ def forgot_password():
 # =========================================================
 # MODULE: User Registration (Fixed Database Columns & Bcrypt)
 # =========================================================
+# =========================================================
+# MODULE: User Registration (Fixed Database Columns & Bcrypt)
+# =========================================================
 
 import bcrypt
+
 @app.route('/register', methods=['POST'])
 def register():
     name = request.form.get('name', '').strip()
@@ -135,7 +172,6 @@ def register():
     password = request.form.get('password', '').strip()
     role = request.form.get('role', 'patient').strip().lower()
     
-   
     age = request.form.get('age', '').strip()
     gender = request.form.get('gender', 'Male').strip()
     phone = request.form.get('phone', '').strip()
@@ -153,7 +189,7 @@ def register():
         try:
             cur = conn.cursor(dictionary=True)
             
-           
+            # Check if email already exists
             cur.execute("SELECT user_id FROM users WHERE email = %s", (email,))
             if cur.fetchone():
                 flash("Email already registered. Please login.", "warning")
@@ -161,19 +197,38 @@ def register():
                 conn.close()
                 return redirect(url_for('login'))
 
-            
             hashed_pw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-           
+            # Insert user record
             cur.execute("""
                 INSERT INTO users (name, email, password_hash, role, status)
                 VALUES (%s, %s, %s, %s, 'active')
             """, (name, email, hashed_pw, role))
             user_id = cur.lastrowid
 
-           
             if role == 'patient':
-                patient_id = f"PT-{user_id}"
+                # =========================================================
+                # STEP 3: Sequential PT-001, PT-002 Generator for Self-Portal
+                # =========================================================
+                cur.execute("SELECT patient_id FROM patient_records WHERE patient_id LIKE 'PT-%'")
+                rows = cur.fetchall()
+
+                nums = []
+                for r in rows:
+                    pid_val = r['patient_id'] if isinstance(r, dict) else r[0]
+                    if pid_val and str(pid_val).startswith('PT-'):
+                        try:
+                            val = int(str(pid_val).replace('PT-', ''))
+                            # Pazhaiya 60001, 90001-ai thavirtthu, pudhiya 3-digit series-ai mattum edukkum:
+                            if val < 1000:
+                                nums.append(val)
+                        except ValueError:
+                            pass
+
+                # Universal logic: Mudhal patient-kku PT-001, aduthu PT-002, PT-003...
+                next_num = (max(nums) + 1) if nums else 1
+                patient_id = f"PT-{next_num:03d}"
+
                 patient_age = int(age) if age.isdigit() else None
                 cur.execute("""
                     INSERT INTO patient_records (patient_id, name, age, gender, phone, email)
@@ -515,25 +570,26 @@ def add_new_patient():
     if conn:
         cur = conn.cursor()
         try:
-            # Automatic Sequential ID generator (P006, P007, P008...)
+            # Doctor Portal-kku sequential P-series generator (P007, P008, P009...):
             cur.execute("SELECT patient_id FROM patient_records WHERE patient_id LIKE 'P%'")
             rows = cur.fetchall()
             
             nums = []
             for r in rows:
                 pid_val = r[0] if isinstance(r, (tuple, list)) else r.get('patient_id', '')
-                # Verum P001, P002 pola irukkum numbers-ai mattum edukkum:
+                # Verum P001, P002 pola irukkum numbers-ai mattum filter seiyyum (PT-90001, PT-60001 reject aagum):
                 if pid_val and pid_val.startswith('P') and not pid_val.startswith('PT-'):
                     try:
                         nums.append(int(pid_val[1:]))
                     except ValueError:
                         pass
             
-            # Adutha sequential number (e.g. 5 irundhaa 6 aakkum):
-            next_num = (max(nums) + 1) if nums else 6
+            # Universal Dynamic Logic:
+            # Table-il already P006 iruppadhaal max(nums) = 6 -> 6 + 1 = 7 (P007 aagum)
+            next_num = (max(nums) + 1) if nums else 1
             patient_id = f"P{next_num:03d}"
 
-            # Database-il P006 aaga insert aagum:
+            # Database-il P007, P008 aaga insert aagum:
             cur.execute("""
                 INSERT INTO patient_records (patient_id, name, age, gender, phone, email, created_at)
                 VALUES (%s, %s, %s, %s, %s, %s, NOW())
@@ -548,7 +604,6 @@ def add_new_patient():
             conn.close()
 
     return redirect(url_for('patient_selection'))
-
 # ---------------------------------------------------------
 # MODULE 5: Radiograph Upload (Selected Patient Context)
 # ---------------------------------------------------------
