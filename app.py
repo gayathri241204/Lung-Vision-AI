@@ -799,7 +799,6 @@ def patient_dashboard():
         try:
             cur = conn.cursor(dictionary=True)
             
-            # நோயாளி பதிவுசெய்த அசல் விவரங்களை எடுத்தல்
             cur.execute("SELECT * FROM patient_records WHERE email = %s OR patient_id = %s", (user_email, f"PT-{user_id}"))
             p_rec = cur.fetchone()
             
@@ -811,7 +810,6 @@ def patient_dashboard():
                 patient_info['phone'] = p_rec.get('phone') or 'Not Specified'
                 patient_info['email'] = p_rec.get('email') or user_email
 
-            # இந்நோயாளியின் எக்ஸ்-ரே ஆய்வு அறிக்கைகளை எடுத்தல்
             cur.execute("""
                 SELECT * FROM radiograph_studies 
                 WHERE patient_id = %s 
@@ -930,7 +928,7 @@ def generate_study_pdf(study_id):
     )
     styles = getSampleStyleSheet()
 
-    # எழுத்து வடிவங்கள் (Typography Styles)
+    # (Typography Styles)
     header_title_style = ParagraphStyle(
         'HeaderTitle',
         parent=styles['Normal'],
@@ -1087,16 +1085,51 @@ def generate_study_pdf(study_id):
     elements.append(t_patient)
     elements.append(Spacer(1, 8))
 
+    
+# ================= STEP 3: SIDE-BY-SIDE RADIOGRAPH & DISEASE PATHOLOGY =================
     # ================= STEP 3: SIDE-BY-SIDE RADIOGRAPH & DISEASE PATHOLOGY =================
     xray_box = None
-    if os.path.exists(img_full_path):
+
+    # Multi-path resolver: Render matrum Localhost rendilume X-ray image-ai sariyaaga kandupidikkum
+    candidate_paths = []
+    
+    # 1. Existing variable check
+    if 'img_full_path' in locals() and img_full_path:
+        candidate_paths.append(str(img_full_path))
+        fname = os.path.basename(str(img_full_path))
+    elif 'study' in locals() and isinstance(study, dict) and study.get('image_path'):
+        candidate_paths.append(str(study.get('image_path')))
+        fname = os.path.basename(str(study.get('image_path')))
+    else:
+        fname = "xray.png"
+
+    # 2. Ella potential folder paths-aiyum check seiyyum
+    base_dir = getattr(app, 'root_path', os.getcwd())
+    candidate_paths.extend([
+        os.path.join(base_dir, 'static', 'uploads', fname),
+        os.path.join(base_dir, 'uploads', fname),
+        os.path.join(base_dir, 'static', fname),
+        os.path.join(os.getcwd(), 'static', 'uploads', fname),
+        os.path.join(os.getcwd(), 'uploads', fname),
+        os.path.join('static', 'uploads', fname),
+        os.path.join('uploads', fname),
+        fname
+    ])
+
+    resolved_img_path = None
+    for p in candidate_paths:
+        if p and os.path.exists(p) and os.path.isfile(p):
+            resolved_img_path = p
+            break
+
+    if resolved_img_path:
         try:
-            xray_box = RLImage(img_full_path, width=160, height=170)
+            xray_box = RLImage(resolved_img_path, width=160, height=170)
         except Exception:
             xray_box = Paragraph("<font size=8 color='#64748b'>[Image Rendering Unavailable]</font>", styles['Normal'])
     else:
         xray_box = Paragraph("<font size=8 color='#64748b'>[Radiograph Not Found on Disk]</font>", styles['Normal'])
-
+        
     diag_color = "#dc2626" if disease.lower() != 'normal' else "#16a34a"
     triage_color = "#b91c1c" if ("Isolation" in triage_priority or "Admission" in triage_priority or risk_score > 65) else "#0284c7"
 
