@@ -505,7 +505,6 @@ def add_new_patient():
     if session.get('role') != 'doctor':
         return redirect(url_for('login'))
 
-    patient_id = request.form.get('patient_id', '').strip()
     name = request.form.get('name', '').strip()
     age = request.form.get('age', '').strip()
     gender = request.form.get('gender', '').strip()
@@ -516,12 +515,31 @@ def add_new_patient():
     if conn:
         cur = conn.cursor()
         try:
+            # Automatic Sequential ID generator (P006, P007, P008...)
+            cur.execute("SELECT patient_id FROM patient_records WHERE patient_id LIKE 'P%'")
+            rows = cur.fetchall()
+            
+            nums = []
+            for r in rows:
+                pid_val = r[0] if isinstance(r, (tuple, list)) else r.get('patient_id', '')
+                # Verum P001, P002 pola irukkum numbers-ai mattum edukkum:
+                if pid_val and pid_val.startswith('P') and not pid_val.startswith('PT-'):
+                    try:
+                        nums.append(int(pid_val[1:]))
+                    except ValueError:
+                        pass
+            
+            # Adutha sequential number (e.g. 5 irundhaa 6 aakkum):
+            next_num = (max(nums) + 1) if nums else 6
+            patient_id = f"P{next_num:03d}"
+
+            # Database-il P006 aaga insert aagum:
             cur.execute("""
                 INSERT INTO patient_records (patient_id, name, age, gender, phone, email, created_at)
                 VALUES (%s, %s, %s, %s, %s, %s, NOW())
             """, (patient_id, name, age, gender, phone, email))
             conn.commit()
-            flash("New patient registered successfully!", "success")
+            flash(f"New patient registered successfully with ID: {patient_id}!", "success")
         except Exception as e:
             print("DB Insert Error:", e)
             flash("Error: Patient ID or Email already exists.", "danger")
@@ -530,7 +548,6 @@ def add_new_patient():
             conn.close()
 
     return redirect(url_for('patient_selection'))
-
 
 # ---------------------------------------------------------
 # MODULE 5: Radiograph Upload (Selected Patient Context)
@@ -1129,7 +1146,7 @@ def generate_study_pdf(study_id):
             xray_box = Paragraph("<font size=8 color='#64748b'>[Image Rendering Unavailable]</font>", styles['Normal'])
     else:
         xray_box = Paragraph("<font size=8 color='#64748b'>[Radiograph Not Found on Disk]</font>", styles['Normal'])
-        
+
     diag_color = "#dc2626" if disease.lower() != 'normal' else "#16a34a"
     triage_color = "#b91c1c" if ("Isolation" in triage_priority or "Admission" in triage_priority or risk_score > 65) else "#0284c7"
 
