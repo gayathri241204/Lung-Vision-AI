@@ -295,7 +295,7 @@ def evaluate_image_quality(image_path):
     center_crop = gray[int(h_img * 0.25):int(h_img * 0.75), int(w_img * 0.25):int(w_img * 0.75)]
     center_mean = float(np.mean(center_crop))
 
-    # ஒரு காகித ஆவணம்/புத்தகத்தில் 60% மேல் தூய வெண்மையும், மையப்பகுதியில் அதிக பிரைட்னஸும் இருக்கும்
+    
     if (white_paper_ratio > 0.58 and total_mean > 185) or (center_mean > 210 and total_mean > 195):
         duration_str = f"{round(time.time() - start_time, 1)}s"
         return {
@@ -368,100 +368,176 @@ def evaluate_image_quality(image_path):
     }
 
 # ------------------------------------------------------------------
-# 4.  (Prediction with PyTorch Models)
+# 4. (Pure PyTorch Dynamic Prediction Engine - 5 Classes)
 # ------------------------------------------------------------------
+# Ungaloda training dataset class order (Index 0 to 4):
+MODEL_CLASSES = ['COVID-19', 'Lung Opacity', 'Normal', 'Tuberculosis', 'Viral Pneumonia']
+
+CLASS_DISPLAY_MAP = {
+    'COVID-19': 'COVID-19',
+    'Lung Opacity': 'Lung Opacity',
+    'Normal': 'Normal',
+    'Tuberculosis': 'Tuberculosis',
+    'Viral Pneumonia': 'Pneumonia'
+}
+
 @torch.no_grad()
 def predict_lung_disease(image_path):
     models = load_real_models()
     
-    # மாடல்கள் லோட் ஆகவில்லை எனில் பழைய இயல்புநிலை மதிப்புகள்:
+    ui_classes = ['COVID-19', 'Lung Opacity', 'Normal', 'Tuberculosis', 'Pneumonia']
+
+    # Oru vela server-il models load aagalana mattum safe fallback:
     if len(models) == 0:
-        p_dense = np.array([0.0215, 0.0110, 0.0015, 0.0425, 0.9235])
-        p_res   = np.array([0.0310, 0.0215, 0.0050, 0.0413, 0.9012])
-        p_eff   = np.array([0.0280, 0.0190, 0.0110, 0.0513, 0.8907])
         return {
-            'DenseNet121': {CLASS_NAMES[i]: round(float(p_dense[i]) * 100, 2) for i in range(5)},
-            'ResNet50': {CLASS_NAMES[i]: round(float(p_res[i]) * 100, 2) for i in range(5)},
-            'EfficientNetB0': {CLASS_NAMES[i]: round(float(p_eff[i]) * 100, 2) for i in range(5)}
+            'DenseNet121': {c: 20.0 for c in ui_classes},
+            'ResNet50': {c: 20.0 for c in ui_classes},
+            'EfficientNetB0': {c: 20.0 for c in ui_classes}
         }
 
+    # Real PyTorch Image Preprocessing & Tensor Creation:
     img = Image.open(image_path).convert("RGB")
     tensor = transform(img).unsqueeze(0).to(DEVICE)
     results = {}
 
     for name in ['DenseNet121', 'ResNet50', 'EfficientNetB0']:
         if name in models:
-            logits = models[name](tensor)
-            scaled = logits / TEMPERATURE
-            probs = torch.softmax(scaled, dim=1)[0].cpu().numpy()
+            model = models[name]
+            model.eval()  # Pure inference mode
             
-            # UI பெயர்களுக்கு ஏற்ப மாற்றுதல்
+            # 1. Pure neural network forward pass (Real Logits calculation):
+            logits = model(tensor)
+            
+            # 2. Temperature scaling:
+            temp_val = getattr(globals(), 'TEMPERATURE', 1.0)
+            scaled_logits = logits / temp_val
+            
+            # 3. Dynamic Softmax Probabilities from Tensor:
+            probs = torch.softmax(scaled_logits, dim=1)[0].cpu().numpy()
+            
+            # 4. Map probabilities to classes dynamically:
             model_preds = {}
             for idx, raw_class in enumerate(MODEL_CLASSES):
-                display_name = CLASS_DISPLAY_MAP[raw_class]
-                conf = min(float(probs[idx]) * 100, DISPLAY_CONFIDENCE_LIMIT)
+                display_name = CLASS_DISPLAY_MAP.get(raw_class, raw_class)
+                calculated_conf = float(probs[idx]) * 100.0
+                disp_limit = getattr(globals(), 'DISPLAY_CONFIDENCE_LIMIT', 98.5)
+                conf = min(calculated_conf, disp_limit)
                 model_preds[display_name] = round(conf, 2)
+                
             results[name] = model_preds
 
     return results
 
+
 # ------------------------------------------------------------------
-# 5.  (Clinical Advisory)
+# 5. (Clinical Advisory - Driven by Real Calculated Disease & Confidence)
 # ------------------------------------------------------------------
 def get_clinical_advisory(disease, confidence):
     if disease == 'Normal':
-        risk_score = 12
+        risk_score = max(5, int(100 - confidence))
         risk_level = "Low Risk"
         advisory_points = [
-            "No active pulmonary consolidation or infiltrates detected.",
-            "Bronchovascular markings appear normal.",
-            "Routine health checkup recommended after 1 year."
+            "No active pulmonary consolidation, cavitation, or infiltrates detected.",
+            "Bronchovascular markings and diaphragmatic contours appear clear.",
+            "Routine clinical health checkup recommended after 1 year."
         ]
         risk_factors = [
-            ("Lungs clear and normal", True),
-            ("Confidence score high", True),
-            ("No opacity detected", True),
-            ("Clear vascular margins", True)
+            ("Lungs clear and well-aerated", True),
+            (f"AI Model Confidence: {confidence:.2f}%", True),
+            ("No parenchymal opacity detected", True),
+            ("Clear vascular margins preserved", True)
         ]
-    else:
-        risk_score = 76 if disease == 'Pneumonia' else int(50 + (confidence * 0.4))
-        risk_level = "High Risk" if risk_score >= 65 else "Moderate Risk"
-        
+
+    elif disease == 'Tuberculosis':
+        risk_score = min(95, int(confidence * 0.95))
+        risk_level = "High Risk"
         advisory_points = [
-            f"Findings strongly suggest {disease} infection.",
-            "Correlate clinically and consider further sputum / lab tests.",
-            "Prescribe appropriate therapeutic antibiotic / targeted protocol.",
-            "Monitor patient's oxygen saturation (SpO2) closely.",
-            "Schedule clinical follow up after 5-7 days."
+            "Apical fibro-cavitary infiltrates suggestive of active Tuberculosis infection.",
+            "Perform immediate sputum smear microscopy for AFB & GeneXpert MTB/RIF.",
+            "Initiate standardized Anti-Tubercular Therapy (ATT) regimen under DOTS protocol.",
+            "Screen close household contacts and maintain strict respiratory isolation."
         ]
-        
         risk_factors = [
-            ("Abnormality in lung parenchyma", True),
-            ("Prediction confidence high", True),
-            ("Focal opacity detected", True),
-            ("Patient age factor", True)
+            ("Apical parenchymal cavitation / infiltration", True),
+            (f"AI Model Confidence: {confidence:.2f}%", True),
+            ("High mycobacterial infection probability", True),
+            ("Urgent infectious disease consult required", True)
         ]
+
+    elif disease == 'Lung Opacity':
+        risk_score = min(75, int(confidence * 0.70))
+        risk_level = "Moderate Risk"
+        advisory_points = [
+            "Non-specific pulmonary opacity or focal parenchymal infiltrates noted.",
+            "Recommend High-Resolution Computed Tomography (HRCT) of the chest.",
+            "Evaluate clinical history for occupational exposure, asthma, or atelectasis.",
+            "Repeat chest radiograph in 2-3 weeks to observe clearance."
+        ]
+        risk_factors = [
+            ("Focal pulmonary infiltration observed", True),
+            (f"AI Model Confidence: {confidence:.2f}%", True),
+            ("Non-specific inflammatory pattern", True),
+            ("Follow-up imaging indicated", True)
+        ]
+
+    elif disease in ['Pneumonia', 'Viral Pneumonia']:
+        risk_score = min(90, int(confidence * 0.88))
+        risk_level = "High Risk"
+        advisory_points = [
+            "Consolidation pattern consistent with acute bacterial or viral Pneumonia.",
+            "Check complete blood count (leukocytosis) and obtain sputum cultures.",
+            "Initiate empirical broad-spectrum antibiotic therapy without delay.",
+            "Monitor oxygen saturation (SpO2) and respiratory rate continuously."
+        ]
+        risk_factors = [
+            ("Lobar / alveolar consolidation present", True),
+            (f"AI Model Confidence: {confidence:.2f}%", True),
+            ("Hypoxia / oxygen desaturation risk", True),
+            ("Close monitoring required", True)
+        ]
+
+    elif disease == 'COVID-19':
+        risk_score = min(95, int(confidence * 0.92))
+        risk_level = "High Risk"
+        advisory_points = [
+            "Bilateral peripheral ground-glass opacities indicative of COVID-19 viral pneumonia.",
+            "Confirm via rapid RT-PCR diagnostic assay immediately.",
+            "Maintain strict respiratory isolation and initiate institutional COVID-19 protocol.",
+            "Monitor SpO2 continuously; administer supplemental oxygen if SpO2 falls below 94%."
+        ]
+        risk_factors = [
+            ("Bilateral peripheral ground-glass appearance", True),
+            (f"AI Model Confidence: {confidence:.2f}%", True),
+            ("Potential for rapid cytokine progression", True),
+            ("Immediate isolation indicated", True)
+        ]
+
+    else:
+        risk_score = 50
+        risk_level = "Moderate Risk"
+        advisory_points = ["Clinical correlation advised."]
+        risk_factors = [("Indeterminate radiographic pattern", True)]
 
     return risk_score, risk_level, advisory_points, risk_factors
 
+
 # ------------------------------------------------------------------
-# 6.  (Majority Consensus)
+# 6. (Majority Consensus & Dynamic Champion Selector)
 # ------------------------------------------------------------------
 def get_multi_model_analysis(image_path):
     comparison = predict_lung_disease(image_path)
 
     model_top_choices = {}
     for model_name, preds in comparison.items():
-        top_disease = max(preds, key=preds.get)
-        conf = preds[top_disease]
-        model_top_choices[model_name] = (top_disease, conf)
+        if preds:
+            top_disease = max(preds, key=preds.get)
+            conf = preds[top_disease]
+            model_top_choices[model_name] = (top_disease, conf)
 
-  
     all_votes = [choice[0] for choice in model_top_choices.values()]
     vote_counter = Counter(all_votes)
     winner_disease, highest_votes = vote_counter.most_common(1)[0]
 
-    
     champion_model = None
     best_conf = -1.0
     for model_name, (d_name, conf) in model_top_choices.items():
@@ -470,7 +546,6 @@ def get_multi_model_analysis(image_path):
                 best_conf = conf
                 champion_model = model_name
 
-    
     if champion_model is None:
         for model_name, (d_name, conf) in model_top_choices.items():
             if conf > best_conf:
@@ -480,7 +555,7 @@ def get_multi_model_analysis(image_path):
 
     best_disease = winner_disease
 
-   
+    # Calculate real risk metrics using the actual dynamic confidence:
     risk_score, risk_lvl, advisory_points, risk_factors = get_clinical_advisory(best_disease, best_conf)
     disclaimer_note = "This AI-assisted diagnosis should be reviewed by qualified medical professionals for final clinical decision-making."
 
@@ -495,6 +570,7 @@ def get_multi_model_analysis(image_path):
         "risk_factors": risk_factors,
         "disclaimer_note": disclaimer_note
     }
+
 def generate_ai_clinical_recommendation(disease, confidence, risk_score, patient_age=40):
     """
     AI Clinical Decision Support Engine (CDSS)
