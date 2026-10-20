@@ -376,13 +376,14 @@
     </div>
   </main>
 </div>
+
 <script id="comparisonDataJson" type="application/json">
   {{ comparison | tojson | safe if comparison else '{}' }}
 </script>
 
 <script>
   const multiModelData = JSON.parse(document.getElementById('comparisonDataJson').textContent || '{}');
-  const championModel = "{{ study.champion_model or 'DenseNet121' }}";
+  let currentChampion = "{{ study.champion_model or 'DenseNet121' }}";
   const defaultDisease = "{{ study.predicted_disease or 'Normal' }}";
   const defaultConfidence = parseFloat("{{ study.confidence_score or 90.0 }}");
 
@@ -392,16 +393,7 @@
     if(activePill) activePill.classList.add('active');
 
     let data = multiModelData[modelName];
-    
-    // Fallback
-    if (!data) {
-      if (modelName === championModel) {
-        document.getElementById('selectedModelLabel').innerText = "Selected Model: " + modelName + " (Champion)";
-        document.getElementById('selectedConfidenceLabel').innerText = "Confidence: " + defaultConfidence + "%";
-        document.getElementById('diagnosisTitle').innerText = defaultDisease;
-      }
-      return;
-    }
+    if (!data) return;
 
     let topDisease = 'Normal';
     let maxConf = -1;
@@ -412,8 +404,9 @@
       }
     }
 
-    // UI Updates
-    document.getElementById('selectedModelLabel').innerText = "Selected Model: " + modelName + (modelName === championModel ? " (Champion)" : "");
+    // Dynamic Top Header Updates
+    const isChamp = (modelName === currentChampion);
+    document.getElementById('selectedModelLabel').innerText = "Selected Model: " + modelName + (isChamp ? " (Champion)" : "");
     document.getElementById('selectedConfidenceLabel').innerText = "Confidence: " + maxConf + "%";
     document.getElementById('diagnosisTitle').innerText = topDisease;
 
@@ -462,41 +455,9 @@
     tbody.innerHTML = '';
     const models = ['DenseNet121', 'ResNet50', 'EfficientNetB0'];
     const voteCounts = {};
-    let championModelName = championModel || 'DenseNet121';
-    let championTopDisease = defaultDisease;
-    let championTopConf = defaultConfidence;
+    const modelParsedResults = [];
 
-    
-    if (Object.keys(multiModelData).length === 0) {
-      tbody.innerHTML = `
-        <tr>
-          <td style="padding: 10px 12px; font-weight: 700; color: #1e293b;">${championModelName} <span style="color:#16a34a;">★</span></td>
-          <td style="padding: 10px 12px; font-weight: 600; color: ${defaultDisease === 'Normal' ? '#16a34a' : '#dc2626'};">${defaultDisease}</td>
-          <td style="padding: 10px 12px; font-weight: 700; color: #0f172a;">${defaultConfidence}%</td>
-          <td style="padding: 10px 12px; text-align: center;">
-            <span style="background: #dcfce7; color: #15803d; padding: 2px 7px; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">Champion</span>
-          </td>
-        </tr>
-      `;
-      if (consensusBox) {
-        consensusBox.style.background = '#f8fafc';
-        consensusBox.style.border = '1px solid #cbd5e1';
-        consensusBox.innerHTML = `
-          <div>
-            <span style="color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">Final Consensus Decision:</span>
-            <div style="font-size: 0.95rem; font-weight: 800; color: #0f172a; margin-top: 2px;">
-              ${defaultDisease} <span style="font-size: 0.8rem; font-weight: 600; color: #0284c7;">(${defaultConfidence}% via ${championModelName})</span>
-            </div>
-          </div>
-          <div style="text-align: right;">
-            <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Final Record Verified</span>
-          </div>
-        `;
-      }
-      return;
-    }
-
-    
+    // Step 1: 3 models-oda predictions & confidence scores edukirom
     models.forEach(mName => {
       const data = multiModelData[mName];
       if (!data) return;
@@ -511,26 +472,56 @@
       }
 
       voteCounts[topDisease] = (voteCounts[topDisease] || 0) + 1;
+      modelParsedResults.push({
+        model: mName,
+        disease: topDisease,
+        confidence: maxConf
+      });
+    });
 
-      if (mName === championModelName) {
-        championTopDisease = topDisease;
-        championTopConf = maxConf;
+    if (modelParsedResults.length === 0) return;
+
+    // Step 2: Intelligent Tie-Breaker Logic (Highest Confidence Wins)
+    let maxVotes = 0;
+    let majorityDisease = null;
+    for (const [disease, count] of Object.entries(voteCounts)) {
+      if (count > maxVotes) {
+        maxVotes = count;
+        majorityDisease = disease;
       }
+    }
 
-      const isChampion = (mName === championModelName);
+    let winner;
+    if (maxVotes >= 2) {
+      // 2/3 alladhu 3/3 Majority Consensus
+      const majorityCandidates = modelParsedResults.filter(m => m.disease === majorityDisease);
+      winner = majorityCandidates.reduce((prev, curr) => (prev.confidence > curr.confidence) ? prev : curr);
+    } else {
+      // 1/3 Split aanaal: Highest Confidence ulla model automatic winner!
+      winner = modelParsedResults.reduce((prev, curr) => (prev.confidence > curr.confidence) ? prev : curr);
+    }
+
+    currentChampion = winner.model;
+    const championModelName = winner.model;
+    const championTopDisease = winner.disease;
+    const championTopConf = winner.confidence;
+
+    // Step 3: Comparison Table Populate Seigirom
+    modelParsedResults.forEach(res => {
+      const isChampion = (res.model === championModelName);
       const row = document.createElement('tr');
       row.style.borderBottom = '1px solid #f1f5f9';
       row.style.backgroundColor = isChampion ? '#f0fdf4' : '#ffffff';
 
       row.innerHTML = `
         <td style="padding: 8px 12px; font-weight: 700; color: #1e293b;">
-          ${mName} ${isChampion ? '<span style="color:#16a34a; font-size: 0.75rem;">★</span>' : ''}
+          ${res.model} ${isChampion ? '<span style="color:#16a34a; font-size: 0.75rem;">★</span>' : ''}
         </td>
-        <td style="padding: 8px 12px; font-weight: 600; color: ${topDisease === 'Normal' ? '#16a34a' : '#dc2626'};">
-          ${topDisease}
+        <td style="padding: 8px 12px; font-weight: 600; color: ${res.disease === 'Normal' ? '#16a34a' : '#dc2626'};">
+          ${res.disease}
         </td>
         <td style="padding: 8px 12px; font-weight: 700; color: #0f172a;">
-          ${maxConf}%
+          ${res.confidence}%
         </td>
         <td style="padding: 8px 12px; text-align: center;">
           ${isChampion 
@@ -541,8 +532,8 @@
       tbody.appendChild(row);
     });
 
+    // Step 4: Final Consensus Decision Badge Update
     if (consensusBox) {
-      const majorityCount = voteCounts[championTopDisease] || 1;
       consensusBox.style.background = '#f8fafc';
       consensusBox.style.border = '1px solid #cbd5e1';
       consensusBox.style.color = '#1e293b';
@@ -555,11 +546,14 @@
         </div>
         <div style="text-align: right;">
           <span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">
-            ${majorityCount}/3 Models Agreement
+            ${maxVotes}/3 Models Agreement
           </span>
         </div>
       `;
     }
+
+    // Step 5: Automatically select the winner model
+    selectModel(championModelName);
   }
 
   function updateBar(key, value) {
@@ -570,7 +564,6 @@
   }
 
   window.addEventListener('DOMContentLoaded', function() {
-    selectModel(championModel || 'DenseNet121');
     buildComparisonTable();
   });
 </script>

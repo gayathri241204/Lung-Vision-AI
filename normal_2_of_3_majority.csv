@@ -1,0 +1,800 @@
+Filename,Consensus_Category,DenseNet121_Pred,DenseNet121_Conf,ResNet50_Pred,ResNet50_Conf,EfficientNetB0_Pred,EfficientNetB0_Conf
+Normal-1000.png,2/3 Majority Normal,Normal,96.04%,Normal,64.55%,Pneumonia,99.94%
+Normal-1001.png,2/3 Majority Normal,Normal,94.1%,Normal,99.14%,Pneumonia,86.34%
+Normal-10010.png,2/3 Majority Normal,Normal,98.88%,Normal,99.85%,Tuberculosis,60.36%
+Normal-10025.png,2/3 Majority Normal,Normal,98.86%,Normal,97.86%,Tuberculosis,87.57%
+Normal-1003.png,2/3 Majority Normal,Normal,98.71%,Normal,89.11%,COVID-19,72.95%
+Normal-10050.png,2/3 Majority Normal,Normal,86.39%,Normal,88.23%,COVID-19,61.78%
+Normal-10054.png,2/3 Majority Normal,Normal,94.94%,Normal,91.97%,Tuberculosis,99.86%
+Normal-10060.png,2/3 Majority Normal,Normal,91.37%,Normal,99.94%,Tuberculosis,81.18%
+Normal-10084.png,2/3 Majority Normal,Normal,77.34%,Normal,99.2%,COVID-19,78.38%
+Normal-10089.png,2/3 Majority Normal,Normal,95.69%,Normal,92.09%,Pneumonia,48.56%
+Normal-101.png,2/3 Majority Normal,Normal,93.65%,Normal,56.62%,Pneumonia,99.05%
+Normal-10118.png,2/3 Majority Normal,Normal,90.43%,Normal,94.37%,Pneumonia,86.35%
+Normal-10139.png,2/3 Majority Normal,Normal,97.52%,Normal,99.99%,Tuberculosis,83.85%
+Normal-1015.png,2/3 Majority Normal,Normal,95.62%,Normal,98.27%,Pneumonia,90.41%
+Normal-10160.png,2/3 Majority Normal,Normal,81.06%,Normal,98.75%,Tuberculosis,73.15%
+Normal-1023.png,2/3 Majority Normal,Normal,99.8%,Normal,99.91%,Pneumonia,85.05%
+Normal-1031.png,2/3 Majority Normal,Normal,95.24%,Normal,99.81%,Pneumonia,77.03%
+Normal-104.png,2/3 Majority Normal,Normal,99.66%,Normal,99.77%,Pneumonia,67.58%
+Normal-1048.png,2/3 Majority Normal,Normal,99.37%,Normal,97.73%,COVID-19,57.18%
+Normal-1063.png,2/3 Majority Normal,Normal,98.9%,Normal,99.92%,Pneumonia,98.56%
+Normal-1065.png,2/3 Majority Normal,Normal,96.72%,Normal,94.23%,Pneumonia,100.0%
+Normal-1086.png,2/3 Majority Normal,Normal,99.58%,Normal,99.89%,COVID-19,87.64%
+Normal-1094.png,2/3 Majority Normal,Normal,98.86%,Normal,99.87%,COVID-19,49.33%
+Normal-1104.png,2/3 Majority Normal,Normal,99.57%,Normal,99.62%,Pneumonia,81.58%
+Normal-1108.png,2/3 Majority Normal,Normal,98.41%,Normal,99.95%,COVID-19,68.53%
+Normal-1119.png,2/3 Majority Normal,Normal,98.14%,Normal,62.38%,Tuberculosis,81.45%
+Normal-1121.png,2/3 Majority Normal,Normal,99.61%,Normal,99.83%,Pneumonia,84.14%
+Normal-1126.png,2/3 Majority Normal,Normal,96.88%,Normal,98.62%,COVID-19,50.14%
+Normal-1136.png,2/3 Majority Normal,Normal,95.73%,Normal,90.31%,Pneumonia,75.04%
+Normal-1146.png,2/3 Majority Normal,Normal,98.05%,Normal,95.24%,Tuberculosis,74.74%
+Normal-1149.png,2/3 Majority Normal,Normal,83.46%,Normal,72.8%,Pneumonia,79.09%
+Normal-1160.png,2/3 Majority Normal,Normal,99.48%,Normal,99.8%,COVID-19,80.36%
+Normal-1163.png,2/3 Majority Normal,Normal,99.63%,Normal,99.9%,COVID-19,95.06%
+Normal-1174.png,2/3 Majority Normal,Normal,97.84%,Normal,70.99%,Pneumonia,56.33%
+Normal-1181.png,2/3 Majority Normal,Normal,91.2%,Normal,88.57%,Tuberculosis,62.12%
+Normal-1191.png,2/3 Majority Normal,Normal,92.01%,Normal,80.09%,Tuberculosis,50.78%
+Normal-1194.png,2/3 Majority Normal,Normal,98.31%,Normal,99.83%,Pneumonia,85.74%
+Normal-1198.png,2/3 Majority Normal,Normal,94.14%,Normal,96.82%,Tuberculosis,46.28%
+Normal-1206.png,2/3 Majority Normal,Normal,99.66%,Normal,99.95%,COVID-19,67.53%
+Normal-1208.png,2/3 Majority Normal,Normal,98.91%,Normal,99.89%,Pneumonia,96.81%
+Normal-1209.png,2/3 Majority Normal,Normal,98.79%,Normal,99.54%,Pneumonia,78.5%
+Normal-121.png,2/3 Majority Normal,Normal,99.66%,Normal,99.49%,Pneumonia,75.6%
+Normal-1210.png,2/3 Majority Normal,Normal,97.46%,Normal,99.97%,COVID-19,72.68%
+Normal-1219.png,2/3 Majority Normal,Normal,95.6%,Normal,96.8%,Tuberculosis,71.61%
+Normal-123.png,2/3 Majority Normal,Normal,99.54%,Normal,99.85%,Pneumonia,91.69%
+Normal-1234.png,2/3 Majority Normal,Normal,97.98%,Normal,99.96%,COVID-19,95.23%
+Normal-1246.png,2/3 Majority Normal,Normal,93.54%,Normal,95.2%,COVID-19,59.3%
+Normal-1247.png,2/3 Majority Normal,Normal,99.76%,Normal,99.85%,Pneumonia,97.43%
+Normal-1250.png,2/3 Majority Normal,Normal,99.67%,Normal,99.89%,Pneumonia,94.7%
+Normal-1251.png,2/3 Majority Normal,Normal,91.28%,Normal,84.5%,Tuberculosis,53.98%
+Normal-1253.png,2/3 Majority Normal,Normal,99.59%,Normal,99.83%,COVID-19,87.38%
+Normal-126.png,2/3 Majority Normal,Normal,99.91%,Normal,99.93%,COVID-19,56.96%
+Normal-1263.png,2/3 Majority Normal,Normal,99.8%,Normal,97.98%,Pneumonia,91.17%
+Normal-1269.png,2/3 Majority Normal,Normal,99.49%,Normal,99.97%,COVID-19,83.29%
+Normal-1275.png,2/3 Majority Normal,Normal,99.29%,Normal,99.78%,COVID-19,48.47%
+Normal-1285.png,2/3 Majority Normal,Normal,90.9%,Normal,99.35%,Pneumonia,84.84%
+Normal-1301.png,2/3 Majority Normal,Normal,99.77%,Normal,99.62%,COVID-19,90.52%
+Normal-1319.png,2/3 Majority Normal,Normal,99.48%,Normal,99.87%,COVID-19,87.89%
+Normal-1330.png,2/3 Majority Normal,Normal,98.46%,Normal,98.82%,Pneumonia,97.0%
+Normal-1335.png,2/3 Majority Normal,Normal,84.31%,Normal,85.07%,Pneumonia,99.78%
+Normal-1340.png,2/3 Majority Normal,Normal,99.37%,Normal,99.99%,Pneumonia,41.88%
+Normal-1358.png,2/3 Majority Normal,Normal,99.44%,Normal,99.98%,COVID-19,68.39%
+Normal-1363.png,2/3 Majority Normal,Normal,97.89%,Normal,99.38%,Pneumonia,84.58%
+Normal-1372.png,2/3 Majority Normal,Normal,86.3%,Normal,84.45%,Pneumonia,92.99%
+Normal-1386.png,2/3 Majority Normal,Normal,99.78%,Normal,99.81%,Tuberculosis,72.0%
+Normal-1400.png,2/3 Majority Normal,Normal,62.27%,Normal,89.11%,Pneumonia,42.57%
+Normal-1426.png,2/3 Majority Normal,Normal,93.39%,Normal,99.91%,Tuberculosis,94.86%
+Normal-1467.png,2/3 Majority Normal,Normal,94.97%,Normal,96.97%,Tuberculosis,99.69%
+Normal-1468.png,2/3 Majority Normal,Normal,98.44%,Normal,99.7%,Tuberculosis,51.8%
+Normal-1484.png,2/3 Majority Normal,Normal,98.73%,Normal,99.98%,Tuberculosis,91.93%
+Normal-1485.png,2/3 Majority Normal,Normal,86.0%,Normal,99.83%,Tuberculosis,91.33%
+Normal-1498.png,2/3 Majority Normal,Normal,99.08%,Normal,99.83%,Pneumonia,48.71%
+Normal-1507.png,2/3 Majority Normal,COVID-19,73.39%,Normal,99.36%,Normal,59.36%
+Normal-1513.png,2/3 Majority Normal,Lung Opacity,50.63%,Normal,95.18%,Normal,97.94%
+Normal-152.png,2/3 Majority Normal,Normal,99.76%,Normal,99.98%,COVID-19,78.09%
+Normal-1524.png,2/3 Majority Normal,Normal,94.18%,Normal,98.37%,Tuberculosis,97.97%
+Normal-154.png,2/3 Majority Normal,Normal,98.06%,Normal,97.71%,Pneumonia,89.98%
+Normal-1556.png,2/3 Majority Normal,Normal,92.78%,Normal,99.85%,Tuberculosis,99.32%
+Normal-1570.png,2/3 Majority Normal,Normal,62.45%,Normal,96.46%,Tuberculosis,40.9%
+Normal-1575.png,2/3 Majority Normal,Normal,93.52%,Normal,96.96%,Pneumonia,90.76%
+Normal-1581.png,2/3 Majority Normal,Normal,76.19%,Normal,98.18%,Pneumonia,80.2%
+Normal-1612.png,2/3 Majority Normal,Normal,64.56%,Lung Opacity,54.17%,Normal,96.88%
+Normal-1618.png,2/3 Majority Normal,Normal,92.63%,Normal,97.68%,Pneumonia,58.1%
+Normal-162.png,2/3 Majority Normal,Normal,85.91%,Normal,62.69%,Pneumonia,87.64%
+Normal-1635.png,2/3 Majority Normal,Normal,90.46%,Normal,98.43%,Tuberculosis,52.15%
+Normal-1642.png,2/3 Majority Normal,Normal,89.79%,Normal,99.24%,Tuberculosis,68.66%
+Normal-1654.png,2/3 Majority Normal,Lung Opacity,59.59%,Normal,89.59%,Normal,98.79%
+Normal-1658.png,2/3 Majority Normal,Lung Opacity,60.78%,Normal,90.06%,Normal,76.49%
+Normal-1662.png,2/3 Majority Normal,Normal,96.53%,Normal,99.82%,Tuberculosis,93.17%
+Normal-1670.png,2/3 Majority Normal,Normal,68.86%,Normal,99.8%,Tuberculosis,80.06%
+Normal-1688.png,2/3 Majority Normal,COVID-19,88.42%,Normal,99.5%,Normal,99.66%
+Normal-1696.png,2/3 Majority Normal,Normal,90.46%,Lung Opacity,99.43%,Normal,83.93%
+Normal-1705.png,2/3 Majority Normal,Lung Opacity,69.25%,Normal,70.45%,Normal,73.42%
+Normal-1727.png,2/3 Majority Normal,Normal,94.86%,Normal,96.5%,Tuberculosis,89.87%
+Normal-1749.png,2/3 Majority Normal,Lung Opacity,84.05%,Normal,51.28%,Normal,92.96%
+Normal-179.png,2/3 Majority Normal,Normal,99.26%,Normal,99.91%,COVID-19,99.95%
+Normal-180.png,2/3 Majority Normal,Normal,96.89%,Normal,98.68%,Tuberculosis,93.92%
+Normal-1803.png,2/3 Majority Normal,Normal,96.5%,Normal,99.98%,Tuberculosis,42.61%
+Normal-1825.png,2/3 Majority Normal,Normal,96.9%,Normal,99.69%,Tuberculosis,41.03%
+Normal-1831.png,2/3 Majority Normal,Normal,93.27%,Normal,99.91%,Tuberculosis,90.81%
+Normal-1834.png,2/3 Majority Normal,Lung Opacity,60.22%,Normal,96.09%,Normal,97.5%
+Normal-186.png,2/3 Majority Normal,Normal,95.35%,Normal,62.7%,Tuberculosis,91.66%
+Normal-1886.png,2/3 Majority Normal,Normal,99.02%,Normal,99.89%,Tuberculosis,81.53%
+Normal-1890.png,2/3 Majority Normal,Normal,92.63%,Normal,99.82%,Tuberculosis,96.63%
+Normal-1895.png,2/3 Majority Normal,Normal,95.76%,Normal,98.29%,Tuberculosis,90.56%
+Normal-1900.png,2/3 Majority Normal,Normal,79.37%,COVID-19,57.01%,Normal,94.85%
+Normal-1910.png,2/3 Majority Normal,Lung Opacity,80.52%,Normal,85.6%,Normal,99.98%
+Normal-2015.png,2/3 Majority Normal,Normal,99.08%,Normal,99.92%,Tuberculosis,95.97%
+Normal-2018.png,2/3 Majority Normal,Normal,97.36%,Normal,99.66%,Tuberculosis,89.14%
+Normal-202.png,2/3 Majority Normal,Normal,98.75%,Normal,96.2%,Pneumonia,86.14%
+Normal-2035.png,2/3 Majority Normal,Normal,96.69%,Normal,89.37%,COVID-19,78.32%
+Normal-2037.png,2/3 Majority Normal,Lung Opacity,66.3%,Normal,45.15%,Normal,93.63%
+Normal-2057.png,2/3 Majority Normal,Normal,93.73%,Normal,99.77%,Tuberculosis,98.56%
+Normal-206.png,2/3 Majority Normal,Normal,98.47%,Normal,99.6%,COVID-19,63.24%
+Normal-207.png,2/3 Majority Normal,Normal,97.71%,Normal,92.87%,Pneumonia,69.42%
+Normal-2113.png,2/3 Majority Normal,Normal,66.71%,Normal,99.75%,COVID-19,54.21%
+Normal-2148.png,2/3 Majority Normal,Lung Opacity,61.85%,Normal,97.37%,Normal,51.48%
+Normal-2156.png,2/3 Majority Normal,Normal,55.61%,Normal,92.27%,Pneumonia,90.67%
+Normal-216.png,2/3 Majority Normal,Normal,95.98%,Normal,99.8%,Pneumonia,94.82%
+Normal-2185.png,2/3 Majority Normal,Normal,98.65%,Normal,99.93%,Tuberculosis,48.91%
+Normal-2242.png,2/3 Majority Normal,Normal,94.87%,Normal,92.89%,Tuberculosis,89.71%
+Normal-2250.png,2/3 Majority Normal,Normal,96.55%,Normal,99.43%,COVID-19,59.5%
+Normal-2264.png,2/3 Majority Normal,Normal,97.83%,Normal,97.37%,Pneumonia,89.47%
+Normal-2272.png,2/3 Majority Normal,Normal,90.41%,Normal,99.11%,Tuberculosis,90.44%
+Normal-2275.png,2/3 Majority Normal,Normal,85.46%,Normal,99.58%,Tuberculosis,84.18%
+Normal-2302.png,2/3 Majority Normal,Normal,93.29%,Normal,99.88%,Tuberculosis,85.35%
+Normal-2303.png,2/3 Majority Normal,Normal,90.83%,Normal,98.06%,Tuberculosis,45.28%
+Normal-231.png,2/3 Majority Normal,Normal,86.28%,Normal,99.85%,COVID-19,99.95%
+Normal-2327.png,2/3 Majority Normal,Normal,91.52%,Normal,98.91%,Pneumonia,79.43%
+Normal-2328.png,2/3 Majority Normal,Normal,97.2%,Normal,99.99%,Tuberculosis,69.29%
+Normal-2340.png,2/3 Majority Normal,Normal,65.82%,Normal,99.04%,Pneumonia,86.77%
+Normal-2344.png,2/3 Majority Normal,Normal,59.08%,Normal,99.63%,Tuberculosis,63.15%
+Normal-235.png,2/3 Majority Normal,Normal,96.41%,Normal,99.95%,COVID-19,62.54%
+Normal-2384.png,2/3 Majority Normal,Normal,96.16%,Normal,98.52%,Pneumonia,70.01%
+Normal-2407.png,2/3 Majority Normal,Normal,92.55%,Normal,99.84%,Tuberculosis,65.72%
+Normal-2414.png,2/3 Majority Normal,Normal,75.87%,Normal,99.35%,COVID-19,81.71%
+Normal-2432.png,2/3 Majority Normal,Normal,93.28%,Normal,99.03%,Tuberculosis,87.72%
+Normal-2439.png,2/3 Majority Normal,Normal,95.76%,Normal,94.65%,COVID-19,60.35%
+Normal-2440.png,2/3 Majority Normal,Normal,89.47%,Normal,99.96%,COVID-19,90.2%
+Normal-2448.png,2/3 Majority Normal,Normal,73.81%,Normal,99.84%,Tuberculosis,72.83%
+Normal-2477.png,2/3 Majority Normal,Normal,97.86%,Normal,93.6%,Tuberculosis,55.49%
+Normal-2480.png,2/3 Majority Normal,Lung Opacity,53.35%,Normal,80.65%,Normal,98.68%
+Normal-2508.png,2/3 Majority Normal,Normal,97.19%,Normal,99.75%,COVID-19,40.16%
+Normal-252.png,2/3 Majority Normal,Normal,91.14%,Normal,99.01%,COVID-19,59.26%
+Normal-2522.png,2/3 Majority Normal,Normal,84.88%,Lung Opacity,53.14%,Normal,98.41%
+Normal-2532.png,2/3 Majority Normal,Normal,95.27%,Normal,99.51%,Tuberculosis,89.67%
+Normal-2574.png,2/3 Majority Normal,Normal,84.42%,Normal,95.99%,Pneumonia,64.17%
+Normal-2587.png,2/3 Majority Normal,Normal,99.77%,Normal,97.87%,Tuberculosis,87.9%
+Normal-2593.png,2/3 Majority Normal,Normal,83.6%,Normal,99.53%,COVID-19,38.86%
+Normal-2594.png,2/3 Majority Normal,Normal,94.88%,Normal,98.66%,Tuberculosis,74.82%
+Normal-2608.png,2/3 Majority Normal,Normal,94.19%,Normal,99.51%,Tuberculosis,88.32%
+Normal-2627.png,2/3 Majority Normal,Normal,94.24%,Normal,77.85%,Tuberculosis,98.79%
+Normal-2677.png,2/3 Majority Normal,Normal,91.41%,Normal,97.26%,Pneumonia,62.14%
+Normal-2704.png,2/3 Majority Normal,Normal,73.4%,Normal,97.66%,Pneumonia,82.6%
+Normal-2705.png,2/3 Majority Normal,Normal,54.58%,Normal,98.38%,COVID-19,67.63%
+Normal-271.png,2/3 Majority Normal,Normal,98.51%,Normal,99.44%,Pneumonia,99.86%
+Normal-274.png,2/3 Majority Normal,Normal,99.79%,Normal,100.0%,COVID-19,96.66%
+Normal-2755.png,2/3 Majority Normal,Normal,99.01%,Normal,99.5%,Tuberculosis,93.37%
+Normal-279.png,2/3 Majority Normal,Normal,95.54%,Normal,97.76%,Tuberculosis,94.11%
+Normal-2806.png,2/3 Majority Normal,Lung Opacity,91.53%,Normal,81.53%,Normal,99.99%
+Normal-2821.png,2/3 Majority Normal,Normal,89.6%,Normal,99.5%,Tuberculosis,84.42%
+Normal-2833.png,2/3 Majority Normal,Normal,62.92%,Normal,96.69%,Lung Opacity,67.23%
+Normal-2840.png,2/3 Majority Normal,Lung Opacity,92.32%,Normal,94.63%,Normal,89.28%
+Normal-2884.png,2/3 Majority Normal,Normal,97.31%,Normal,99.08%,Tuberculosis,97.85%
+Normal-2887.png,2/3 Majority Normal,Normal,96.55%,Normal,99.2%,Tuberculosis,96.79%
+Normal-2899.png,2/3 Majority Normal,Normal,95.15%,Normal,99.78%,Tuberculosis,61.4%
+Normal-2920.png,2/3 Majority Normal,Normal,99.04%,Normal,94.55%,Tuberculosis,80.73%
+Normal-2933.png,2/3 Majority Normal,Normal,87.76%,Normal,99.56%,Tuberculosis,99.0%
+Normal-299.png,2/3 Majority Normal,Normal,87.1%,Pneumonia,87.42%,Normal,48.52%
+Normal-2991.png,2/3 Majority Normal,Normal,92.91%,Normal,96.8%,Tuberculosis,90.99%
+Normal-300.png,2/3 Majority Normal,Normal,99.93%,Normal,99.97%,Pneumonia,41.78%
+Normal-3037.png,2/3 Majority Normal,Normal,79.98%,Normal,99.92%,Tuberculosis,47.63%
+Normal-3038.png,2/3 Majority Normal,Normal,74.29%,Normal,99.45%,Pneumonia,82.2%
+Normal-3051.png,2/3 Majority Normal,Normal,84.56%,Lung Opacity,64.26%,Normal,88.68%
+Normal-3061.png,2/3 Majority Normal,Normal,83.98%,Normal,97.63%,Pneumonia,64.2%
+Normal-3063.png,2/3 Majority Normal,Normal,94.48%,Normal,99.63%,Tuberculosis,94.28%
+Normal-3107.png,2/3 Majority Normal,Normal,69.62%,Normal,49.47%,COVID-19,48.57%
+Normal-3116.png,2/3 Majority Normal,Normal,93.58%,Normal,97.83%,COVID-19,48.09%
+Normal-3123.png,2/3 Majority Normal,Normal,94.53%,Normal,99.87%,Tuberculosis,87.52%
+Normal-3155.png,2/3 Majority Normal,Normal,98.74%,Normal,99.79%,Tuberculosis,54.2%
+Normal-3175.png,2/3 Majority Normal,Normal,84.81%,Normal,83.75%,Tuberculosis,89.92%
+Normal-318.png,2/3 Majority Normal,Normal,99.75%,Normal,99.79%,Pneumonia,94.82%
+Normal-3182.png,2/3 Majority Normal,Normal,96.06%,Normal,99.99%,Tuberculosis,80.58%
+Normal-319.png,2/3 Majority Normal,Normal,98.42%,Normal,96.9%,Pneumonia,97.3%
+Normal-3224.png,2/3 Majority Normal,Normal,93.04%,Normal,97.46%,COVID-19,88.88%
+Normal-3234.png,2/3 Majority Normal,Normal,88.92%,Normal,99.4%,Pneumonia,50.69%
+Normal-3259.png,2/3 Majority Normal,Normal,82.72%,Normal,96.21%,Tuberculosis,97.84%
+Normal-3314.png,2/3 Majority Normal,Normal,89.95%,Normal,99.75%,Tuberculosis,59.7%
+Normal-3317.png,2/3 Majority Normal,Normal,90.72%,Normal,99.85%,Tuberculosis,96.54%
+Normal-3319.png,2/3 Majority Normal,Normal,96.59%,Normal,99.99%,Tuberculosis,85.59%
+Normal-3341.png,2/3 Majority Normal,Normal,99.64%,Normal,99.69%,Tuberculosis,84.3%
+Normal-335.png,2/3 Majority Normal,Normal,96.23%,Normal,87.04%,Pneumonia,98.79%
+Normal-3351.png,2/3 Majority Normal,Normal,67.25%,Normal,94.0%,Pneumonia,92.95%
+Normal-3357.png,2/3 Majority Normal,Normal,85.44%,Normal,98.31%,Lung Opacity,85.41%
+Normal-3361.png,2/3 Majority Normal,Normal,98.65%,Normal,99.95%,Tuberculosis,67.07%
+Normal-3363.png,2/3 Majority Normal,Normal,97.15%,Normal,99.93%,Tuberculosis,70.23%
+Normal-3379.png,2/3 Majority Normal,Normal,93.08%,Normal,99.83%,Tuberculosis,63.34%
+Normal-3398.png,2/3 Majority Normal,Normal,98.44%,Normal,99.75%,Tuberculosis,91.0%
+Normal-3399.png,2/3 Majority Normal,Normal,84.46%,Normal,97.37%,Tuberculosis,83.7%
+Normal-3419.png,2/3 Majority Normal,Normal,92.85%,Normal,99.72%,Pneumonia,85.32%
+Normal-343.png,2/3 Majority Normal,Normal,87.16%,Normal,86.53%,COVID-19,68.3%
+Normal-3440.png,2/3 Majority Normal,Normal,95.17%,Normal,99.97%,Tuberculosis,69.95%
+Normal-3460.png,2/3 Majority Normal,Normal,89.4%,Normal,69.83%,Tuberculosis,74.21%
+Normal-3485.png,2/3 Majority Normal,Normal,97.89%,Normal,99.95%,Tuberculosis,74.49%
+Normal-3507.png,2/3 Majority Normal,Normal,66.03%,Normal,71.62%,Tuberculosis,94.27%
+Normal-3525.png,2/3 Majority Normal,Normal,92.66%,Normal,98.62%,Tuberculosis,99.67%
+Normal-3530.png,2/3 Majority Normal,Normal,97.23%,Normal,97.21%,Tuberculosis,62.29%
+Normal-354.png,2/3 Majority Normal,Normal,87.24%,Normal,96.79%,Pneumonia,81.52%
+Normal-355.png,2/3 Majority Normal,Normal,97.21%,Normal,96.89%,Tuberculosis,97.7%
+Normal-3559.png,2/3 Majority Normal,Lung Opacity,62.51%,Normal,61.19%,Normal,98.61%
+Normal-358.png,2/3 Majority Normal,Normal,99.73%,Normal,98.56%,Pneumonia,90.76%
+Normal-3594.png,2/3 Majority Normal,Normal,58.25%,Normal,91.17%,Pneumonia,71.72%
+Normal-362.png,2/3 Majority Normal,Normal,59.39%,Normal,96.4%,Pneumonia,79.21%
+Normal-3633.png,2/3 Majority Normal,Normal,93.49%,Normal,99.88%,Tuberculosis,79.5%
+Normal-3639.png,2/3 Majority Normal,Normal,98.16%,Normal,97.19%,Tuberculosis,40.9%
+Normal-3664.png,2/3 Majority Normal,Normal,81.59%,Normal,99.77%,Tuberculosis,62.16%
+Normal-3712.png,2/3 Majority Normal,Normal,94.72%,Normal,99.91%,Pneumonia,53.3%
+Normal-3717.png,2/3 Majority Normal,Normal,97.91%,Normal,99.41%,Tuberculosis,47.97%
+Normal-3718.png,2/3 Majority Normal,Normal,96.68%,Normal,95.38%,COVID-19,38.81%
+Normal-3722.png,2/3 Majority Normal,Normal,85.59%,Lung Opacity,50.9%,Normal,73.94%
+Normal-3751.png,2/3 Majority Normal,Normal,97.36%,Normal,99.14%,COVID-19,93.06%
+Normal-3754.png,2/3 Majority Normal,Normal,82.95%,Normal,99.6%,Tuberculosis,84.63%
+Normal-3786.png,2/3 Majority Normal,Normal,96.93%,Normal,98.79%,Pneumonia,94.73%
+Normal-3809.png,2/3 Majority Normal,Normal,95.44%,Normal,99.86%,Tuberculosis,50.66%
+Normal-381.png,2/3 Majority Normal,Normal,96.11%,Normal,99.97%,Pneumonia,56.19%
+Normal-3820.png,2/3 Majority Normal,Normal,97.53%,Normal,69.18%,Tuberculosis,77.52%
+Normal-3826.png,2/3 Majority Normal,Normal,95.17%,Normal,86.64%,Tuberculosis,55.17%
+Normal-3835.png,2/3 Majority Normal,Normal,98.38%,Normal,99.88%,Tuberculosis,65.02%
+Normal-3845.png,2/3 Majority Normal,Normal,95.5%,Normal,99.37%,COVID-19,53.12%
+Normal-3863.png,2/3 Majority Normal,Normal,97.94%,Normal,93.88%,COVID-19,64.23%
+Normal-3885.png,2/3 Majority Normal,Normal,85.18%,Normal,74.07%,Tuberculosis,63.45%
+Normal-3907.png,2/3 Majority Normal,Lung Opacity,52.26%,Normal,86.11%,Normal,100.0%
+Normal-3919.png,2/3 Majority Normal,Normal,91.14%,Normal,99.76%,Pneumonia,92.3%
+Normal-3929.png,2/3 Majority Normal,Normal,97.78%,Normal,99.39%,Tuberculosis,92.54%
+Normal-393.png,2/3 Majority Normal,Normal,96.73%,Normal,98.45%,Pneumonia,63.47%
+Normal-3940.png,2/3 Majority Normal,Normal,98.26%,Normal,99.74%,Tuberculosis,55.47%
+Normal-3944.png,2/3 Majority Normal,Normal,99.09%,Normal,97.79%,Tuberculosis,61.85%
+Normal-3948.png,2/3 Majority Normal,Normal,70.71%,Normal,95.7%,Pneumonia,99.95%
+Normal-3983.png,2/3 Majority Normal,Normal,91.41%,Normal,99.79%,Tuberculosis,58.1%
+Normal-400.png,2/3 Majority Normal,Normal,96.09%,Normal,98.64%,Pneumonia,99.41%
+Normal-4012.png,2/3 Majority Normal,Normal,83.72%,Normal,99.55%,Tuberculosis,91.24%
+Normal-4040.png,2/3 Majority Normal,Normal,93.84%,Normal,99.61%,Tuberculosis,52.41%
+Normal-4068.png,2/3 Majority Normal,Normal,96.87%,Normal,95.13%,Tuberculosis,82.23%
+Normal-4086.png,2/3 Majority Normal,Normal,81.63%,Normal,99.16%,Tuberculosis,61.0%
+Normal-4111.png,2/3 Majority Normal,Normal,87.02%,Normal,99.73%,Tuberculosis,84.41%
+Normal-4115.png,2/3 Majority Normal,Normal,96.11%,Normal,96.54%,Tuberculosis,79.45%
+Normal-416.png,2/3 Majority Normal,Normal,98.87%,Normal,93.75%,COVID-19,90.23%
+Normal-4160.png,2/3 Majority Normal,Normal,95.29%,Normal,73.21%,COVID-19,51.47%
+Normal-4174.png,2/3 Majority Normal,Normal,93.84%,Normal,99.98%,Tuberculosis,89.31%
+Normal-4196.png,2/3 Majority Normal,Normal,87.34%,Normal,99.3%,Tuberculosis,67.71%
+Normal-422.png,2/3 Majority Normal,Normal,98.81%,Normal,98.9%,Tuberculosis,97.22%
+Normal-4227.png,2/3 Majority Normal,Normal,53.44%,Normal,74.24%,Tuberculosis,98.85%
+Normal-424.png,2/3 Majority Normal,Normal,99.4%,Normal,99.81%,Pneumonia,98.73%
+Normal-4245.png,2/3 Majority Normal,Normal,98.05%,Normal,99.87%,Tuberculosis,96.23%
+Normal-428.png,2/3 Majority Normal,Normal,97.53%,Normal,99.98%,COVID-19,81.02%
+Normal-4295.png,2/3 Majority Normal,Normal,96.0%,Normal,96.63%,COVID-19,94.45%
+Normal-4299.png,2/3 Majority Normal,Normal,75.2%,Normal,93.57%,Pneumonia,99.04%
+Normal-433.png,2/3 Majority Normal,Normal,96.53%,Normal,99.1%,Pneumonia,88.82%
+Normal-4337.png,2/3 Majority Normal,Normal,74.82%,Lung Opacity,81.73%,Normal,92.9%
+Normal-4354.png,2/3 Majority Normal,Normal,96.21%,Normal,99.02%,Lung Opacity,70.65%
+Normal-4372.png,2/3 Majority Normal,Normal,95.28%,Normal,98.7%,COVID-19,82.62%
+Normal-4385.png,2/3 Majority Normal,Normal,96.0%,Normal,99.16%,Tuberculosis,90.7%
+Normal-4414.png,2/3 Majority Normal,Normal,50.43%,Normal,98.27%,Tuberculosis,99.99%
+Normal-4439.png,2/3 Majority Normal,Normal,85.24%,Normal,98.3%,COVID-19,93.4%
+Normal-4461.png,2/3 Majority Normal,Normal,87.08%,Normal,99.85%,Tuberculosis,44.71%
+Normal-4491.png,2/3 Majority Normal,Normal,83.03%,Normal,99.94%,Tuberculosis,59.81%
+Normal-4505.png,2/3 Majority Normal,Normal,91.49%,Normal,99.56%,Tuberculosis,75.8%
+Normal-451.png,2/3 Majority Normal,Normal,99.11%,Normal,98.78%,COVID-19,73.6%
+Normal-452.png,2/3 Majority Normal,Normal,98.18%,Normal,98.74%,Tuberculosis,89.04%
+Normal-4520.png,2/3 Majority Normal,Normal,96.78%,Normal,99.71%,Tuberculosis,93.81%
+Normal-4524.png,2/3 Majority Normal,Lung Opacity,86.89%,Normal,93.98%,Normal,99.98%
+Normal-4525.png,2/3 Majority Normal,Normal,93.56%,Normal,98.21%,Tuberculosis,91.29%
+Normal-4526.png,2/3 Majority Normal,Normal,98.62%,Normal,99.53%,Tuberculosis,98.27%
+Normal-4532.png,2/3 Majority Normal,Normal,79.3%,Normal,56.69%,COVID-19,99.67%
+Normal-4538.png,2/3 Majority Normal,Normal,76.69%,Normal,99.46%,Tuberculosis,82.33%
+Normal-4566.png,2/3 Majority Normal,Normal,93.58%,Normal,98.91%,Tuberculosis,57.28%
+Normal-4596.png,2/3 Majority Normal,Normal,98.86%,Normal,100.0%,COVID-19,65.65%
+Normal-46.png,2/3 Majority Normal,Normal,88.34%,Normal,99.76%,Tuberculosis,75.41%
+Normal-460.png,2/3 Majority Normal,Normal,99.06%,Normal,99.99%,Pneumonia,50.42%
+Normal-4607.png,2/3 Majority Normal,Normal,86.76%,Normal,84.3%,Pneumonia,39.57%
+Normal-4613.png,2/3 Majority Normal,Normal,64.74%,Normal,99.73%,Tuberculosis,50.62%
+Normal-4629.png,2/3 Majority Normal,Normal,97.69%,Normal,85.87%,Tuberculosis,99.97%
+Normal-4633.png,2/3 Majority Normal,Normal,90.82%,Normal,99.77%,Tuberculosis,96.14%
+Normal-4639.png,2/3 Majority Normal,Normal,56.49%,Lung Opacity,94.15%,Normal,99.22%
+Normal-4646.png,2/3 Majority Normal,Normal,93.14%,Normal,98.99%,Tuberculosis,50.59%
+Normal-4647.png,2/3 Majority Normal,Normal,87.78%,Normal,99.55%,Tuberculosis,99.35%
+Normal-4668.png,2/3 Majority Normal,Normal,87.61%,Normal,99.91%,COVID-19,36.77%
+Normal-4691.png,2/3 Majority Normal,Normal,95.8%,Normal,99.97%,Tuberculosis,78.74%
+Normal-4695.png,2/3 Majority Normal,Normal,93.5%,Normal,98.17%,Tuberculosis,67.48%
+Normal-4721.png,2/3 Majority Normal,Normal,96.95%,Normal,96.77%,Tuberculosis,58.95%
+Normal-4725.png,2/3 Majority Normal,Normal,52.79%,Normal,92.44%,Pneumonia,66.05%
+Normal-4738.png,2/3 Majority Normal,Normal,98.92%,Normal,99.76%,Tuberculosis,97.73%
+Normal-4762.png,2/3 Majority Normal,Normal,96.29%,Normal,97.61%,Lung Opacity,73.99%
+Normal-4763.png,2/3 Majority Normal,Normal,88.61%,Normal,98.88%,Tuberculosis,95.39%
+Normal-477.png,2/3 Majority Normal,Normal,55.75%,Normal,99.75%,Pneumonia,99.41%
+Normal-4783.png,2/3 Majority Normal,Normal,91.35%,Normal,99.69%,Pneumonia,97.54%
+Normal-4818.png,2/3 Majority Normal,Normal,93.61%,Normal,93.97%,COVID-19,97.75%
+Normal-4837.png,2/3 Majority Normal,Normal,86.37%,Normal,93.07%,Tuberculosis,87.39%
+Normal-4839.png,2/3 Majority Normal,Normal,91.47%,Normal,99.03%,Tuberculosis,82.28%
+Normal-4866.png,2/3 Majority Normal,Normal,94.23%,Normal,99.44%,Tuberculosis,98.43%
+Normal-488.png,2/3 Majority Normal,Normal,98.45%,Normal,99.87%,Pneumonia,45.25%
+Normal-489.png,2/3 Majority Normal,Normal,92.89%,Normal,56.48%,Pneumonia,57.5%
+Normal-490.png,2/3 Majority Normal,Normal,97.47%,Normal,99.55%,COVID-19,90.77%
+Normal-492.png,2/3 Majority Normal,Normal,85.41%,Normal,87.14%,Pneumonia,94.9%
+Normal-4957.png,2/3 Majority Normal,Normal,98.25%,Normal,67.4%,COVID-19,44.96%
+Normal-4966.png,2/3 Majority Normal,Normal,52.82%,Lung Opacity,90.29%,Normal,88.63%
+Normal-4971.png,2/3 Majority Normal,Normal,62.93%,Normal,92.45%,COVID-19,71.54%
+Normal-4981.png,2/3 Majority Normal,Normal,98.64%,Normal,99.36%,COVID-19,60.6%
+Normal-5001.png,2/3 Majority Normal,Normal,82.21%,Normal,98.47%,COVID-19,72.64%
+Normal-5009.png,2/3 Majority Normal,Normal,95.8%,Normal,99.51%,Tuberculosis,80.86%
+Normal-5012.png,2/3 Majority Normal,Lung Opacity,50.67%,Normal,63.89%,Normal,99.85%
+Normal-5039.png,2/3 Majority Normal,Normal,98.31%,Normal,99.0%,Tuberculosis,92.85%
+Normal-5040.png,2/3 Majority Normal,Normal,95.02%,Normal,97.72%,Tuberculosis,81.08%
+Normal-5041.png,2/3 Majority Normal,Normal,99.32%,Normal,99.95%,Tuberculosis,46.25%
+Normal-5049.png,2/3 Majority Normal,Normal,98.24%,Normal,99.48%,COVID-19,87.3%
+Normal-5050.png,2/3 Majority Normal,Lung Opacity,56.37%,Normal,98.15%,Normal,65.67%
+Normal-507.png,2/3 Majority Normal,Normal,98.12%,Normal,98.94%,Tuberculosis,58.65%
+Normal-5091.png,2/3 Majority Normal,Normal,89.09%,Normal,99.81%,Tuberculosis,93.17%
+Normal-5097.png,2/3 Majority Normal,Lung Opacity,74.55%,Normal,96.87%,Normal,99.0%
+Normal-513.png,2/3 Majority Normal,Normal,98.73%,Normal,99.92%,Pneumonia,48.87%
+Normal-5135.png,2/3 Majority Normal,Lung Opacity,75.51%,Normal,99.8%,Normal,99.84%
+Normal-514.png,2/3 Majority Normal,Normal,75.62%,Normal,49.36%,Pneumonia,50.21%
+Normal-5146.png,2/3 Majority Normal,Normal,82.67%,Normal,97.26%,Tuberculosis,58.95%
+Normal-5169.png,2/3 Majority Normal,Normal,75.75%,Normal,99.91%,Tuberculosis,51.26%
+Normal-5176.png,2/3 Majority Normal,Normal,89.94%,Normal,99.95%,Tuberculosis,81.05%
+Normal-5183.png,2/3 Majority Normal,Normal,79.62%,Normal,75.99%,Tuberculosis,98.97%
+Normal-520.png,2/3 Majority Normal,Normal,98.82%,Normal,99.89%,Tuberculosis,88.09%
+Normal-5231.png,2/3 Majority Normal,Normal,70.69%,Normal,99.92%,Tuberculosis,95.75%
+Normal-5236.png,2/3 Majority Normal,Normal,98.76%,Normal,99.96%,COVID-19,45.93%
+Normal-524.png,2/3 Majority Normal,Normal,99.78%,Normal,99.54%,Pneumonia,96.16%
+Normal-5252.png,2/3 Majority Normal,Normal,75.85%,Normal,87.99%,Lung Opacity,55.96%
+Normal-5254.png,2/3 Majority Normal,Normal,92.77%,Normal,99.64%,Tuberculosis,99.87%
+Normal-528.png,2/3 Majority Normal,Normal,92.91%,Normal,96.29%,Tuberculosis,37.7%
+Normal-5280.png,2/3 Majority Normal,Lung Opacity,52.06%,Normal,90.6%,Normal,81.62%
+Normal-529.png,2/3 Majority Normal,Normal,95.28%,Normal,94.44%,Pneumonia,91.2%
+Normal-5292.png,2/3 Majority Normal,Normal,90.87%,Normal,88.8%,Tuberculosis,75.13%
+Normal-5315.png,2/3 Majority Normal,Normal,96.28%,Normal,87.85%,COVID-19,48.58%
+Normal-5339.png,2/3 Majority Normal,Normal,98.88%,Normal,99.39%,Tuberculosis,83.42%
+Normal-5385.png,2/3 Majority Normal,Normal,88.02%,Normal,99.14%,Tuberculosis,96.83%
+Normal-5389.png,2/3 Majority Normal,Normal,65.55%,Normal,99.86%,Tuberculosis,90.74%
+Normal-5478.png,2/3 Majority Normal,Normal,98.05%,Normal,99.58%,Tuberculosis,96.47%
+Normal-5501.png,2/3 Majority Normal,Normal,91.49%,Normal,99.84%,Tuberculosis,68.16%
+Normal-5510.png,2/3 Majority Normal,Normal,98.12%,Normal,97.6%,COVID-19,71.22%
+Normal-5527.png,2/3 Majority Normal,Lung Opacity,60.71%,Normal,95.48%,Normal,60.12%
+Normal-5529.png,2/3 Majority Normal,Normal,97.95%,Normal,99.89%,Pneumonia,41.9%
+Normal-5576.png,2/3 Majority Normal,Normal,99.39%,Normal,96.61%,Tuberculosis,99.19%
+Normal-5629.png,2/3 Majority Normal,Normal,99.43%,Normal,99.83%,Tuberculosis,49.83%
+Normal-5631.png,2/3 Majority Normal,Normal,97.39%,Normal,99.3%,Pneumonia,88.76%
+Normal-5658.png,2/3 Majority Normal,Lung Opacity,74.53%,Normal,80.91%,Normal,51.61%
+Normal-566.png,2/3 Majority Normal,Normal,98.72%,Normal,99.74%,Pneumonia,59.92%
+Normal-5683.png,2/3 Majority Normal,Normal,94.47%,Normal,98.9%,Tuberculosis,79.59%
+Normal-5691.png,2/3 Majority Normal,Normal,78.52%,Normal,99.8%,Pneumonia,88.11%
+Normal-5701.png,2/3 Majority Normal,Normal,98.27%,Normal,95.39%,Tuberculosis,97.31%
+Normal-5718.png,2/3 Majority Normal,Normal,95.06%,Normal,99.72%,Tuberculosis,98.02%
+Normal-5733.png,2/3 Majority Normal,Normal,94.81%,Normal,99.59%,COVID-19,53.31%
+Normal-5739.png,2/3 Majority Normal,COVID-19,58.67%,Normal,68.27%,Normal,40.8%
+Normal-5743.png,2/3 Majority Normal,Normal,85.79%,Normal,93.53%,COVID-19,80.0%
+Normal-5752.png,2/3 Majority Normal,Normal,96.09%,Normal,99.54%,Tuberculosis,98.55%
+Normal-5760.png,2/3 Majority Normal,Normal,96.29%,Normal,99.83%,Tuberculosis,94.89%
+Normal-5766.png,2/3 Majority Normal,Normal,99.08%,Normal,89.98%,COVID-19,95.03%
+Normal-578.png,2/3 Majority Normal,Normal,99.48%,Normal,99.86%,Pneumonia,99.45%
+Normal-5788.png,2/3 Majority Normal,Normal,97.4%,Normal,99.96%,Tuberculosis,99.82%
+Normal-5809.png,2/3 Majority Normal,Normal,93.34%,Normal,99.16%,Pneumonia,64.66%
+Normal-581.png,2/3 Majority Normal,Normal,95.6%,Normal,97.57%,Pneumonia,88.71%
+Normal-5823.png,2/3 Majority Normal,Lung Opacity,73.48%,Normal,64.81%,Normal,99.25%
+Normal-5826.png,2/3 Majority Normal,Normal,94.72%,Normal,99.97%,Pneumonia,72.27%
+Normal-5832.png,2/3 Majority Normal,Normal,97.29%,Normal,99.44%,Tuberculosis,63.81%
+Normal-5874.png,2/3 Majority Normal,Normal,69.81%,Normal,99.88%,Tuberculosis,67.9%
+Normal-5879.png,2/3 Majority Normal,Normal,92.59%,Normal,99.93%,Tuberculosis,79.5%
+Normal-5903.png,2/3 Majority Normal,Normal,66.22%,Normal,99.75%,Tuberculosis,69.57%
+Normal-5949.png,2/3 Majority Normal,Normal,95.38%,Normal,96.34%,Tuberculosis,47.94%
+Normal-5953.png,2/3 Majority Normal,Normal,89.43%,Normal,99.29%,Pneumonia,98.02%
+Normal-5961.png,2/3 Majority Normal,COVID-19,62.94%,Normal,99.19%,Normal,49.62%
+Normal-5964.png,2/3 Majority Normal,COVID-19,48.29%,Normal,99.2%,Normal,96.16%
+Normal-597.png,2/3 Majority Normal,Normal,96.49%,Normal,64.62%,Tuberculosis,90.5%
+Normal-5980.png,2/3 Majority Normal,Normal,94.62%,Normal,97.43%,Tuberculosis,93.16%
+Normal-601.png,2/3 Majority Normal,Normal,97.72%,Normal,91.67%,Pneumonia,51.43%
+Normal-6012.png,2/3 Majority Normal,Normal,81.15%,Normal,99.58%,Tuberculosis,82.05%
+Normal-6022.png,2/3 Majority Normal,Normal,93.92%,Normal,87.02%,COVID-19,61.39%
+Normal-6031.png,2/3 Majority Normal,Normal,75.37%,Normal,78.17%,Pneumonia,78.14%
+Normal-6032.png,2/3 Majority Normal,Normal,88.1%,Normal,99.54%,Pneumonia,58.01%
+Normal-6057.png,2/3 Majority Normal,Normal,96.73%,Normal,99.98%,Tuberculosis,96.06%
+Normal-6077.png,2/3 Majority Normal,Normal,96.46%,Normal,89.82%,Tuberculosis,46.38%
+Normal-6078.png,2/3 Majority Normal,Normal,97.48%,Normal,99.79%,Tuberculosis,50.96%
+Normal-6082.png,2/3 Majority Normal,Normal,97.66%,Normal,99.13%,Tuberculosis,72.92%
+Normal-609.png,2/3 Majority Normal,Normal,98.74%,Normal,99.68%,Pneumonia,81.28%
+Normal-6109.png,2/3 Majority Normal,Normal,99.1%,Normal,99.12%,Tuberculosis,66.28%
+Normal-612.png,2/3 Majority Normal,Normal,98.06%,Normal,80.1%,Pneumonia,95.16%
+Normal-6122.png,2/3 Majority Normal,Normal,98.41%,Normal,99.97%,Tuberculosis,51.59%
+Normal-6126.png,2/3 Majority Normal,Normal,99.73%,Normal,99.97%,Tuberculosis,59.5%
+Normal-6134.png,2/3 Majority Normal,Normal,95.42%,Normal,99.09%,COVID-19,76.93%
+Normal-614.png,2/3 Majority Normal,Normal,99.42%,Normal,100.0%,Pneumonia,57.07%
+Normal-6144.png,2/3 Majority Normal,Lung Opacity,55.96%,Normal,74.76%,Normal,81.73%
+Normal-6148.png,2/3 Majority Normal,Normal,84.75%,Normal,98.0%,COVID-19,85.17%
+Normal-6164.png,2/3 Majority Normal,Normal,98.75%,Normal,99.96%,COVID-19,55.78%
+Normal-6179.png,2/3 Majority Normal,Normal,97.76%,Normal,99.98%,Tuberculosis,57.2%
+Normal-6182.png,2/3 Majority Normal,Normal,87.58%,Normal,93.7%,Pneumonia,92.39%
+Normal-619.png,2/3 Majority Normal,Normal,98.49%,Normal,99.89%,Pneumonia,91.19%
+Normal-6196.png,2/3 Majority Normal,Normal,96.94%,Normal,99.7%,Tuberculosis,52.27%
+Normal-6211.png,2/3 Majority Normal,Normal,93.7%,Normal,99.57%,Tuberculosis,54.36%
+Normal-6218.png,2/3 Majority Normal,Normal,72.17%,Normal,94.37%,COVID-19,49.64%
+Normal-623.png,2/3 Majority Normal,Normal,98.91%,Normal,99.83%,COVID-19,78.88%
+Normal-625.png,2/3 Majority Normal,Normal,97.23%,Normal,99.74%,Pneumonia,87.03%
+Normal-6294.png,2/3 Majority Normal,Normal,97.52%,Normal,99.87%,Tuberculosis,84.73%
+Normal-6311.png,2/3 Majority Normal,Normal,65.08%,Normal,98.61%,Tuberculosis,93.67%
+Normal-6361.png,2/3 Majority Normal,Normal,99.05%,Normal,99.72%,Pneumonia,50.22%
+Normal-6370.png,2/3 Majority Normal,COVID-19,61.73%,Normal,92.57%,Normal,92.58%
+Normal-640.png,2/3 Majority Normal,Normal,98.44%,Normal,93.01%,Pneumonia,94.33%
+Normal-6410.png,2/3 Majority Normal,Normal,91.59%,Normal,99.66%,Tuberculosis,70.53%
+Normal-6412.png,2/3 Majority Normal,Normal,80.39%,Normal,99.9%,Tuberculosis,36.89%
+Normal-6415.png,2/3 Majority Normal,Normal,95.09%,Normal,99.54%,COVID-19,68.51%
+Normal-642.png,2/3 Majority Normal,Normal,99.65%,Normal,99.99%,Pneumonia,38.54%
+Normal-6446.png,2/3 Majority Normal,Normal,97.41%,Normal,99.56%,Pneumonia,95.31%
+Normal-6458.png,2/3 Majority Normal,Normal,99.16%,Normal,99.99%,Tuberculosis,59.43%
+Normal-6459.png,2/3 Majority Normal,Lung Opacity,42.13%,Normal,99.36%,Normal,80.96%
+Normal-6475.png,2/3 Majority Normal,Normal,93.7%,Normal,99.69%,Pneumonia,69.3%
+Normal-6479.png,2/3 Majority Normal,Normal,98.02%,Normal,93.8%,Pneumonia,52.79%
+Normal-648.png,2/3 Majority Normal,Normal,99.12%,Normal,99.38%,Pneumonia,97.62%
+Normal-6497.png,2/3 Majority Normal,COVID-19,80.05%,Normal,99.47%,Normal,69.96%
+Normal-6501.png,2/3 Majority Normal,Normal,70.81%,Lung Opacity,96.52%,Normal,69.96%
+Normal-6514.png,2/3 Majority Normal,Normal,96.62%,Normal,99.11%,Tuberculosis,77.84%
+Normal-653.png,2/3 Majority Normal,Normal,99.76%,Normal,99.95%,COVID-19,95.08%
+Normal-6532.png,2/3 Majority Normal,Normal,96.66%,Normal,89.58%,Pneumonia,72.34%
+Normal-6540.png,2/3 Majority Normal,Normal,97.25%,Normal,99.51%,Tuberculosis,99.8%
+Normal-6541.png,2/3 Majority Normal,Normal,89.8%,Normal,89.13%,Pneumonia,62.36%
+Normal-6566.png,2/3 Majority Normal,Normal,94.64%,Normal,99.18%,Tuberculosis,96.96%
+Normal-6574.png,2/3 Majority Normal,Lung Opacity,51.58%,Normal,73.7%,Normal,94.55%
+Normal-66.png,2/3 Majority Normal,Normal,98.03%,Normal,99.95%,Pneumonia,78.5%
+Normal-6607.png,2/3 Majority Normal,Normal,54.1%,Lung Opacity,83.11%,Normal,92.58%
+Normal-662.png,2/3 Majority Normal,Normal,98.85%,Normal,99.22%,Pneumonia,56.2%
+Normal-6640.png,2/3 Majority Normal,Normal,94.18%,Normal,96.89%,Lung Opacity,82.32%
+Normal-6645.png,2/3 Majority Normal,Normal,95.14%,Normal,99.99%,COVID-19,49.28%
+Normal-6668.png,2/3 Majority Normal,Lung Opacity,58.12%,Normal,53.18%,Normal,98.47%
+Normal-6679.png,2/3 Majority Normal,Normal,66.43%,Normal,94.49%,Tuberculosis,87.93%
+Normal-6691.png,2/3 Majority Normal,Normal,98.3%,Normal,99.66%,Tuberculosis,79.45%
+Normal-6692.png,2/3 Majority Normal,Normal,99.57%,Normal,99.94%,Tuberculosis,84.26%
+Normal-6722.png,2/3 Majority Normal,Lung Opacity,58.66%,Normal,99.55%,Normal,96.72%
+Normal-6728.png,2/3 Majority Normal,Normal,98.42%,Normal,99.72%,Tuberculosis,90.25%
+Normal-6753.png,2/3 Majority Normal,Normal,93.58%,Normal,99.9%,COVID-19,96.64%
+Normal-6770.png,2/3 Majority Normal,Lung Opacity,63.71%,Normal,98.26%,Normal,99.26%
+Normal-6811.png,2/3 Majority Normal,Normal,68.58%,COVID-19,50.18%,Normal,99.83%
+Normal-6818.png,2/3 Majority Normal,Normal,99.38%,Normal,99.87%,Tuberculosis,94.24%
+Normal-682.png,2/3 Majority Normal,Normal,99.8%,Normal,99.84%,COVID-19,78.71%
+Normal-6828.png,2/3 Majority Normal,Normal,92.6%,Normal,98.94%,COVID-19,90.71%
+Normal-6851.png,2/3 Majority Normal,Normal,73.77%,Normal,71.36%,Tuberculosis,88.05%
+Normal-6855.png,2/3 Majority Normal,Lung Opacity,65.69%,Normal,84.48%,Normal,64.16%
+Normal-6860.png,2/3 Majority Normal,Normal,49.5%,Normal,98.58%,Pneumonia,63.39%
+Normal-6874.png,2/3 Majority Normal,Normal,88.54%,Normal,61.96%,Pneumonia,83.82%
+Normal-6881.png,2/3 Majority Normal,Normal,96.96%,Normal,99.99%,Pneumonia,58.81%
+Normal-6903.png,2/3 Majority Normal,Lung Opacity,58.03%,Normal,99.97%,Normal,94.78%
+Normal-6940.png,2/3 Majority Normal,Normal,88.1%,Normal,97.44%,Pneumonia,69.58%
+Normal-6944.png,2/3 Majority Normal,Normal,97.28%,Normal,99.6%,Tuberculosis,83.29%
+Normal-6961.png,2/3 Majority Normal,Lung Opacity,60.56%,Normal,95.41%,Normal,78.17%
+Normal-6968.png,2/3 Majority Normal,Normal,86.1%,Normal,72.69%,COVID-19,82.53%
+Normal-697.png,2/3 Majority Normal,Normal,99.84%,Normal,99.98%,COVID-19,86.49%
+Normal-6990.png,2/3 Majority Normal,Normal,63.55%,Normal,52.85%,Tuberculosis,99.58%
+Normal-70.png,2/3 Majority Normal,Normal,99.25%,Normal,99.89%,Pneumonia,99.71%
+Normal-701.png,2/3 Majority Normal,Normal,72.82%,Normal,96.44%,Tuberculosis,75.71%
+Normal-7011.png,2/3 Majority Normal,Normal,95.85%,Normal,99.98%,Tuberculosis,94.93%
+Normal-7013.png,2/3 Majority Normal,Normal,98.04%,Normal,98.68%,Tuberculosis,98.12%
+Normal-7014.png,2/3 Majority Normal,Normal,61.17%,Normal,93.42%,Tuberculosis,96.5%
+Normal-702.png,2/3 Majority Normal,Normal,47.64%,Normal,97.12%,Pneumonia,68.67%
+Normal-7047.png,2/3 Majority Normal,Normal,99.04%,Normal,99.95%,Tuberculosis,78.61%
+Normal-7056.png,2/3 Majority Normal,Normal,82.42%,Normal,99.66%,Tuberculosis,56.2%
+Normal-7065.png,2/3 Majority Normal,Normal,84.34%,Normal,99.62%,Tuberculosis,81.9%
+Normal-7076.png,2/3 Majority Normal,Normal,89.61%,Normal,93.38%,Tuberculosis,76.19%
+Normal-7084.png,2/3 Majority Normal,Lung Opacity,79.65%,Normal,92.95%,Normal,60.72%
+Normal-717.png,2/3 Majority Normal,Normal,99.45%,Normal,99.92%,COVID-19,89.71%
+Normal-7170.png,2/3 Majority Normal,Normal,74.21%,Normal,99.62%,Tuberculosis,52.55%
+Normal-7178.png,2/3 Majority Normal,Normal,81.03%,Normal,99.76%,COVID-19,55.76%
+Normal-7180.png,2/3 Majority Normal,Normal,55.01%,Normal,64.96%,Tuberculosis,54.04%
+Normal-7184.png,2/3 Majority Normal,Normal,90.69%,Normal,99.77%,Tuberculosis,75.22%
+Normal-7192.png,2/3 Majority Normal,Normal,82.25%,Normal,63.2%,Tuberculosis,98.85%
+Normal-7196.png,2/3 Majority Normal,Normal,99.42%,Normal,74.35%,COVID-19,49.47%
+Normal-7224.png,2/3 Majority Normal,Normal,76.9%,Normal,99.39%,Tuberculosis,74.9%
+Normal-724.png,2/3 Majority Normal,Normal,98.58%,Normal,99.97%,Tuberculosis,94.06%
+Normal-7255.png,2/3 Majority Normal,Lung Opacity,77.05%,Normal,77.99%,Normal,100.0%
+Normal-726.png,2/3 Majority Normal,Normal,99.35%,Normal,100.0%,COVID-19,62.3%
+Normal-7289.png,2/3 Majority Normal,Lung Opacity,66.04%,Normal,72.32%,Normal,97.61%
+Normal-729.png,2/3 Majority Normal,Normal,99.47%,Normal,99.85%,COVID-19,82.53%
+Normal-731.png,2/3 Majority Normal,Normal,99.77%,Normal,99.98%,COVID-19,79.82%
+Normal-7351.png,2/3 Majority Normal,Normal,59.93%,Normal,96.15%,Tuberculosis,55.66%
+Normal-7354.png,2/3 Majority Normal,Normal,69.13%,Normal,88.02%,Tuberculosis,56.36%
+Normal-7366.png,2/3 Majority Normal,Normal,93.87%,Normal,87.29%,COVID-19,55.79%
+Normal-7367.png,2/3 Majority Normal,Normal,64.61%,Normal,99.31%,Tuberculosis,79.33%
+Normal-7379.png,2/3 Majority Normal,Normal,98.89%,Normal,99.79%,Tuberculosis,54.93%
+Normal-739.png,2/3 Majority Normal,Normal,88.65%,Normal,89.27%,Pneumonia,56.95%
+Normal-7402.png,2/3 Majority Normal,Normal,96.98%,Normal,99.89%,Tuberculosis,94.01%
+Normal-7417.png,2/3 Majority Normal,Normal,96.17%,Normal,90.71%,Tuberculosis,65.02%
+Normal-7426.png,2/3 Majority Normal,Normal,95.25%,Normal,99.68%,Tuberculosis,71.79%
+Normal-7487.png,2/3 Majority Normal,Lung Opacity,71.7%,Normal,99.14%,Normal,86.52%
+Normal-750.png,2/3 Majority Normal,Normal,98.7%,Normal,99.98%,Pneumonia,97.72%
+Normal-752.png,2/3 Majority Normal,Normal,86.67%,Normal,64.53%,Pneumonia,60.19%
+Normal-7555.png,2/3 Majority Normal,Lung Opacity,60.86%,Normal,99.88%,Normal,99.89%
+Normal-7571.png,2/3 Majority Normal,Normal,95.86%,Normal,99.97%,Tuberculosis,60.98%
+Normal-7599.png,2/3 Majority Normal,Normal,59.18%,Normal,95.87%,COVID-19,61.97%
+Normal-7602.png,2/3 Majority Normal,Normal,99.24%,Normal,99.97%,Tuberculosis,62.58%
+Normal-7608.png,2/3 Majority Normal,Normal,99.34%,Normal,99.72%,Tuberculosis,97.37%
+Normal-764.png,2/3 Majority Normal,Normal,99.8%,Normal,99.96%,Pneumonia,97.92%
+Normal-7651.png,2/3 Majority Normal,Normal,76.05%,Normal,99.2%,Tuberculosis,50.83%
+Normal-7653.png,2/3 Majority Normal,Normal,93.65%,Normal,94.61%,Tuberculosis,92.57%
+Normal-7662.png,2/3 Majority Normal,Normal,96.48%,Normal,93.15%,Tuberculosis,99.64%
+Normal-7668.png,2/3 Majority Normal,Normal,90.82%,COVID-19,70.06%,Normal,92.2%
+Normal-768.png,2/3 Majority Normal,Normal,99.87%,Normal,99.78%,COVID-19,46.22%
+Normal-7688.png,2/3 Majority Normal,Normal,97.08%,Normal,99.38%,Tuberculosis,70.62%
+Normal-7703.png,2/3 Majority Normal,Normal,99.6%,Normal,99.44%,COVID-19,86.29%
+Normal-7730.png,2/3 Majority Normal,Lung Opacity,53.83%,Normal,70.74%,Normal,99.28%
+Normal-7761.png,2/3 Majority Normal,Normal,98.55%,Normal,75.58%,Tuberculosis,55.11%
+Normal-7780.png,2/3 Majority Normal,Normal,68.93%,Lung Opacity,57.99%,Normal,99.18%
+Normal-7795.png,2/3 Majority Normal,Normal,95.72%,Normal,99.7%,Tuberculosis,54.59%
+Normal-7798.png,2/3 Majority Normal,Normal,76.73%,Normal,99.63%,Tuberculosis,93.15%
+Normal-7806.png,2/3 Majority Normal,Normal,81.85%,Normal,99.26%,Tuberculosis,99.93%
+Normal-7807.png,2/3 Majority Normal,Normal,51.45%,Lung Opacity,82.2%,Normal,96.27%
+Normal-7811.png,2/3 Majority Normal,Lung Opacity,69.68%,Normal,99.13%,Normal,98.33%
+Normal-7832.png,2/3 Majority Normal,Normal,92.86%,Normal,99.88%,Tuberculosis,66.94%
+Normal-7841.png,2/3 Majority Normal,Normal,99.33%,Normal,99.97%,Tuberculosis,51.07%
+Normal-7847.png,2/3 Majority Normal,Normal,94.19%,Normal,99.64%,COVID-19,35.03%
+Normal-7848.png,2/3 Majority Normal,Normal,44.53%,Normal,79.83%,Lung Opacity,78.79%
+Normal-7860.png,2/3 Majority Normal,Normal,93.29%,Normal,97.74%,COVID-19,78.22%
+Normal-7864.png,2/3 Majority Normal,Normal,96.59%,Normal,99.49%,Tuberculosis,62.29%
+Normal-7866.png,2/3 Majority Normal,Normal,66.13%,Normal,93.42%,Tuberculosis,78.71%
+Normal-7879.png,2/3 Majority Normal,Normal,98.43%,Normal,99.35%,Tuberculosis,70.11%
+Normal-7893.png,2/3 Majority Normal,Lung Opacity,67.19%,Normal,61.49%,Normal,66.96%
+Normal-7897.png,2/3 Majority Normal,Normal,92.47%,Normal,99.3%,Tuberculosis,99.98%
+Normal-7907.png,2/3 Majority Normal,Normal,75.48%,Normal,97.61%,Pneumonia,51.92%
+Normal-7911.png,2/3 Majority Normal,Normal,98.33%,Normal,99.98%,Tuberculosis,70.46%
+Normal-7930.png,2/3 Majority Normal,Lung Opacity,58.35%,Normal,78.37%,Normal,90.49%
+Normal-7936.png,2/3 Majority Normal,Normal,94.72%,Normal,99.81%,COVID-19,73.0%
+Normal-798.png,2/3 Majority Normal,Normal,91.3%,Normal,98.38%,Pneumonia,51.64%
+Normal-799.png,2/3 Majority Normal,Normal,99.78%,Normal,99.94%,COVID-19,55.57%
+Normal-80.png,2/3 Majority Normal,Normal,97.84%,Normal,98.48%,Pneumonia,82.05%
+Normal-8001.png,2/3 Majority Normal,Normal,67.5%,Lung Opacity,74.2%,Normal,99.24%
+Normal-8023.png,2/3 Majority Normal,Normal,85.37%,Normal,85.45%,COVID-19,88.24%
+Normal-8026.png,2/3 Majority Normal,Normal,95.95%,Normal,99.93%,COVID-19,49.74%
+Normal-803.png,2/3 Majority Normal,Normal,99.41%,Normal,99.4%,Pneumonia,98.1%
+Normal-8039.png,2/3 Majority Normal,Lung Opacity,69.99%,Normal,61.89%,Normal,66.72%
+Normal-8051.png,2/3 Majority Normal,Normal,94.16%,Normal,99.22%,COVID-19,64.52%
+Normal-8067.png,2/3 Majority Normal,Lung Opacity,60.77%,Normal,99.89%,Normal,99.76%
+Normal-8079.png,2/3 Majority Normal,Normal,79.8%,Normal,95.91%,Tuberculosis,58.48%
+Normal-8082.png,2/3 Majority Normal,Normal,97.23%,Normal,99.95%,Tuberculosis,77.25%
+Normal-8143.png,2/3 Majority Normal,Normal,92.82%,Normal,99.78%,COVID-19,87.03%
+Normal-8156.png,2/3 Majority Normal,COVID-19,81.7%,Normal,84.36%,Normal,92.94%
+Normal-8174.png,2/3 Majority Normal,Normal,79.95%,Normal,99.95%,Tuberculosis,73.21%
+Normal-8180.png,2/3 Majority Normal,Normal,94.63%,Normal,99.81%,Tuberculosis,75.01%
+Normal-8196.png,2/3 Majority Normal,Normal,77.96%,Normal,99.96%,Tuberculosis,70.62%
+Normal-8204.png,2/3 Majority Normal,Normal,96.07%,Normal,99.64%,Tuberculosis,67.58%
+Normal-8219.png,2/3 Majority Normal,Lung Opacity,57.41%,Normal,70.09%,Normal,84.18%
+Normal-8222.png,2/3 Majority Normal,Normal,90.87%,Normal,99.48%,Tuberculosis,98.13%
+Normal-8226.png,2/3 Majority Normal,Normal,94.98%,Normal,96.05%,Tuberculosis,78.37%
+Normal-824.png,2/3 Majority Normal,Normal,99.81%,Normal,99.99%,Pneumonia,69.98%
+Normal-8250.png,2/3 Majority Normal,Normal,94.91%,Normal,99.88%,COVID-19,46.75%
+Normal-8254.png,2/3 Majority Normal,Normal,97.49%,Normal,93.8%,Tuberculosis,88.58%
+Normal-8268.png,2/3 Majority Normal,Normal,89.58%,Normal,99.32%,COVID-19,78.66%
+Normal-827.png,2/3 Majority Normal,Normal,99.0%,Normal,98.36%,Pneumonia,81.38%
+Normal-829.png,2/3 Majority Normal,Normal,79.95%,Normal,55.15%,Pneumonia,41.92%
+Normal-8317.png,2/3 Majority Normal,Normal,74.69%,Normal,99.94%,Tuberculosis,69.5%
+Normal-8352.png,2/3 Majority Normal,Normal,97.36%,Normal,99.92%,Tuberculosis,77.8%
+Normal-8360.png,2/3 Majority Normal,Normal,97.27%,Normal,95.89%,Tuberculosis,63.72%
+Normal-8364.png,2/3 Majority Normal,Normal,89.42%,Normal,96.21%,Tuberculosis,86.38%
+Normal-8388.png,2/3 Majority Normal,Normal,82.54%,Normal,99.84%,Tuberculosis,53.02%
+Normal-8390.png,2/3 Majority Normal,Normal,76.84%,Normal,99.56%,COVID-19,67.44%
+Normal-8398.png,2/3 Majority Normal,Normal,87.19%,Normal,99.57%,Tuberculosis,94.89%
+Normal-8405.png,2/3 Majority Normal,Normal,91.36%,Normal,90.5%,Lung Opacity,61.88%
+Normal-842.png,2/3 Majority Normal,Normal,98.49%,Normal,98.79%,Tuberculosis,92.29%
+Normal-8422.png,2/3 Majority Normal,Normal,75.76%,Normal,78.31%,Tuberculosis,91.68%
+Normal-8428.png,2/3 Majority Normal,Normal,90.03%,Normal,99.08%,COVID-19,80.01%
+Normal-8430.png,2/3 Majority Normal,Normal,91.25%,Normal,99.51%,Tuberculosis,63.84%
+Normal-845.png,2/3 Majority Normal,Normal,99.64%,Normal,99.6%,Pneumonia,35.17%
+Normal-8450.png,2/3 Majority Normal,Normal,87.1%,Normal,97.61%,Tuberculosis,49.45%
+Normal-8496.png,2/3 Majority Normal,Normal,65.48%,Normal,97.66%,COVID-19,94.46%
+Normal-850.png,2/3 Majority Normal,Normal,98.25%,Normal,99.88%,COVID-19,99.96%
+Normal-8505.png,2/3 Majority Normal,Normal,87.9%,Normal,96.63%,Pneumonia,98.8%
+Normal-8510.png,2/3 Majority Normal,Normal,85.57%,Normal,94.75%,Lung Opacity,45.27%
+Normal-8512.png,2/3 Majority Normal,Normal,80.2%,Normal,87.4%,Tuberculosis,83.81%
+Normal-8514.png,2/3 Majority Normal,Normal,98.17%,Normal,98.53%,COVID-19,79.36%
+Normal-8563.png,2/3 Majority Normal,Lung Opacity,80.19%,Normal,80.78%,Normal,99.99%
+Normal-8565.png,2/3 Majority Normal,Normal,96.12%,Normal,99.91%,Tuberculosis,62.38%
+Normal-8578.png,2/3 Majority Normal,Normal,48.59%,Normal,88.33%,Tuberculosis,82.08%
+Normal-8586.png,2/3 Majority Normal,Normal,97.08%,Normal,99.72%,Tuberculosis,47.2%
+Normal-860.png,2/3 Majority Normal,Normal,49.94%,Normal,99.46%,COVID-19,38.07%
+Normal-8610.png,2/3 Majority Normal,Normal,90.43%,Normal,99.17%,Tuberculosis,87.81%
+Normal-8641.png,2/3 Majority Normal,Normal,69.37%,Normal,97.78%,Tuberculosis,93.31%
+Normal-865.png,2/3 Majority Normal,Normal,88.46%,Normal,80.17%,Tuberculosis,55.2%
+Normal-8653.png,2/3 Majority Normal,Normal,92.16%,Normal,99.9%,Tuberculosis,85.16%
+Normal-8657.png,2/3 Majority Normal,Normal,98.7%,Normal,99.77%,Tuberculosis,94.71%
+Normal-8678.png,2/3 Majority Normal,Normal,99.53%,Normal,99.94%,Tuberculosis,74.69%
+Normal-8692.png,2/3 Majority Normal,Normal,98.53%,Normal,99.99%,Tuberculosis,52.36%
+Normal-8699.png,2/3 Majority Normal,Normal,93.02%,Normal,91.09%,Tuberculosis,82.05%
+Normal-8701.png,2/3 Majority Normal,Normal,97.0%,Normal,99.34%,Tuberculosis,97.25%
+Normal-8707.png,2/3 Majority Normal,Normal,88.52%,Normal,99.79%,Tuberculosis,99.34%
+Normal-8715.png,2/3 Majority Normal,Normal,91.53%,Normal,99.39%,Tuberculosis,85.66%
+Normal-8736.png,2/3 Majority Normal,Normal,93.65%,Normal,99.98%,Tuberculosis,63.75%
+Normal-8768.png,2/3 Majority Normal,Normal,54.89%,Lung Opacity,68.97%,Normal,95.94%
+Normal-877.png,2/3 Majority Normal,Normal,87.43%,Normal,91.81%,Tuberculosis,52.29%
+Normal-878.png,2/3 Majority Normal,Normal,99.4%,Normal,99.66%,Pneumonia,95.6%
+Normal-8811.png,2/3 Majority Normal,Normal,98.86%,Normal,99.94%,Tuberculosis,48.91%
+Normal-8845.png,2/3 Majority Normal,Normal,96.08%,Normal,99.41%,Tuberculosis,99.8%
+Normal-8869.png,2/3 Majority Normal,Normal,74.41%,Normal,94.77%,Tuberculosis,99.98%
+Normal-888.png,2/3 Majority Normal,Normal,97.82%,Normal,99.89%,COVID-19,79.01%
+Normal-8890.png,2/3 Majority Normal,Lung Opacity,91.86%,Normal,97.5%,Normal,69.38%
+Normal-8892.png,2/3 Majority Normal,Normal,86.0%,Normal,99.29%,Tuberculosis,94.82%
+Normal-89.png,2/3 Majority Normal,Normal,99.84%,Normal,99.82%,COVID-19,73.01%
+Normal-8905.png,2/3 Majority Normal,Normal,70.13%,Normal,88.14%,Tuberculosis,56.11%
+Normal-8914.png,2/3 Majority Normal,Normal,69.68%,Normal,99.36%,Tuberculosis,81.72%
+Normal-8959.png,2/3 Majority Normal,Normal,93.48%,Normal,99.74%,Tuberculosis,81.82%
+Normal-8980.png,2/3 Majority Normal,Normal,85.87%,Normal,99.83%,COVID-19,47.88%
+Normal-9007.png,2/3 Majority Normal,Normal,98.5%,Normal,99.98%,Tuberculosis,60.54%
+Normal-9019.png,2/3 Majority Normal,Normal,81.98%,Normal,56.56%,Tuberculosis,97.49%
+Normal-9038.png,2/3 Majority Normal,Normal,93.75%,Normal,70.94%,Tuberculosis,98.88%
+Normal-9069.png,2/3 Majority Normal,Normal,86.36%,Normal,99.07%,Tuberculosis,87.94%
+Normal-9090.png,2/3 Majority Normal,Normal,98.49%,Normal,99.92%,Tuberculosis,49.66%
+Normal-9114.png,2/3 Majority Normal,Normal,93.03%,Normal,99.79%,Tuberculosis,46.37%
+Normal-9116.png,2/3 Majority Normal,Normal,97.11%,Normal,99.77%,Tuberculosis,80.52%
+Normal-9118.png,2/3 Majority Normal,Normal,98.86%,Normal,99.86%,Pneumonia,57.76%
+Normal-9120.png,2/3 Majority Normal,Normal,98.4%,Normal,99.66%,Tuberculosis,89.03%
+Normal-9133.png,2/3 Majority Normal,Normal,91.88%,Normal,99.95%,Tuberculosis,80.5%
+Normal-9145.png,2/3 Majority Normal,Normal,97.43%,Normal,99.58%,Tuberculosis,99.79%
+Normal-9160.png,2/3 Majority Normal,Normal,71.63%,Normal,76.73%,Tuberculosis,64.42%
+Normal-9177.png,2/3 Majority Normal,Normal,52.9%,Normal,99.13%,Pneumonia,99.4%
+Normal-9190.png,2/3 Majority Normal,Normal,89.54%,Normal,97.84%,COVID-19,61.01%
+Normal-9192.png,2/3 Majority Normal,Lung Opacity,54.03%,Normal,78.26%,Normal,61.42%
+Normal-9193.png,2/3 Majority Normal,Normal,95.63%,Normal,99.29%,Tuberculosis,54.78%
+Normal-921.png,2/3 Majority Normal,Normal,78.32%,Normal,97.04%,Tuberculosis,80.05%
+Normal-9215.png,2/3 Majority Normal,Normal,88.05%,Normal,95.6%,Tuberculosis,66.97%
+Normal-9230.png,2/3 Majority Normal,Normal,97.12%,Normal,98.3%,COVID-19,58.15%
+Normal-9233.png,2/3 Majority Normal,Normal,96.01%,Normal,99.19%,Tuberculosis,84.06%
+Normal-9246.png,2/3 Majority Normal,Normal,87.55%,Normal,96.98%,Tuberculosis,92.16%
+Normal-9250.png,2/3 Majority Normal,Normal,71.31%,Normal,97.94%,Tuberculosis,92.09%
+Normal-9271.png,2/3 Majority Normal,Normal,67.43%,Lung Opacity,55.7%,Normal,51.31%
+Normal-9279.png,2/3 Majority Normal,Normal,77.69%,Normal,97.58%,Tuberculosis,99.58%
+Normal-9286.png,2/3 Majority Normal,Normal,61.02%,Normal,73.14%,Pneumonia,83.52%
+Normal-9298.png,2/3 Majority Normal,Lung Opacity,54.91%,Normal,50.41%,Normal,95.77%
+Normal-9304.png,2/3 Majority Normal,Normal,55.85%,Normal,97.11%,COVID-19,71.87%
+Normal-9305.png,2/3 Majority Normal,Normal,99.25%,Normal,99.88%,Tuberculosis,68.38%
+Normal-9322.png,2/3 Majority Normal,Normal,96.3%,Normal,99.77%,Tuberculosis,52.8%
+Normal-935.png,2/3 Majority Normal,Normal,99.07%,Normal,99.8%,COVID-19,89.28%
+Normal-9409.png,2/3 Majority Normal,Lung Opacity,72.36%,Normal,76.06%,Normal,72.89%
+Normal-9416.png,2/3 Majority Normal,Normal,93.72%,Lung Opacity,51.53%,Normal,78.61%
+Normal-9434.png,2/3 Majority Normal,Normal,94.82%,Normal,99.1%,Pneumonia,95.42%
+Normal-9436.png,2/3 Majority Normal,Normal,96.06%,Normal,92.85%,Tuberculosis,79.21%
+Normal-9438.png,2/3 Majority Normal,Normal,86.81%,Normal,98.6%,Tuberculosis,98.16%
+Normal-9441.png,2/3 Majority Normal,Normal,90.49%,Normal,94.93%,Tuberculosis,82.96%
+Normal-9486.png,2/3 Majority Normal,Lung Opacity,54.23%,Normal,50.86%,Normal,96.04%
+Normal-949.png,2/3 Majority Normal,Normal,92.72%,Normal,96.28%,Tuberculosis,99.52%
+Normal-9490.png,2/3 Majority Normal,Normal,88.32%,Normal,99.97%,COVID-19,97.86%
+Normal-9535.png,2/3 Majority Normal,Lung Opacity,63.46%,Normal,96.73%,Normal,59.09%
+Normal-9536.png,2/3 Majority Normal,Normal,97.6%,Normal,99.98%,Tuberculosis,71.6%
+Normal-9546.png,2/3 Majority Normal,Normal,65.83%,Normal,91.44%,Lung Opacity,81.56%
+Normal-9558.png,2/3 Majority Normal,Lung Opacity,60.15%,Normal,93.03%,Normal,78.28%
+Normal-9569.png,2/3 Majority Normal,Normal,96.67%,Normal,99.56%,Tuberculosis,92.54%
+Normal-9578.png,2/3 Majority Normal,Normal,96.36%,Normal,96.49%,Tuberculosis,91.81%
+Normal-9580.png,2/3 Majority Normal,Normal,62.55%,Normal,91.39%,Tuberculosis,95.51%
+Normal-9596.png,2/3 Majority Normal,Normal,87.16%,Normal,99.65%,Pneumonia,49.08%
+Normal-9606.png,2/3 Majority Normal,Normal,80.05%,Normal,99.03%,COVID-19,43.74%
+Normal-9607.png,2/3 Majority Normal,Normal,85.75%,Normal,62.27%,COVID-19,95.66%
+Normal-9629.png,2/3 Majority Normal,Normal,92.31%,Normal,54.85%,COVID-19,74.54%
+Normal-9643.png,2/3 Majority Normal,Normal,98.33%,Normal,96.2%,COVID-19,39.7%
+Normal-9655.png,2/3 Majority Normal,Normal,96.04%,Normal,98.54%,Tuberculosis,65.0%
+Normal-9678.png,2/3 Majority Normal,Normal,95.17%,Normal,99.99%,COVID-19,62.04%
+Normal-9692.png,2/3 Majority Normal,Normal,85.59%,Normal,99.92%,Tuberculosis,52.21%
+Normal-9714.png,2/3 Majority Normal,Normal,90.41%,Normal,70.26%,COVID-19,87.71%
+Normal-9727.png,2/3 Majority Normal,Normal,97.7%,Normal,99.93%,Pneumonia,52.51%
+Normal-973.png,2/3 Majority Normal,Normal,99.26%,Normal,63.78%,COVID-19,93.47%
+Normal-9760.png,2/3 Majority Normal,Normal,95.02%,Normal,72.34%,COVID-19,62.91%
+Normal-9769.png,2/3 Majority Normal,Normal,94.95%,Normal,89.97%,Tuberculosis,99.65%
+Normal-9782.png,2/3 Majority Normal,Normal,86.77%,Lung Opacity,50.93%,Normal,99.79%
+Normal-9791.png,2/3 Majority Normal,Normal,97.55%,Normal,99.09%,COVID-19,56.99%
+Normal-9800.png,2/3 Majority Normal,Normal,86.56%,Normal,78.97%,Pneumonia,48.81%
+Normal-9851.png,2/3 Majority Normal,Normal,56.25%,Normal,98.08%,COVID-19,96.23%
+Normal-989.png,2/3 Majority Normal,Normal,96.25%,Normal,93.0%,Tuberculosis,71.24%
+Normal-9893.png,2/3 Majority Normal,Normal,80.56%,Normal,99.79%,Tuberculosis,66.67%
+Normal-9908.png,2/3 Majority Normal,Normal,65.12%,Normal,71.73%,COVID-19,50.68%
+Normal-9912.png,2/3 Majority Normal,Normal,78.9%,Normal,99.9%,Tuberculosis,99.8%
+Normal-992.png,2/3 Majority Normal,Normal,99.76%,Normal,100.0%,Pneumonia,91.71%
+Normal-9929.png,2/3 Majority Normal,Normal,81.07%,Normal,97.41%,Tuberculosis,93.67%
+Normal-9934.png,2/3 Majority Normal,Normal,84.01%,Normal,99.86%,Tuberculosis,82.66%
+Normal-9937.png,2/3 Majority Normal,Normal,89.38%,Normal,89.71%,Pneumonia,55.69%
+TB_Normal(1041).png,2/3 Majority Normal,Normal,98.66%,Normal,99.97%,COVID-19,35.97%
+TB_Normal(1066).png,2/3 Majority Normal,Normal,97.53%,Normal,99.38%,Pneumonia,87.47%
+TB_Normal(1108).png,2/3 Majority Normal,Normal,97.76%,Normal,99.97%,COVID-19,77.77%
+TB_Normal(1155).png,2/3 Majority Normal,Normal,99.67%,Normal,99.99%,COVID-19,65.38%
+TB_Normal(1179).png,2/3 Majority Normal,Normal,99.51%,Normal,99.98%,COVID-19,53.38%
+TB_Normal(1187).png,2/3 Majority Normal,Normal,92.63%,Normal,99.5%,Tuberculosis,82.41%
+TB_Normal(1245).png,2/3 Majority Normal,Normal,94.73%,Normal,86.13%,COVID-19,47.5%
+TB_Normal(1255).png,2/3 Majority Normal,Normal,98.71%,Normal,98.51%,Tuberculosis,46.46%
+TB_Normal(1318).png,2/3 Majority Normal,Normal,99.85%,Normal,99.39%,Tuberculosis,57.65%
+TB_Normal(1407).png,2/3 Majority Normal,Normal,99.59%,Normal,100.0%,COVID-19,83.07%
+TB_Normal(1413).png,2/3 Majority Normal,Normal,93.65%,Normal,99.98%,Tuberculosis,82.69%
+TB_Normal(1453).png,2/3 Majority Normal,Normal,98.21%,Normal,99.96%,Tuberculosis,76.36%
+TB_Normal(1461).png,2/3 Majority Normal,Normal,94.18%,Normal,95.02%,COVID-19,62.87%
+TB_Normal(1515).png,2/3 Majority Normal,Normal,94.99%,Normal,99.8%,Pneumonia,30.74%
+TB_Normal(1538).png,2/3 Majority Normal,Normal,89.87%,Normal,99.06%,Tuberculosis,98.81%
+TB_Normal(1571).png,2/3 Majority Normal,Normal,99.43%,Normal,98.24%,Tuberculosis,72.04%
+TB_Normal(1600).png,2/3 Majority Normal,Normal,99.4%,Normal,99.98%,Tuberculosis,99.05%
+TB_Normal(1621).png,2/3 Majority Normal,Normal,99.82%,Normal,99.74%,Tuberculosis,68.91%
+TB_Normal(1659).png,2/3 Majority Normal,Normal,83.18%,Normal,90.97%,COVID-19,83.76%
+TB_Normal(1689).png,2/3 Majority Normal,Normal,99.79%,Normal,100.0%,Tuberculosis,41.82%
+TB_Normal(1730).png,2/3 Majority Normal,Normal,98.37%,Normal,99.78%,COVID-19,99.76%
+TB_Normal(1736).png,2/3 Majority Normal,Normal,84.25%,Normal,99.84%,Tuberculosis,99.9%
+TB_Normal(1789).png,2/3 Majority Normal,Normal,99.38%,Normal,99.98%,Tuberculosis,73.71%
+TB_Normal(1818).png,2/3 Majority Normal,Normal,89.82%,Normal,90.09%,COVID-19,47.2%
+TB_Normal(1831).png,2/3 Majority Normal,Normal,81.22%,Normal,87.95%,COVID-19,92.74%
+TB_Normal(1888).png,2/3 Majority Normal,COVID-19,50.17%,Normal,98.59%,Normal,94.62%
+TB_Normal(1906).png,2/3 Majority Normal,Normal,99.08%,Normal,99.98%,COVID-19,61.79%
+TB_Normal(1925).png,2/3 Majority Normal,Normal,79.76%,Normal,93.69%,Pneumonia,40.81%
+TB_Normal(193).png,2/3 Majority Normal,Normal,99.45%,Normal,99.79%,Tuberculosis,70.21%
+TB_Normal(2000).png,2/3 Majority Normal,Normal,99.0%,Normal,99.89%,COVID-19,91.33%
+TB_Normal(2006).png,2/3 Majority Normal,Normal,99.14%,Normal,98.68%,Tuberculosis,99.99%
+TB_Normal(2012).png,2/3 Majority Normal,Normal,97.96%,Normal,99.91%,COVID-19,54.68%
+TB_Normal(2018).png,2/3 Majority Normal,Normal,99.85%,Normal,99.94%,COVID-19,85.63%
+TB_Normal(2026).png,2/3 Majority Normal,Normal,99.6%,Normal,99.97%,Tuberculosis,51.42%
+TB_Normal(2032).png,2/3 Majority Normal,Normal,94.6%,Normal,99.72%,Tuberculosis,69.16%
+TB_Normal(2037).png,2/3 Majority Normal,Normal,99.64%,Normal,100.0%,Tuberculosis,66.76%
+TB_Normal(2041).png,2/3 Majority Normal,Normal,95.29%,Normal,98.82%,COVID-19,95.4%
+TB_Normal(2045).png,2/3 Majority Normal,Normal,99.12%,Normal,99.99%,Tuberculosis,99.26%
+TB_Normal(2072).png,2/3 Majority Normal,Normal,90.93%,Normal,99.43%,Tuberculosis,76.36%
+TB_Normal(2095).png,2/3 Majority Normal,Normal,98.49%,Normal,99.61%,Lung Opacity,78.63%
+TB_Normal(2110).png,2/3 Majority Normal,Normal,98.88%,Normal,98.8%,Tuberculosis,72.11%
+TB_Normal(2130).png,2/3 Majority Normal,Normal,95.92%,Normal,99.78%,Tuberculosis,54.06%
+TB_Normal(2132).png,2/3 Majority Normal,Normal,93.49%,Normal,97.81%,Tuberculosis,99.51%
+TB_Normal(2162).png,2/3 Majority Normal,Normal,99.34%,Normal,99.8%,Tuberculosis,49.23%
+TB_Normal(2188).png,2/3 Majority Normal,Normal,99.85%,Normal,100.0%,COVID-19,81.38%
+TB_Normal(2237).png,2/3 Majority Normal,Normal,97.0%,Normal,99.78%,Pneumonia,98.56%
+TB_Normal(2242).png,2/3 Majority Normal,Normal,98.12%,Normal,99.64%,COVID-19,57.77%
+TB_Normal(2252).png,2/3 Majority Normal,Normal,92.67%,Normal,99.9%,COVID-19,72.97%
+TB_Normal(2255).png,2/3 Majority Normal,Normal,99.57%,Normal,99.99%,COVID-19,72.16%
+TB_Normal(2298).png,2/3 Majority Normal,Normal,99.58%,Normal,99.82%,COVID-19,66.5%
+TB_Normal(2315).png,2/3 Majority Normal,Normal,98.35%,Normal,99.99%,COVID-19,69.08%
+TB_Normal(2321).png,2/3 Majority Normal,Normal,99.7%,Normal,99.98%,Tuberculosis,58.53%
+TB_Normal(2390).png,2/3 Majority Normal,Normal,98.64%,Normal,99.8%,Tuberculosis,83.95%
+TB_Normal(2415).png,2/3 Majority Normal,Normal,99.08%,Normal,99.96%,Tuberculosis,84.78%
+TB_Normal(2420).png,2/3 Majority Normal,Normal,99.15%,Normal,99.95%,Tuberculosis,97.51%
+TB_Normal(2448).png,2/3 Majority Normal,Normal,94.06%,Normal,99.96%,COVID-19,97.2%
+TB_Normal(2502).png,2/3 Majority Normal,Normal,95.77%,Normal,94.35%,Lung Opacity,97.32%
+TB_Normal(2601).png,2/3 Majority Normal,Normal,92.6%,Normal,99.83%,Tuberculosis,47.21%
+TB_Normal(2621).png,2/3 Majority Normal,Normal,99.2%,Normal,99.97%,Tuberculosis,94.94%
+TB_Normal(2630).png,2/3 Majority Normal,Normal,97.55%,Normal,99.99%,COVID-19,61.39%
+TB_Normal(2688).png,2/3 Majority Normal,Normal,98.9%,Normal,99.66%,COVID-19,58.34%
+TB_Normal(2765).png,2/3 Majority Normal,Normal,81.63%,Normal,94.94%,Pneumonia,80.28%
+TB_Normal(2774).png,2/3 Majority Normal,Normal,73.89%,Normal,99.95%,Tuberculosis,88.31%
+TB_Normal(2808).png,2/3 Majority Normal,Normal,98.26%,Normal,99.97%,COVID-19,52.57%
+TB_Normal(2818).png,2/3 Majority Normal,Normal,98.48%,Normal,99.95%,Tuberculosis,51.3%
+TB_Normal(2836).png,2/3 Majority Normal,Normal,98.74%,Normal,99.87%,COVID-19,94.4%
+TB_Normal(2869).png,2/3 Majority Normal,Normal,99.21%,Normal,100.0%,COVID-19,85.5%
+TB_Normal(2872).png,2/3 Majority Normal,Normal,97.62%,Normal,99.95%,Tuberculosis,73.12%
+TB_Normal(2882).png,2/3 Majority Normal,Normal,97.37%,Normal,87.36%,COVID-19,82.89%
+TB_Normal(2886).png,2/3 Majority Normal,Normal,89.87%,Normal,97.33%,COVID-19,99.12%
+TB_Normal(2950).png,2/3 Majority Normal,Normal,98.24%,Normal,99.65%,COVID-19,97.67%
+TB_Normal(3007).png,2/3 Majority Normal,Normal,96.48%,Normal,99.76%,Tuberculosis,97.14%
+TB_Normal(3023).png,2/3 Majority Normal,Normal,99.47%,Normal,100.0%,COVID-19,70.62%
+TB_Normal(3024).png,2/3 Majority Normal,Normal,99.44%,Normal,99.71%,Tuberculosis,56.18%
+TB_Normal(3040).png,2/3 Majority Normal,Normal,99.51%,Normal,99.75%,Tuberculosis,66.87%
+TB_Normal(3059).png,2/3 Majority Normal,Normal,70.27%,Normal,99.82%,Lung Opacity,77.15%
+TB_Normal(3082).png,2/3 Majority Normal,Normal,91.29%,Normal,99.98%,Tuberculosis,91.1%
+TB_Normal(3093).png,2/3 Majority Normal,Normal,99.93%,Normal,99.98%,COVID-19,78.39%
+TB_Normal(31).png,2/3 Majority Normal,Normal,59.24%,Normal,85.78%,COVID-19,48.28%
+TB_Normal(3153).png,2/3 Majority Normal,Normal,97.98%,Normal,98.54%,Tuberculosis,82.08%
+TB_Normal(3169).png,2/3 Majority Normal,Normal,85.35%,Normal,99.8%,Lung Opacity,49.09%
+TB_Normal(318).png,2/3 Majority Normal,Normal,99.36%,Normal,99.81%,COVID-19,97.93%
+TB_Normal(3206).png,2/3 Majority Normal,Lung Opacity,51.76%,Normal,91.7%,Normal,86.78%
+TB_Normal(323).png,2/3 Majority Normal,Normal,99.46%,Normal,99.94%,Pneumonia,62.14%
+TB_Normal(3259).png,2/3 Majority Normal,Normal,83.7%,Normal,99.45%,COVID-19,70.33%
+TB_Normal(3292).png,2/3 Majority Normal,Lung Opacity,58.99%,Normal,99.95%,Normal,96.87%
+TB_Normal(3339).png,2/3 Majority Normal,Normal,97.79%,Normal,98.81%,Tuberculosis,82.19%
+TB_Normal(3342).png,2/3 Majority Normal,Normal,97.21%,Normal,99.99%,COVID-19,92.82%
+TB_Normal(3347).png,2/3 Majority Normal,Normal,98.73%,Normal,98.51%,Tuberculosis,73.52%
+TB_Normal(3364).png,2/3 Majority Normal,Normal,50.36%,Normal,63.36%,COVID-19,77.91%
+TB_Normal(3367).png,2/3 Majority Normal,Normal,98.65%,Normal,99.99%,Tuberculosis,70.28%
+TB_Normal(3376).png,2/3 Majority Normal,Normal,87.13%,Normal,96.7%,Pneumonia,49.44%
+TB_Normal(3437).png,2/3 Majority Normal,Normal,91.03%,Normal,99.03%,COVID-19,99.41%
+TB_Normal(3452).png,2/3 Majority Normal,Normal,99.68%,Normal,99.93%,Tuberculosis,78.9%
+TB_Normal(355).png,2/3 Majority Normal,Normal,96.72%,Normal,99.93%,Pneumonia,88.73%
+TB_Normal(374).png,2/3 Majority Normal,Normal,99.85%,Normal,99.96%,Tuberculosis,52.96%
+TB_Normal(444).png,2/3 Majority Normal,Normal,99.74%,Normal,99.99%,COVID-19,45.52%
+TB_Normal(460).png,2/3 Majority Normal,Normal,99.53%,Normal,99.99%,Tuberculosis,56.24%
+TB_Normal(511).png,2/3 Majority Normal,Normal,93.11%,Normal,99.97%,Tuberculosis,91.68%
+TB_Normal(534).png,2/3 Majority Normal,Normal,76.16%,Normal,83.93%,COVID-19,57.43%
+TB_Normal(554).png,2/3 Majority Normal,Normal,93.49%,Normal,91.64%,COVID-19,88.05%
+TB_Normal(6).png,2/3 Majority Normal,Normal,99.39%,Normal,99.98%,Pneumonia,97.9%
+TB_Normal(602).png,2/3 Majority Normal,Normal,98.86%,Normal,99.97%,COVID-19,94.77%
+TB_Normal(646).png,2/3 Majority Normal,Normal,98.88%,Normal,99.84%,Tuberculosis,52.54%
+TB_Normal(674).png,2/3 Majority Normal,Normal,98.1%,Normal,99.99%,Tuberculosis,91.63%
+TB_Normal(712).png,2/3 Majority Normal,Normal,99.29%,Normal,99.64%,COVID-19,73.59%
+TB_Normal(735).png,2/3 Majority Normal,Normal,91.45%,Normal,99.9%,Tuberculosis,71.77%
+TB_Normal(780).png,2/3 Majority Normal,Normal,99.82%,Normal,99.9%,COVID-19,70.73%
+TB_Normal(785).png,2/3 Majority Normal,Lung Opacity,51.18%,Normal,98.75%,Normal,64.03%
+TB_Normal(816).png,2/3 Majority Normal,Normal,81.17%,Normal,99.74%,Tuberculosis,58.63%
+TB_Normal(828).png,2/3 Majority Normal,Normal,99.69%,Normal,99.98%,COVID-19,53.36%
+TB_Normal(833).png,2/3 Majority Normal,Normal,98.91%,Normal,99.88%,Tuberculosis,100.0%
+TB_Normal(842).png,2/3 Majority Normal,Normal,99.57%,Normal,99.47%,Tuberculosis,70.8%
+TB_Normal(858).png,2/3 Majority Normal,Normal,98.27%,Normal,99.73%,Pneumonia,56.75%
+TB_Normal(863).png,2/3 Majority Normal,Normal,98.71%,Normal,96.14%,Tuberculosis,71.82%
+TB_Normal(871).png,2/3 Majority Normal,Normal,99.56%,Normal,99.94%,COVID-19,56.82%
+TB_Normal(896).png,2/3 Majority Normal,Normal,99.93%,Normal,99.76%,Tuberculosis,79.04%
+TB_Normal(913).png,2/3 Majority Normal,Normal,98.25%,Normal,99.97%,Tuberculosis,50.47%
+TB_Normal(928).png,2/3 Majority Normal,Normal,99.9%,Normal,98.48%,COVID-19,63.86%
+TB_Normal(953).png,2/3 Majority Normal,Normal,99.95%,Normal,99.99%,COVID-19,58.88%
+TB_Normal(956).png,2/3 Majority Normal,Normal,90.67%,Normal,99.96%,Tuberculosis,98.81%
+TB_Normal(993).png,2/3 Majority Normal,Normal,97.94%,Normal,99.14%,COVID-19,54.1%

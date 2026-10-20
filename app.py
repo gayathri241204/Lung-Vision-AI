@@ -1326,7 +1326,7 @@ def init_master_admin():
     if conn:
         try:
             cur = conn.cursor(dictionary=True)
-            hashed_pin = bcrypt.hashpw('123456'.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+            hashed_pin = bcrypt.hashpw('241204'.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
             
             cur.execute("SELECT * FROM users WHERE role = 'admin'")
             admin = cur.fetchone()
@@ -1336,7 +1336,7 @@ def init_master_admin():
                     INSERT INTO users (name, email, password_hash, role)
                     VALUES (%s, %s, %s, %s)
                 """, ('System Administrator', 'admin@gmail.com', hashed_pin, 'admin'))
-                print(">>> [SECURITY] Master Admin Initialized: admin@gmail.com (PIN: 123456)")
+                print(">>> [SECURITY] Master Admin Initialized: admin@gmail.com (PIN: 241204)")
             else:
                 # ஏற்கனவே உள்ள அட்மினின் பாஸ்வேர்டை சரியான bcrypt ஹேஷாக மாற்றுகிறது
                 cur.execute("UPDATE users SET password_hash = %s WHERE role = 'admin'", (hashed_pin,))

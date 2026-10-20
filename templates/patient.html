@@ -185,16 +185,11 @@
         </a>
       </li>
       <!-- About System Link (Below My Reports) -->
-<li>
-  <a href="javascript:void(0)" onclick="openAboutModal()" class="nav-link">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
-      <circle cx="12" cy="12" r="10"></circle>
-      <line x1="12" y1="16" x2="12" y2="12"></line>
-      <line x1="12" y1="8" x2="12.01" y2="8"></line>
-    </svg>
-    About System
-  </a>
-</li>
+       <li>
+          <a href="javascript:void(0)" onclick="openAboutModal()" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500; cursor: pointer;">
+            💡 About System
+          </a>
+        </li>
     </ul>
     <div class="sidebar-footer">
       <a href="{{ url_for('logout') }}" class="nav-link" style="color: #fca5a5;">

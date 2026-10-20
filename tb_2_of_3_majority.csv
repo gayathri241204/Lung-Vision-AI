@@ -1,0 +1,82 @@
+Filename,Consensus_Category,DenseNet121_Pred,DenseNet121_Conf,ResNet50_Pred,ResNet50_Conf,EfficientNetB0_Pred,EfficientNetB0_Conf
+Tuberculosis-104.png,2/3 Majority Tuberculosis,Tuberculosis,99.98%,Tuberculosis,100.0%,Lung Opacity,97.68%
+Tuberculosis-124.png,2/3 Majority Tuberculosis,Tuberculosis,99.25%,Tuberculosis,99.96%,Lung Opacity,53.16%
+Tuberculosis-127.png,2/3 Majority Tuberculosis,Tuberculosis,99.97%,Tuberculosis,98.73%,Lung Opacity,91.4%
+Tuberculosis-134.png,2/3 Majority Tuberculosis,Tuberculosis,99.95%,Tuberculosis,100.0%,Lung Opacity,99.35%
+Tuberculosis-137.png,2/3 Majority Tuberculosis,Tuberculosis,99.66%,Tuberculosis,99.94%,Lung Opacity,99.95%
+Tuberculosis-145.png,2/3 Majority Tuberculosis,Tuberculosis,98.34%,Tuberculosis,78.82%,Lung Opacity,97.57%
+Tuberculosis-149.png,2/3 Majority Tuberculosis,Tuberculosis,93.0%,Tuberculosis,99.1%,Lung Opacity,87.28%
+Tuberculosis-15.png,2/3 Majority Tuberculosis,Tuberculosis,99.9%,Tuberculosis,98.65%,Lung Opacity,99.82%
+Tuberculosis-158.png,2/3 Majority Tuberculosis,Tuberculosis,99.16%,Tuberculosis,99.94%,Lung Opacity,99.39%
+Tuberculosis-159.png,2/3 Majority Tuberculosis,Tuberculosis,99.99%,Tuberculosis,100.0%,Lung Opacity,97.83%
+Tuberculosis-164.png,2/3 Majority Tuberculosis,Tuberculosis,99.82%,Tuberculosis,99.67%,Lung Opacity,98.16%
+Tuberculosis-165.png,2/3 Majority Tuberculosis,Tuberculosis,99.83%,Tuberculosis,99.54%,Lung Opacity,90.65%
+Tuberculosis-173.png,2/3 Majority Tuberculosis,Tuberculosis,89.1%,Tuberculosis,52.06%,Lung Opacity,72.59%
+Tuberculosis-177.png,2/3 Majority Tuberculosis,Tuberculosis,99.42%,Tuberculosis,95.75%,Lung Opacity,80.9%
+Tuberculosis-180.png,2/3 Majority Tuberculosis,Tuberculosis,97.77%,Tuberculosis,99.51%,Lung Opacity,68.37%
+Tuberculosis-199.png,2/3 Majority Tuberculosis,Tuberculosis,99.42%,Tuberculosis,99.98%,Lung Opacity,99.88%
+Tuberculosis-201.png,2/3 Majority Tuberculosis,Tuberculosis,99.04%,Tuberculosis,66.72%,Lung Opacity,99.82%
+Tuberculosis-207.png,2/3 Majority Tuberculosis,Tuberculosis,99.57%,Tuberculosis,94.12%,Lung Opacity,96.53%
+Tuberculosis-217.png,2/3 Majority Tuberculosis,Tuberculosis,99.94%,Tuberculosis,99.9%,Lung Opacity,62.17%
+Tuberculosis-219.png,2/3 Majority Tuberculosis,Tuberculosis,99.99%,Tuberculosis,99.88%,Lung Opacity,97.8%
+Tuberculosis-220.png,2/3 Majority Tuberculosis,Tuberculosis,100.0%,Tuberculosis,100.0%,Lung Opacity,92.9%
+Tuberculosis-225.png,2/3 Majority Tuberculosis,Tuberculosis,99.89%,Tuberculosis,100.0%,Lung Opacity,98.94%
+Tuberculosis-23.png,2/3 Majority Tuberculosis,Tuberculosis,98.25%,Tuberculosis,99.99%,Lung Opacity,97.24%
+Tuberculosis-248.png,2/3 Majority Tuberculosis,Tuberculosis,99.83%,Tuberculosis,99.99%,Lung Opacity,99.98%
+Tuberculosis-260.png,2/3 Majority Tuberculosis,Tuberculosis,72.98%,Tuberculosis,90.46%,Lung Opacity,99.86%
+Tuberculosis-273.png,2/3 Majority Tuberculosis,Tuberculosis,94.45%,Tuberculosis,100.0%,Lung Opacity,89.3%
+Tuberculosis-290.png,2/3 Majority Tuberculosis,Tuberculosis,99.6%,Tuberculosis,73.6%,Lung Opacity,99.04%
+Tuberculosis-291.png,2/3 Majority Tuberculosis,Tuberculosis,99.98%,Tuberculosis,99.99%,Lung Opacity,98.84%
+Tuberculosis-292.png,2/3 Majority Tuberculosis,Tuberculosis,73.23%,Tuberculosis,86.36%,Lung Opacity,89.83%
+Tuberculosis-294.png,2/3 Majority Tuberculosis,Tuberculosis,80.89%,Tuberculosis,55.48%,Lung Opacity,99.98%
+Tuberculosis-300.png,2/3 Majority Tuberculosis,Tuberculosis,99.98%,Tuberculosis,99.96%,Lung Opacity,99.72%
+Tuberculosis-308.png,2/3 Majority Tuberculosis,Tuberculosis,99.89%,Tuberculosis,73.73%,Lung Opacity,98.14%
+Tuberculosis-323.png,2/3 Majority Tuberculosis,Tuberculosis,96.89%,Tuberculosis,99.14%,Lung Opacity,97.85%
+Tuberculosis-325.png,2/3 Majority Tuberculosis,Tuberculosis,99.84%,Tuberculosis,100.0%,Lung Opacity,81.74%
+Tuberculosis-350.png,2/3 Majority Tuberculosis,Tuberculosis,99.99%,Tuberculosis,95.74%,Lung Opacity,99.34%
+Tuberculosis-354.png,2/3 Majority Tuberculosis,Tuberculosis,99.94%,Tuberculosis,99.99%,Lung Opacity,99.46%
+Tuberculosis-370.png,2/3 Majority Tuberculosis,Tuberculosis,99.96%,Tuberculosis,100.0%,COVID-19,36.44%
+Tuberculosis-377.png,2/3 Majority Tuberculosis,Tuberculosis,99.9%,Tuberculosis,93.53%,COVID-19,90.19%
+Tuberculosis-388.png,2/3 Majority Tuberculosis,Tuberculosis,99.99%,Tuberculosis,99.99%,COVID-19,86.95%
+Tuberculosis-395.png,2/3 Majority Tuberculosis,Tuberculosis,99.24%,Tuberculosis,79.2%,Lung Opacity,71.61%
+Tuberculosis-397.png,2/3 Majority Tuberculosis,Tuberculosis,100.0%,Tuberculosis,100.0%,COVID-19,92.75%
+Tuberculosis-4.png,2/3 Majority Tuberculosis,Tuberculosis,99.91%,Tuberculosis,99.75%,Lung Opacity,100.0%
+Tuberculosis-421.png,2/3 Majority Tuberculosis,Tuberculosis,99.67%,Tuberculosis,100.0%,Lung Opacity,98.19%
+Tuberculosis-433.png,2/3 Majority Tuberculosis,Tuberculosis,95.5%,Tuberculosis,97.62%,Lung Opacity,97.86%
+Tuberculosis-439.png,2/3 Majority Tuberculosis,Tuberculosis,86.62%,Tuberculosis,99.65%,Lung Opacity,99.07%
+Tuberculosis-450.png,2/3 Majority Tuberculosis,Tuberculosis,99.91%,Tuberculosis,99.95%,COVID-19,98.76%
+Tuberculosis-457.png,2/3 Majority Tuberculosis,Tuberculosis,97.2%,Tuberculosis,99.68%,Lung Opacity,92.73%
+Tuberculosis-458.png,2/3 Majority Tuberculosis,Tuberculosis,99.77%,Tuberculosis,100.0%,Lung Opacity,99.58%
+Tuberculosis-460.png,2/3 Majority Tuberculosis,Tuberculosis,99.92%,Tuberculosis,100.0%,Lung Opacity,86.24%
+Tuberculosis-469.png,2/3 Majority Tuberculosis,Tuberculosis,99.46%,Tuberculosis,74.21%,Lung Opacity,93.12%
+Tuberculosis-477.png,2/3 Majority Tuberculosis,Tuberculosis,89.2%,Tuberculosis,48.92%,Normal,96.36%
+Tuberculosis-49.png,2/3 Majority Tuberculosis,Tuberculosis,100.0%,Tuberculosis,98.78%,Lung Opacity,99.97%
+Tuberculosis-494.png,2/3 Majority Tuberculosis,Tuberculosis,99.86%,Tuberculosis,100.0%,Lung Opacity,93.31%
+Tuberculosis-495.png,2/3 Majority Tuberculosis,Tuberculosis,100.0%,Tuberculosis,100.0%,COVID-19,53.95%
+Tuberculosis-501.png,2/3 Majority Tuberculosis,Tuberculosis,99.24%,Tuberculosis,99.61%,Lung Opacity,95.26%
+Tuberculosis-551.png,2/3 Majority Tuberculosis,Tuberculosis,99.94%,Tuberculosis,99.69%,Lung Opacity,98.74%
+Tuberculosis-558.png,2/3 Majority Tuberculosis,Tuberculosis,54.22%,Tuberculosis,91.38%,Pneumonia,49.55%
+Tuberculosis-562.png,2/3 Majority Tuberculosis,Tuberculosis,99.92%,Tuberculosis,99.56%,COVID-19,71.25%
+Tuberculosis-566.png,2/3 Majority Tuberculosis,Tuberculosis,99.71%,Tuberculosis,99.94%,Lung Opacity,96.92%
+Tuberculosis-573.png,2/3 Majority Tuberculosis,Tuberculosis,99.97%,Tuberculosis,100.0%,Lung Opacity,99.37%
+Tuberculosis-579.png,2/3 Majority Tuberculosis,Tuberculosis,98.99%,Tuberculosis,99.61%,Pneumonia,43.38%
+Tuberculosis-583.png,2/3 Majority Tuberculosis,Tuberculosis,73.87%,Tuberculosis,67.52%,Pneumonia,55.0%
+Tuberculosis-595.png,2/3 Majority Tuberculosis,Tuberculosis,100.0%,Tuberculosis,100.0%,COVID-19,91.49%
+Tuberculosis-599.png,2/3 Majority Tuberculosis,Tuberculosis,99.95%,Tuberculosis,100.0%,Lung Opacity,95.97%
+Tuberculosis-604.png,2/3 Majority Tuberculosis,Tuberculosis,99.87%,Tuberculosis,99.94%,Lung Opacity,99.53%
+Tuberculosis-619.png,2/3 Majority Tuberculosis,Tuberculosis,97.88%,Tuberculosis,98.89%,COVID-19,97.85%
+Tuberculosis-636.png,2/3 Majority Tuberculosis,Tuberculosis,97.93%,Tuberculosis,100.0%,Lung Opacity,73.38%
+Tuberculosis-644.png,2/3 Majority Tuberculosis,Tuberculosis,99.93%,Tuberculosis,100.0%,Lung Opacity,97.56%
+Tuberculosis-649.png,2/3 Majority Tuberculosis,Tuberculosis,99.05%,Tuberculosis,100.0%,Lung Opacity,100.0%
+Tuberculosis-65.png,2/3 Majority Tuberculosis,Tuberculosis,99.9%,Tuberculosis,99.99%,Lung Opacity,96.47%
+Tuberculosis-656.png,2/3 Majority Tuberculosis,Tuberculosis,92.81%,Tuberculosis,98.55%,Lung Opacity,93.82%
+Tuberculosis-664.png,2/3 Majority Tuberculosis,Tuberculosis,99.91%,Tuberculosis,99.98%,Lung Opacity,99.98%
+Tuberculosis-677.png,2/3 Majority Tuberculosis,Tuberculosis,78.4%,Tuberculosis,57.93%,Lung Opacity,84.57%
+Tuberculosis-69.png,2/3 Majority Tuberculosis,Tuberculosis,99.96%,Tuberculosis,100.0%,Lung Opacity,99.96%
+Tuberculosis-696.png,2/3 Majority Tuberculosis,Tuberculosis,69.64%,Tuberculosis,71.48%,Normal,95.59%
+Tuberculosis-699.png,2/3 Majority Tuberculosis,Tuberculosis,99.78%,Tuberculosis,90.67%,Lung Opacity,98.42%
+Tuberculosis-70.png,2/3 Majority Tuberculosis,Tuberculosis,99.91%,Tuberculosis,99.75%,Lung Opacity,89.03%
+Tuberculosis-74.png,2/3 Majority Tuberculosis,Tuberculosis,99.7%,Tuberculosis,99.99%,Lung Opacity,97.15%
+Tuberculosis-82.png,2/3 Majority Tuberculosis,Tuberculosis,99.87%,Tuberculosis,99.96%,Lung Opacity,97.42%
+Tuberculosis-88.png,2/3 Majority Tuberculosis,Tuberculosis,99.4%,Tuberculosis,99.79%,Lung Opacity,99.74%
+Tuberculosis-95.png,2/3 Majority Tuberculosis,Tuberculosis,54.1%,Tuberculosis,99.94%,Lung Opacity,99.47%

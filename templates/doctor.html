@@ -5,6 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Doctor Dashboard - LUNG VISION</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+.about-modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+}
+.about-modal-card {
+    background: #ffffff;
+    width: 90%;
+    max-width: 520px;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    animation: modalPop 0.2s ease-out;
+}
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+.about-modal-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f1f5f9;
+}
+.about-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: #94a3b8;
+    cursor: pointer;
+    line-height: 1;
+}
+.about-close-btn:hover { color: #0f172a; }
+.about-modal-body {
+    padding: 1.25rem 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.about-section-title {
+    margin: 0 0 0.35rem 0;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+.about-grid-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 0.5rem;
+}
+.about-algo-pill {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+.about-algo-pill strong {
+    display: block;
+    font-size: 0.8rem;
+    color: #0f172a;
+}
+.about-algo-pill span {
+    font-size: 0.65rem;
+    color: #64748b;
+}
+.about-class-tag {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+.about-modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #f1f5f9;
+}
+.about-btn-action {
+    width: 100%;
+    background: #0ea5e9;
+    color: white;
+    border: none;
+    padding: 0.65rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.about-btn-action:hover {
+    background: #0284c7;
+}
+</style>
 </head>
 <body>
 
@@ -43,6 +143,11 @@
             📑 Reports Archive
           </a>
         </li>
+       <li>
+          <a href="javascript:void(0)" onclick="openAboutModal()" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: #94a3b8; text-decoration: none; font-weight: 500; cursor: pointer;">
+            💡 About System
+          </a>
+        </li>
       </ul>
     </div>
     <div style="border-top: 1px solid #1e293b; padding-top: 1rem;">
@@ -64,7 +169,7 @@
     <div class="content-body">
       <!-- 4 Doctor KPI Metric Tiles -->
       
-<!-- ========================================================= -->
+      <!-- ========================================================= -->
       <!-- Doctor Metrics Cards (Exact Second Image Card Styling)    -->
       <!-- ========================================================= -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; margin-bottom: 1.75rem;">
@@ -180,6 +285,98 @@
     </div>
   </main>
 </div>
+ <!-- ============================================== -->
+<!-- ABOUT LUNG VISION MODAL POPUP                  -->
+<!-- ============================================== -->
+<div id="aboutModal" class="about-modal-backdrop" onclick="closeAboutModal(event)">
+  <div class="about-modal-card">
+    
+    <!-- Modal Header -->
+    <div class="about-modal-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.8rem;">🫁</span>
+        <div>
+          <h3 style="margin: 0; font-size: 1.25rem; font-weight: 800; color: #0f172a;">LUNG VISION AI</h3>
+          <span style="font-size: 0.8rem; color: #64748b; font-weight: 600;">Clinical Pulmonary Screening Platform</span>
+        </div>
+      </div>
+      <button type="button" class="about-close-btn" onclick="closeAboutModal()">&times;</button>
+    </div>
 
+    <!-- Modal Body -->
+    <div class="about-modal-body">
+      
+      <!-- 1. Objective -->
+      <div class="about-info-section">
+        <h4 class="about-section-title">🎯 Objective & Clinical Purpose</h4>
+        <p style="margin: 0; font-size: 0.88rem; color: #475569; line-height: 1.55;">
+          <strong>Lung Vision</strong> is an AI-powered thoracic triage platform designed to assist radiologists and healthcare providers in rapid, accurate detection of pulmonary pathologies from digital chest radiographs (CXR). It accelerates clinical workups and provides automated risk indexing for prioritized patient care.
+        </p>
+      </div>
+
+      <!-- 2. Models -->
+      <div class="about-info-section" style="margin-top: 1rem;">
+        <h4 class="about-section-title">🧠 Multi-Model AI Architecture</h4>
+        <div class="about-grid-badges">
+          <div class="about-algo-pill">
+            <strong>DenseNet121</strong>
+            <span>Feature Reuse Architecture</span>
+          </div>
+          <div class="about-algo-pill">
+            <strong>ResNet50</strong>
+            <span>Deep Residual Learning</span>
+          </div>
+          <div class="about-algo-pill">
+            <strong>EfficientNetB0</strong>
+            <span>Scaled Compound Coefficients</span>
+          </div>
+        </div>
+        <p style="margin-top: 0.6rem; font-size: 0.82rem; color: #64748b;">
+          ⚡ <em>Ensemble Consensus Voting</em> is applied across models to determine champion inferences and minimize false positives.
+        </p>
+      </div>
+
+      <!-- 3. Target Classes -->
+      <div class="about-info-section" style="margin-top: 1rem;">
+        <h4 class="about-section-title">🔬 Targeted Classes</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;">
+          <span class="about-class-tag" style="background: #fee2e2; color: #991b1b;">Tuberculosis</span>
+          <span class="about-class-tag" style="background: #fef3c7; color: #92400e;">Pneumonia</span>
+          <span class="about-class-tag" style="background: #ede9fe; color: #6b21a8;">COVID-19</span>
+          <span class="about-class-tag" style="background: #e0f2fe; color: #0369a1;">Lung Opacity</span>
+          <span class="about-class-tag" style="background: #dcfce7; color: #15803d;">Normal</span>
+        </div>
+      </div>
+
+      <!-- 4. Quality Gatekeeper -->
+      <div style="margin-top: 1.1rem; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.8rem; color: #64748b;">
+        🛡️ <strong>Quality Gatekeeper:</strong> Input scans undergo automated pre-validation ensuring correct thoracic PA projection before clinical inference.
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="about-modal-footer">
+      <button type="button" class="about-btn-action" onclick="closeAboutModal()">Close Overview</button>
+    </div>
+
+  </div>
+</div>
+<script>
+  function openAboutModal() {
+    var modal = document.getElementById('aboutModal');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function closeAboutModal(event) {
+    var modal = document.getElementById('aboutModal');
+    if (!modal) return;
+    if (!event || event.target === modal || event.target.closest('.about-close-btn') || event.target.closest('.about-btn-action')) {
+        modal.style.display = 'none';
+    }
+}
+</script>
 </body>
 </html>

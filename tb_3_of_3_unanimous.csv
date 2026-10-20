@@ -1,0 +1,5 @@
+Filename,Consensus_Category,DenseNet121_Conf,ResNet50_Conf,EfficientNetB0_Conf
+Tuberculosis-109.png,3/3 Unanimous Tuberculosis,99.81%,99.99%,94.03%
+Tuberculosis-153.png,3/3 Unanimous Tuberculosis,92.78%,97.28%,81.49%
+Tuberculosis-28.png,3/3 Unanimous Tuberculosis,98.79%,99.56%,52.66%
+Tuberculosis-357.png,3/3 Unanimous Tuberculosis,99.33%,99.91%,69.36%

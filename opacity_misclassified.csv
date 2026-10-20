@@ -1,0 +1,104 @@
+Filename,Consensus_Category,DenseNet121_Pred,DenseNet121_Conf,ResNet50_Pred,ResNet50_Conf,EfficientNetB0_Pred,EfficientNetB0_Conf
+Lung_Opacity-1107.png,Misclassified (< 2 Opacity Votes),Lung Opacity,90.75%,COVID-19,99.83%,COVID-19,64.27%
+Lung_Opacity-1289.png,Misclassified (< 2 Opacity Votes),COVID-19,70.66%,Normal,72.43%,COVID-19,67.34%
+Lung_Opacity-1379.png,Misclassified (< 2 Opacity Votes),Lung Opacity,93.84%,Normal,50.41%,Normal,97.93%
+Lung_Opacity-1417.png,Misclassified (< 2 Opacity Votes),Lung Opacity,95.87%,Pneumonia,49.55%,Tuberculosis,98.28%
+Lung_Opacity-1489.png,Misclassified (< 2 Opacity Votes),Lung Opacity,81.48%,Normal,84.88%,Normal,98.88%
+Lung_Opacity-1545.png,Misclassified (< 2 Opacity Votes),Normal,67.52%,Lung Opacity,58.58%,COVID-19,49.36%
+Lung_Opacity-162.png,Misclassified (< 2 Opacity Votes),Normal,72.4%,Normal,65.89%,Lung Opacity,79.62%
+Lung_Opacity-1625.png,Misclassified (< 2 Opacity Votes),Normal,62.58%,Lung Opacity,90.82%,Tuberculosis,72.57%
+Lung_Opacity-1634.png,Misclassified (< 2 Opacity Votes),Lung Opacity,76.92%,Normal,75.71%,Normal,90.71%
+Lung_Opacity-1645.png,Misclassified (< 2 Opacity Votes),Normal,57.04%,Normal,97.43%,COVID-19,68.94%
+Lung_Opacity-1650.png,Misclassified (< 2 Opacity Votes),Normal,66.88%,Normal,64.36%,Pneumonia,95.98%
+Lung_Opacity-1686.png,Misclassified (< 2 Opacity Votes),Normal,98.11%,Normal,62.09%,Pneumonia,95.78%
+Lung_Opacity-1856.png,Misclassified (< 2 Opacity Votes),Normal,68.63%,Normal,69.51%,COVID-19,34.39%
+Lung_Opacity-1867.png,Misclassified (< 2 Opacity Votes),Normal,84.9%,Normal,97.68%,Pneumonia,99.76%
+Lung_Opacity-1908.png,Misclassified (< 2 Opacity Votes),Lung Opacity,50.27%,Normal,99.87%,Pneumonia,93.37%
+Lung_Opacity-1934.png,Misclassified (< 2 Opacity Votes),Normal,98.34%,Normal,99.78%,Pneumonia,99.96%
+Lung_Opacity-1967.png,Misclassified (< 2 Opacity Votes),Normal,52.34%,Lung Opacity,77.32%,Tuberculosis,99.47%
+Lung_Opacity-1985.png,Misclassified (< 2 Opacity Votes),Lung Opacity,87.9%,Normal,75.01%,COVID-19,86.44%
+Lung_Opacity-2001.png,Misclassified (< 2 Opacity Votes),Normal,98.27%,Normal,98.91%,COVID-19,41.81%
+Lung_Opacity-2089.png,Misclassified (< 2 Opacity Votes),Normal,56.34%,Normal,56.54%,Tuberculosis,91.81%
+Lung_Opacity-2116.png,Misclassified (< 2 Opacity Votes),Normal,84.04%,Normal,96.11%,Lung Opacity,62.8%
+Lung_Opacity-2208.png,Misclassified (< 2 Opacity Votes),Normal,46.06%,Lung Opacity,60.24%,Pneumonia,88.6%
+Lung_Opacity-2256.png,Misclassified (< 2 Opacity Votes),Normal,69.42%,Normal,89.51%,Pneumonia,99.13%
+Lung_Opacity-2263.png,Misclassified (< 2 Opacity Votes),Normal,50.88%,Normal,76.84%,Pneumonia,71.95%
+Lung_Opacity-2319.png,Misclassified (< 2 Opacity Votes),Normal,73.07%,Lung Opacity,64.67%,Normal,96.08%
+Lung_Opacity-2330.png,Misclassified (< 2 Opacity Votes),Normal,82.07%,Normal,98.88%,COVID-19,98.82%
+Lung_Opacity-2372.png,Misclassified (< 2 Opacity Votes),Lung Opacity,64.2%,Normal,92.65%,COVID-19,76.96%
+Lung_Opacity-2486.png,Misclassified (< 2 Opacity Votes),Normal,87.87%,Normal,96.48%,Pneumonia,80.3%
+Lung_Opacity-2501.png,Misclassified (< 2 Opacity Votes),Lung Opacity,92.08%,COVID-19,78.89%,Normal,91.62%
+Lung_Opacity-2555.png,Misclassified (< 2 Opacity Votes),Normal,63.7%,Normal,85.64%,Normal,99.67%
+Lung_Opacity-2602.png,Misclassified (< 2 Opacity Votes),Normal,81.93%,COVID-19,52.41%,COVID-19,34.38%
+Lung_Opacity-2634.png,Misclassified (< 2 Opacity Votes),Normal,38.77%,COVID-19,87.27%,Lung Opacity,85.16%
+Lung_Opacity-2637.png,Misclassified (< 2 Opacity Votes),Normal,78.51%,Normal,93.53%,Lung Opacity,92.05%
+Lung_Opacity-2654.png,Misclassified (< 2 Opacity Votes),Normal,97.44%,Normal,99.92%,Pneumonia,100.0%
+Lung_Opacity-2673.png,Misclassified (< 2 Opacity Votes),Normal,96.7%,Normal,98.98%,Pneumonia,97.97%
+Lung_Opacity-2677.png,Misclassified (< 2 Opacity Votes),Lung Opacity,68.66%,Normal,65.44%,Normal,50.5%
+Lung_Opacity-2700.png,Misclassified (< 2 Opacity Votes),Normal,77.51%,Normal,95.54%,Pneumonia,48.56%
+Lung_Opacity-2725.png,Misclassified (< 2 Opacity Votes),Normal,88.97%,Lung Opacity,83.91%,Tuberculosis,97.43%
+Lung_Opacity-2764.png,Misclassified (< 2 Opacity Votes),Normal,68.0%,Normal,83.8%,Normal,65.73%
+Lung_Opacity-2769.png,Misclassified (< 2 Opacity Votes),Lung Opacity,55.93%,Normal,73.04%,Normal,80.6%
+Lung_Opacity-2913.png,Misclassified (< 2 Opacity Votes),Normal,73.15%,Normal,80.82%,Normal,97.94%
+Lung_Opacity-3084.png,Misclassified (< 2 Opacity Votes),Normal,54.78%,Lung Opacity,66.1%,COVID-19,50.37%
+Lung_Opacity-3085.png,Misclassified (< 2 Opacity Votes),Lung Opacity,66.3%,Normal,98.37%,Normal,89.88%
+Lung_Opacity-320.png,Misclassified (< 2 Opacity Votes),Normal,57.04%,Lung Opacity,83.0%,Normal,90.22%
+Lung_Opacity-3324.png,Misclassified (< 2 Opacity Votes),Normal,67.38%,Normal,98.94%,Normal,86.49%
+Lung_Opacity-3432.png,Misclassified (< 2 Opacity Votes),Normal,88.58%,Normal,99.91%,Lung Opacity,54.83%
+Lung_Opacity-3488.png,Misclassified (< 2 Opacity Votes),Normal,82.57%,Normal,83.19%,Lung Opacity,94.42%
+Lung_Opacity-3504.png,Misclassified (< 2 Opacity Votes),Normal,57.1%,Lung Opacity,82.39%,COVID-19,33.42%
+Lung_Opacity-3672.png,Misclassified (< 2 Opacity Votes),Normal,79.77%,Lung Opacity,50.58%,Normal,80.89%
+Lung_Opacity-373.png,Misclassified (< 2 Opacity Votes),Normal,80.07%,Normal,49.42%,COVID-19,73.83%
+Lung_Opacity-3851.png,Misclassified (< 2 Opacity Votes),Normal,58.95%,Normal,72.21%,COVID-19,61.53%
+Lung_Opacity-3885.png,Misclassified (< 2 Opacity Votes),Normal,75.05%,Normal,98.81%,Pneumonia,99.37%
+Lung_Opacity-401.png,Misclassified (< 2 Opacity Votes),Normal,93.53%,Normal,96.2%,Pneumonia,95.67%
+Lung_Opacity-4036.png,Misclassified (< 2 Opacity Votes),Normal,68.26%,Normal,65.34%,Lung Opacity,70.49%
+Lung_Opacity-4042.png,Misclassified (< 2 Opacity Votes),Normal,74.17%,Normal,99.18%,Normal,99.77%
+Lung_Opacity-4051.png,Misclassified (< 2 Opacity Votes),Lung Opacity,98.07%,COVID-19,75.94%,Tuberculosis,98.7%
+Lung_Opacity-4059.png,Misclassified (< 2 Opacity Votes),Normal,72.74%,Normal,57.64%,Tuberculosis,86.58%
+Lung_Opacity-4116.png,Misclassified (< 2 Opacity Votes),Normal,91.46%,Normal,98.1%,Tuberculosis,67.2%
+Lung_Opacity-4232.png,Misclassified (< 2 Opacity Votes),Normal,50.27%,Normal,97.91%,Normal,89.14%
+Lung_Opacity-43.png,Misclassified (< 2 Opacity Votes),Lung Opacity,70.24%,Normal,79.78%,Pneumonia,58.32%
+Lung_Opacity-4310.png,Misclassified (< 2 Opacity Votes),Normal,84.96%,Normal,97.1%,Pneumonia,99.99%
+Lung_Opacity-4335.png,Misclassified (< 2 Opacity Votes),Normal,88.34%,Lung Opacity,56.79%,Normal,76.17%
+Lung_Opacity-4359.png,Misclassified (< 2 Opacity Votes),Lung Opacity,90.33%,Normal,93.48%,Normal,81.98%
+Lung_Opacity-4502.png,Misclassified (< 2 Opacity Votes),Normal,50.21%,Normal,73.94%,Tuberculosis,47.05%
+Lung_Opacity-451.png,Misclassified (< 2 Opacity Votes),Normal,84.6%,Normal,50.45%,Lung Opacity,95.79%
+Lung_Opacity-4533.png,Misclassified (< 2 Opacity Votes),Lung Opacity,52.16%,Normal,90.53%,COVID-19,77.56%
+Lung_Opacity-4547.png,Misclassified (< 2 Opacity Votes),Normal,91.47%,Normal,97.78%,Normal,62.71%
+Lung_Opacity-4628.png,Misclassified (< 2 Opacity Votes),Lung Opacity,96.12%,Normal,70.1%,Normal,94.07%
+Lung_Opacity-4837.png,Misclassified (< 2 Opacity Votes),Normal,84.77%,Normal,99.07%,Pneumonia,49.59%
+Lung_Opacity-4862.png,Misclassified (< 2 Opacity Votes),Normal,96.29%,Normal,85.93%,Pneumonia,78.68%
+Lung_Opacity-4865.png,Misclassified (< 2 Opacity Votes),Normal,94.88%,Normal,99.43%,COVID-19,61.33%
+Lung_Opacity-4887.png,Misclassified (< 2 Opacity Votes),Normal,76.37%,Normal,88.08%,Pneumonia,88.01%
+Lung_Opacity-4928.png,Misclassified (< 2 Opacity Votes),Lung Opacity,96.67%,Normal,93.0%,Normal,50.3%
+Lung_Opacity-4944.png,Misclassified (< 2 Opacity Votes),Normal,78.45%,Normal,99.85%,Pneumonia,99.61%
+Lung_Opacity-4957.png,Misclassified (< 2 Opacity Votes),Lung Opacity,87.35%,Normal,83.46%,COVID-19,74.01%
+Lung_Opacity-5080.png,Misclassified (< 2 Opacity Votes),Normal,91.35%,Normal,67.78%,Lung Opacity,59.13%
+Lung_Opacity-5198.png,Misclassified (< 2 Opacity Votes),Normal,73.92%,Normal,99.81%,Pneumonia,71.1%
+Lung_Opacity-5241.png,Misclassified (< 2 Opacity Votes),Lung Opacity,87.25%,Normal,97.4%,COVID-19,90.03%
+Lung_Opacity-5242.png,Misclassified (< 2 Opacity Votes),Normal,82.34%,Normal,97.0%,Lung Opacity,54.7%
+Lung_Opacity-5292.png,Misclassified (< 2 Opacity Votes),Normal,77.41%,Normal,98.91%,Lung Opacity,58.4%
+Lung_Opacity-531.png,Misclassified (< 2 Opacity Votes),Normal,88.99%,Normal,98.0%,Lung Opacity,84.19%
+Lung_Opacity-5316.png,Misclassified (< 2 Opacity Votes),Normal,97.95%,Normal,99.91%,Lung Opacity,54.9%
+Lung_Opacity-5324.png,Misclassified (< 2 Opacity Votes),Normal,75.61%,Normal,86.8%,Normal,95.46%
+Lung_Opacity-535.png,Misclassified (< 2 Opacity Votes),Normal,54.92%,Normal,84.95%,Lung Opacity,49.61%
+Lung_Opacity-5378.png,Misclassified (< 2 Opacity Votes),Normal,78.65%,Normal,94.95%,Lung Opacity,79.11%
+Lung_Opacity-54.png,Misclassified (< 2 Opacity Votes),Normal,72.49%,Normal,89.13%,Pneumonia,99.98%
+Lung_Opacity-5465.png,Misclassified (< 2 Opacity Votes),Normal,61.92%,Normal,90.55%,Normal,43.18%
+Lung_Opacity-5483.png,Misclassified (< 2 Opacity Votes),Normal,85.82%,Normal,93.85%,Pneumonia,99.24%
+Lung_Opacity-5594.png,Misclassified (< 2 Opacity Votes),Lung Opacity,99.75%,COVID-19,60.32%,Tuberculosis,76.57%
+Lung_Opacity-5686.png,Misclassified (< 2 Opacity Votes),Lung Opacity,87.88%,Normal,97.39%,Normal,55.86%
+Lung_Opacity-5699.png,Misclassified (< 2 Opacity Votes),Normal,71.85%,Normal,86.35%,Pneumonia,79.52%
+Lung_Opacity-5764.png,Misclassified (< 2 Opacity Votes),Normal,75.86%,Lung Opacity,96.83%,COVID-19,97.58%
+Lung_Opacity-5780.png,Misclassified (< 2 Opacity Votes),Normal,75.77%,Normal,90.55%,Normal,90.9%
+Lung_Opacity-5832.png,Misclassified (< 2 Opacity Votes),Lung Opacity,96.88%,Normal,89.82%,COVID-19,63.49%
+Lung_Opacity-588.png,Misclassified (< 2 Opacity Votes),Normal,96.94%,Normal,99.73%,Pneumonia,96.54%
+Lung_Opacity-60.png,Misclassified (< 2 Opacity Votes),Lung Opacity,88.32%,Normal,79.93%,Normal,57.05%
+Lung_Opacity-67.png,Misclassified (< 2 Opacity Votes),Lung Opacity,65.07%,Normal,96.03%,Tuberculosis,55.93%
+Lung_Opacity-72.png,Misclassified (< 2 Opacity Votes),Normal,92.04%,Normal,99.87%,Pneumonia,99.98%
+Lung_Opacity-765.png,Misclassified (< 2 Opacity Votes),COVID-19,82.66%,Normal,77.97%,Lung Opacity,98.61%
+Lung_Opacity-780.png,Misclassified (< 2 Opacity Votes),COVID-19,73.7%,Normal,67.62%,Pneumonia,99.42%
+Lung_Opacity-808.png,Misclassified (< 2 Opacity Votes),Normal,61.36%,Normal,56.3%,Lung Opacity,49.32%
+Lung_Opacity-821.png,Misclassified (< 2 Opacity Votes),Normal,75.92%,Normal,97.26%,Pneumonia,99.98%
+Lung_Opacity-889.png,Misclassified (< 2 Opacity Votes),Normal,83.69%,Normal,99.91%,Pneumonia,82.06%
