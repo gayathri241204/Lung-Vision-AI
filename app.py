@@ -957,16 +957,11 @@ def generate_study_pdf(study_id):
     risk_level = study.get('risk_level') or 'Low'
     champ_model = study.get('champion_model') or 'DenseNet121'
 
-    
-    exam_val = study.get('examination_date') or study.get('created_at')
-    if isinstance(exam_val, datetime):
-        exam_date = exam_val.strftime('%d %b %Y, %I:%M %p')
-    elif exam_val:
-        exam_date = str(exam_val)
-    else:
-        exam_date = datetime.now().strftime('%d %b %Y, %I:%M %p')
+    # Report download pandra live Indian Standard Time (IST)
+    from datetime import timezone, timedelta
+    ist_zone = timezone(timedelta(hours=5, minutes=30))
+    exam_date = datetime.now(ist_zone).strftime('%d %b %Y, %I:%M %p')
 
-    
     img_filename = study.get('image_path') or study.get('image_filename') or ''
     upload_dir = os.path.join(app.root_path, 'static', 'uploads')
     img_full_path = os.path.join(upload_dir, os.path.basename(img_filename))
