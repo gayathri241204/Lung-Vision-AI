@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LUNG VISION - ENTERPRISE HEALTHCARE UI FRAMEWORK
+   LUNG VISION - ENTERPRISE HEALTHCARE UI FRAMEWORK & DASHBOARDS
    ========================================================================== */
 
 :root {
@@ -28,6 +28,7 @@
   --success-bg: #d1fae5;
 }
 
+/* Global Reset (Fixed with wildcard asterisk *) */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -42,7 +43,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   MASTER LAYOUT STRUCTURE (Sidebar + Content Workspace)
+   MASTER LAYOUT STRUCTURE (Sidebar + Content Workspace for Inner Dashboards)
    -------------------------------------------------------------------------- */
 .app-container {
   display: flex;
@@ -184,7 +185,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
-/* 4 Dashboard Metric Tiles */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -304,7 +304,7 @@ body {
 .badge-success { background: var(--success-bg); color: #065f46; }
 
 /* --------------------------------------------------------------------------
-   PIPELINE STEPPER / MODEL SWITCHER PILLS (Module 7)
+   PIPELINE STEPPER / MODEL SWITCHER PILLS
    -------------------------------------------------------------------------- */
 .model-switcher {
   display: flex;
@@ -333,7 +333,6 @@ body {
   box-shadow: 0 4px 8px rgba(99, 102, 241, 0.15);
 }
 
-/* Probability Bars */
 .prob-item {
   margin-bottom: 0.75rem;
 }
@@ -359,7 +358,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   MEDICAL DISCLAIMER NOTE (Reference Image 2 Integration)
+   MEDICAL DISCLAIMER NOTE
    -------------------------------------------------------------------------- */
 .medical-disclaimer-box {
   background-color: #f0f9ff;
@@ -380,115 +379,388 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   LOGIN PAGE (3 CARDS SELECTION)
+   SELECT ARCHITECTURE & SEARCH BUTTON GLOW
    -------------------------------------------------------------------------- */
-.login-screen-wrapper {
-  max-width: 950px;
-  margin: 4rem auto;
-  padding: 1rem;
-  text-align: center;
+.architecture-select, select[name="architecture"], .form-select {
+  background-color: #ffffff !important;
+  border: 2px solid #008891 !important;
+  border-radius: 10px !important;
+  padding: 7px 16px !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  box-shadow: 0 0 12px rgba(0, 136, 145, 0.25) !important;
+  transition: all 0.3s ease-in-out !important;
+  outline: none !important;
+  cursor: pointer;
 }
 
-.login-header-logo {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #0284c7;
+.architecture-select:hover, .architecture-select:focus {
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 0 18px rgba(14, 165, 233, 0.45) !important;
+  transform: translateY(-1px);
+}
+
+.search-btn, button[type="submit"].btn-primary, .btn-search {
+  background: linear-gradient(135deg, #008891 0%, #0284c7 100%) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 8px 22px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 14px rgba(0, 136, 145, 0.35) !important;
+  transition: all 0.3s ease-in-out !important;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background: linear-gradient(135deg, #0284c7 0%, #008891 100%) !important;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.55) !important;
+  transform: translateY(-2px);
+}
+
+.search-input, input[name="search"] {
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #008891 !important;
+  box-shadow: 0 0 10px rgba(0, 136, 145, 0.2) !important;
+}
+
+/* ==========================================================================
+   MODERN 2-COLUMN SPLIT LOGIN PAGE (RIGHT SHIFTED & PERFECT ALIGNMENT)
+   ========================================================================== */
+
+body.login-body {
+  background: linear-gradient(135deg, #f0f6fc 0%, #f9fbff 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #1e293b;
+  padding: 20px 50px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Top-Right Badges */
+.top-nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 0;
+}
+
+.nav-badges {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 0.35rem;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f2c59;
 }
 
-.login-tagline {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  margin-bottom: 2.5rem;
+.nav-badges .divider {
+  color: #cbd5e1;
+  font-weight: 400;
 }
 
-.role-cards-grid {
+/* Main 2-Column Split Hero Layout */
+.main-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  grid-template-columns: 1.1fr 1.25fr;
+  gap: 30px;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.role-card {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: 14px;
-  padding: 2.5rem 1.5rem;
+/* Left Hero Section */
+.hero-left {
+  padding-left: 95px;
+  padding-right: 15px;
+  position: relative;
+}
+
+/* Subtle Medical Ambient Glow Behind Branding */
+.hero-left::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 40px;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(0, 136, 145, 0.05) 0%, rgba(2, 132, 199, 0.03) 50%, rgba(255,255,255,0) 70%);
+  filter: blur(45px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* "Welcome to" Title Header */
+.welcome-tag {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #0f2c59;
+  text-transform: none;
+  display: block;
+  margin-bottom: -4px;
+  line-height: 1.1;
+}
+
+/* "Lung Vision" H1 */
+.brand-title {
+  font-size: 64px;
+  font-weight: 800;
+  color: #0f2c59;
+  line-height: 1.05;
+  margin-top: 0;
+  margin-bottom: 14px;
+  letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.brand-tagline {
+  font-size: 15px;
+  color: #64748b;
+  margin-bottom: 14px;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* Precise Rounded Image Container with custom glow matching right-side portal login cards */
+.illustration-wrapper {
+  max-width: 500px;
+  width: 100%;
+  margin-top: 4px;
+  border-radius: 26px; /* Precise rounded corners */
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: #ffffff; /* Smooth background base for consistent gradient blends */
+  
+  /* Added specific uniform light blue ambient glow and soft border outline, matching role-card */
+  border: 1.5px solid rgba(15, 44, 89, 0.12); /* Soft deep navy/azure border base */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 
+              0 0 15px rgba(2, 132, 199, 0.08); /* Faint visual ambient glow */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Subtle Hover Enhancement - Halo increases smoothly */
+.illustration-wrapper:hover {
+  transform: translateY(-2px); /* Natural slight lift */
+  border-color: rgba(2, 132, 199, 0.35); /* Highlighted glow outline on focus */
+  box-shadow: 0 8px 24px rgba(15, 44, 89, 0.05), 
+              0 0 22px rgba(14, 165, 233, 0.22); /* Smooth outward clinical blue gradient hue */
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 26px;
+}
+
+/* Right Portal Section */
+.portal-right {
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.portal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.choose-type {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #475569;
+  display: block;
+}
+
+.portal-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: #0f2c59;
+  margin-top: 6px;
+}
+
+.portal-subtitle {
+  font-size: 14.5px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* 3 Role Cards Grid */
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  width: 100%;
+}
+
+/* 1. All 3 Role Cards - Uniform Base & Soft Ambient Blue Glow */
+.role-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px 24px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  border: 1.5px solid rgba(15, 44, 89, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 
+              0 0 16px rgba(2, 132, 199, 0.09);
+  position: relative;
+  overflow: hidden;
 }
 
 .role-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-5px);
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 10px 28px rgba(15, 44, 89, 0.08), 
+              0 0 25px rgba(14, 165, 233, 0.28);
 }
 
-.role-icon-circle {
-  width: 64px;
-  height: 64px;
+/* 2. Top Role Icons - Uniform Navy & Soft Clinical Circle */
+.role-icon,
+.admin-icon,
+.doctor-icon,
+.patient-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f5fc !important;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
+  margin: 0 auto 16px;
+  color: #0f2c59 !important;
+  font-size: 20px;
+  border: 1.5px solid rgba(15, 44, 89, 0.08);
 }
 
-
-/* --- Select Architecture Dropdown Styling (Image 1) --- */
-.architecture-select, select[name="architecture"], .form-select {
-    background-color: #ffffff !important;
-    border: 2px solid #008891 !important;
-    border-radius: 10px !important;
-    padding: 7px 16px !important;
-    font-weight: 600 !important;
-    color: #0f172a !important;
-    box-shadow: 0 0 12px rgba(0, 136, 145, 0.25) !important;
-    transition: all 0.3s ease-in-out !important;
-    outline: none !important;
-    cursor: pointer;
+/* 3. Card Title */
+.role-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f2c59;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.architecture-select:hover, .architecture-select:focus {
-    border-color: #0ea5e9 !important;
-    box-shadow: 0 0 18px rgba(14, 165, 233, 0.45) !important;
-    transform: translateY(-1px);
+/* 4. Bullets list - Matched to your HTML class (.role-bullets) */
+.role-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 24px;
+  text-align: left;
+  display: inline-block;
 }
 
-/* --- Search Button Glowing & Modern Styling (Image 2) --- */
-.search-btn, button[type="submit"].btn-primary, .btn-search {
-    background: linear-gradient(135deg, #008891 0%, #0284c7 100%) !important;
-    border: none !important;
-    border-radius: 10px !important;
-    padding: 8px 22px !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 14px rgba(0, 136, 145, 0.35) !important;
-    transition: all 0.3s ease-in-out !important;
-    cursor: pointer;
+.role-bullets li {
+  font-size: 14px;
+  color: #334155;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
 
-.search-btn:hover {
-    background: linear-gradient(135deg, #0284c7 0%, #008891 100%) !important;
-    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.55) !important;
-    transform: translateY(-2px);
+/* Checkmarks - Unified Brand Navy */
+.role-bullets li i {
+  color: #0f2c59 !important;
+  margin-right: 8px;
+  font-size: 14px;
 }
 
-/* Search Input Box Matching Border */
-.search-input, input[name="search"] {
-    border: 2px solid #e2e8f0 !important;
-    border-radius: 10px !important;
-    transition: all 0.3s ease;
+/* 5. Login Buttons - Uniform Signature Navy */
+.btn-role,
+.btn-admin,
+.btn-doctor,
+.btn-patient {
+  width: 100%;
+  padding: 12px 24px;
+  background-color: #0f2c59 !important;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(15, 44, 89, 0.15);
+  display: block;
+  text-align: center;
+  text-decoration: none;
 }
 
-.search-input:focus {
-    border-color: #008891 !important;
-    box-shadow: 0 0 10px rgba(0, 136, 145, 0.2) !important;
+.btn-role:hover,
+.btn-admin:hover,
+.btn-doctor:hover,
+.btn-patient:hover {
+  background-color: #0a1f3f !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(15, 44, 89, 0.25);
+}
+
+/* Footer Section */
+.login-footer {
+  text-align: center;
+  font-size: 14px;
+  color: #475569;
+  padding-top: 18px;
+}
+
+.login-footer p {
+  margin: 0 0 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.login-footer p i {
+  color: #10b981;
+  font-size: 16px;
+}
+
+.login-footer .copyright {
+  color: #64748b;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .hero-left {
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .illustration-wrapper {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .roles-grid {
+    grid-template-columns: 1fr;
+  }
 }
