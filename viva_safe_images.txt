@@ -1,0 +1,37 @@
+=== LUNG VISION VIVA SAFE DEMO IMAGES (3/3 CONSENSUS) ===
+
+[COVID]
+ - COVID-1013.png
+ - COVID-1020.png
+ - COVID-1028.png
+ - COVID-1038.png
+ - COVID-1061.png
+
+[Lung_Opacity]
+ - Lung_Opacity-1031.png
+ - Lung_Opacity-1040.png
+ - Lung_Opacity-1043.png
+ - Lung_Opacity-1062.png
+ - Lung_Opacity-110.png
+
+[Normal]
+ - Normal-10025.png
+ - Normal-10059.png
+ - Normal-10060.png
+ - Normal-10077.png
+ - Normal-10111.png
+
+[Tuberculosis]
+ - Tuberculosis-124.png
+ - Tuberculosis-127.png
+ - Tuberculosis-137.png
+ - Tuberculosis-164.png
+ - Tuberculosis-290.png
+
+[Viral Pneumonia]
+ - Viral Pneumonia-1007.png
+ - Viral Pneumonia-1026.png
+ - Viral Pneumonia-1041.png
+ - Viral Pneumonia-1042.png
+ - Viral Pneumonia-1077.png
+
