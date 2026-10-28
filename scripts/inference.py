@@ -176,9 +176,8 @@ def predict_lung_disease(image_path):
         return {}
 
     TEMPERATURE = 2.4  # Calibrates raw logits to eliminate 100% overconfidence
-
-    # MODE A: Real PyTorch Forward Pass (Runs locally on your Laptop)
-    if check_local_weights_exist():
+# MODE A: Real PyTorch Forward Pass (Runs ONLY locally on your Laptop, NOT on Render)
+    if check_local_weights_exist() and not os.environ.get('RENDER'):
         try:
             raw_img = Image.open(image_path).convert('RGB')
             tensor = transform_pipeline(raw_img).unsqueeze(0).to(DEVICE)
